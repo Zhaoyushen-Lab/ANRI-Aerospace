@@ -9,7 +9,7 @@ including knowledge management, engineering design, simulation and iteration.
 
 ## Current Stage
 
-ANRI-Aerospace v0.1.1
+ANRI-CDFV v0.1.1
 
 Focus:
 - Aerospace knowledge base
