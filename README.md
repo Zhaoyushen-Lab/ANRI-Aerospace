@@ -1,6 +1,6 @@
 # ANRI-Aerospace
 
-Exploring AI-Native Research Infrastructure for Aerospace Engineering.
+Exploring AI-Native Research Infrastructure for Cross-Domain Flight Vehicle Design.
 
 ## Vision
 
@@ -9,7 +9,7 @@ including knowledge management, engineering design, simulation and iteration.
 
 ## Current Stage
 
-ANRI-Aerospace v0.1
+ANRI-Aerospace v0.1.1
 
 Focus:
 - Aerospace knowledge base
@@ -19,6 +19,6 @@ Focus:
 ## Roadmap
 
 2026:
-- Build aerospace knowledge base
+- Build Cross-Domain Flight Vehicle Design knowledge base
 - Develop Knowledge Agent prototype
 - Explore AI-native engineering workflows
