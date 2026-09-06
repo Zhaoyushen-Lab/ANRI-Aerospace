@@ -1,0 +1,80 @@
+# Research Log 0001
+
+Date: 2026-09-06
+
+## Background
+
+The ANRI-Aerospace repository has been initialized.
+
+Core documentation including README, Vision, and Roadmap has been created.
+
+This marks the transition from an abstract idea to a research project.
+
+---
+
+## Research Objective
+
+Build an AI-native research workflow for aerospace conceptual design.
+
+Rather than developing isolated AI tools,
+the goal is to construct a complete research pipeline.
+
+---
+
+## First Research Question
+
+Can an AI system assist conceptual aircraft design through a structured workflow consisting of:
+
+- Requirement understanding
+- Aerospace knowledge retrieval
+- Engineering reasoning
+- Concept generation
+- Design evaluation
+- Report generation
+
+---
+
+## Planned Demonstration
+
+Target problem:
+
+Conceptual design of an amphibious UAV.
+
+Expected output:
+
+- aircraft configuration
+- mission analysis
+- design rationale
+- preliminary evaluation
+
+---
+
+## Current Status
+
+Completed
+
+- Repository initialized
+- Project vision documented
+- Development roadmap created
+
+Pending
+
+- Workflow architecture
+- Knowledge base
+- First prototype
+
+---
+
+## Reflection
+
+The primary challenge is not coding.
+
+The primary challenge is defining a reproducible research workflow.
+
+Future development should focus on validating each stage of the workflow instead of pursuing unnecessary complexity.
+
+---
+
+## Next Action
+
+Design Workflow v0.1.
