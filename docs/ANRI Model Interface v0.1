@@ -1,0 +1,56 @@
+# ANRI Model Interface v0.1
+
+
+## Purpose
+
+The model interface separates ANRI core architecture
+from specific AI foundation models.
+
+
+## Design Principle
+
+Models are replaceable.
+
+ANRI depends on capabilities,
+not specific model providers.
+
+
+## Required Capabilities
+
+
+### Reasoning
+
+Ability to perform engineering reasoning.
+
+
+### Tool Use
+
+Ability to interact with:
+
+- simulation tools
+- databases
+- engineering software
+
+
+### Structured Output
+
+Ability to generate:
+
+- parameters
+- decisions
+- explanations
+
+
+### Self Evaluation
+
+Ability to analyze uncertainty and limitations.
+
+
+## Future Compatibility
+
+The interface should support:
+
+- commercial foundation models
+- open-source models
+- domain-specific models
+- future advanced AI systems
