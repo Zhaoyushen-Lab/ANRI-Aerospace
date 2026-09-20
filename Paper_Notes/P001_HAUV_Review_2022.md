@@ -404,3 +404,191 @@ Water dynamics
 
 Connected by switching events.
 
+# Open Problems and Research Challenges Analysis
+
+
+## 1. Overall Research Status
+
+The development of amphibious aerial underwater vehicles (HAUVs)
+is still in an early stage.
+
+Current research has demonstrated various HAUV concepts,
+but practical applications still require further development
+in system design, hydrodynamics, control, and experimental validation.
+
+The review suggests that multimodal HAUVs have significant potential
+because they may combine:
+
+- high-speed aerial operation
+- stable cross-domain transition
+- improved underwater capability
+
+However, many fundamental technical challenges remain unresolved.
+
+## Challenge 001
+
+Problem:
+
+How to optimize the hydrodynamic characteristics
+of multimodal amphibious vehicles operating in both
+water and air environments?
+
+
+Background:
+
+Current research mainly focuses on:
+
+- concept development
+- principle validation
+- feasibility demonstration
+
+
+Limitation:
+
+System configuration optimization methods
+are still insufficient.
+
+
+Research Need:
+
+Develop optimized HAUV configurations by considering
+both water and air performance.
+
+### ANRI Relevance
+
+This represents a multidisciplinary optimization problem.
+
+Required knowledge:
+
+- Aerodynamics
+- Hydrodynamics
+- Structural design
+- Mission requirements
+
+
+Potential ANRI question:
+
+How can an AI-native system explore
+the design space of multimodal HAUV configurations?
+
+## Challenge 002
+
+Problem:
+
+How do hydrodynamic characteristics change
+during the air-water transition process?
+
+
+Importance:
+
+The changing hydrodynamics directly influence:
+
+- structural design
+- safety evaluation
+- cross-domain performance
+- dynamic modeling
+- transition control
+
+Future research should combine:
+
+1. Vehicle configuration design
+
+2. Experimental testing
+
+3. Numerical simulation
+
+4. Theoretical analysis
+
+
+Goal:
+
+Understand time-varying hydrodynamic characteristics during transition.
+
+## Challenge 003
+
+Problem:
+
+How to develop robust cross-domain motion
+control algorithms for multimodal HAUVs?
+
+
+Current Status:
+
+Existing methods are mainly validated through:
+
+- theoretical analysis
+- simulation experiments
+
+
+Limitation:
+
+Real-world natural environment validation
+is still insufficient.
+
+### Control Limitations
+
+Current adaptive controllers often assume:
+
+- small-angle operation
+- simplified motion conditions
+
+
+Future improvements:
+
+- Full 6DOF adaptive control
+- Handling arbitrary attitudes
+- Actuator saturation compensation
+
+## Challenge 004
+
+Problem:
+
+How does medium transition affect
+thruster performance?
+
+
+Current Simplification:
+
+Many studies assume:
+
+thruster output changes linearly
+with environmental density.
+
+
+Limitation:
+
+Real interaction between:
+
+- thruster
+- water surface
+- ground effect
+
+is much more complex.
+
+# ANRI Interpretation
+
+
+Section 4 reveals that HAUV development is not a single-domain
+engineering problem.
+
+It requires integration of:
+
+- Vehicle configuration design
+- Aerodynamics
+- Hydrodynamics
+- Control theory
+- Simulation
+- Experimental knowledge
+
+
+Potential ANRI role:
+
+Build an AI-native research workflow that can:
+
+1. Organize multidisciplinary knowledge
+
+2. Identify design trade-offs
+
+3. Assist physics-based reasoning
+
+4. Support iterative design exploration
