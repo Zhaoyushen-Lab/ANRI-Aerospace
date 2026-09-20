@@ -111,3 +111,45 @@ Dynamic Modeling
 
 Challenge 003:
 Persistent Autonomy
+
+## Introduction Extraction
+
+
+### Background
+
+Traditional underwater vehicles cannot satisfy
+air-sea cross-domain missions.
+
+
+### Motivation
+
+HAUV enables:
+
+- aerial observation
+- underwater detection
+- integrated missions
+
+
+### Key Challenges
+
+1. Cross-domain mobility
+
+2. Smooth air-water transition
+
+3. Autonomous operation under disturbances
+
+
+### Fundamental Conflicts
+
+Air optimization conflicts with underwater optimization.
+
+
+### ANRI Relevance
+
+HAUV represents a multidisciplinary research problem
+requiring integration of:
+
+- aerodynamics
+- hydrodynamics
+- control
+- autonomous systems
