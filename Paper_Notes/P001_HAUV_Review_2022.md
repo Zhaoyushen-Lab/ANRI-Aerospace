@@ -153,3 +153,154 @@ requiring integration of:
 - hydrodynamics
 - control
 - autonomous systems
+
+## 2. Current Status of HAUV
+
+
+## Field Maturity
+
+HAUV technology is currently in an early exploration stage.
+
+Current status:
+
+- Multiple concepts proposed
+- Prototype demonstrations exist
+- Practical deployment remains limited
+  
+## HAUV Design Classification
+
+
+### 1. Bioinspired HAUV
+
+Concept:
+
+Inspired by animals capable of air-water locomotion.
+
+
+Advantages:
+
+Natural cross-domain mobility.
+
+
+Limitations:
+
+Low technology maturity and limited payload capability.
+
+
+### 2. UAV/UUV-based HAUV
+
+Categories:
+
+- Fixed-wing HAUV
+- Multi-rotor HAUV
+- Multimodal HAUV
+
+## Fixed-wing HAUV
+
+
+Strength:
+
+- High speed
+- Long endurance
+- Aerodynamic efficiency
+
+
+Weakness:
+
+- Difficult low-speed operation
+- Difficult water transition
+- High impact during entry/exit
+
+
+Design conflict:
+
+Air performance vs transition safety
+
+## Multi-rotor HAUV
+
+
+Strength:
+
+- Hovering capability
+- VTOL
+- Stable transition
+
+
+Weakness:
+
+- High power consumption
+- Limited range
+
+
+Design conflict:
+
+Maneuverability vs endurance
+
+## Multimodal HAUV
+
+
+Goal:
+
+Combine advantages of:
+
+- Fixed-wing flight
+- Multi-rotor VTOL
+- Underwater gliding
+
+
+Expected benefits:
+
+- High maneuverability
+- Long endurance
+- Low underwater energy consumption
+
+
+Remaining challenge:
+
+System complexity increases.
+
+## Research Gaps Extracted from Current Status
+
+
+### Gap 001
+
+Current HAUV architectures still struggle to simultaneously achieve:
+
+- aerial efficiency
+- underwater capability
+- reliable transition
+
+
+### Gap 002
+
+Existing designs optimize individual modes,
+but cross-domain performance remains the bottleneck.
+
+
+### Gap 003
+
+Multimodal integration improves capability,
+but increases system complexity.
+
+## ANRI Interpretation
+
+
+Current HAUV research reveals a
+multi-objective multidisciplinary design problem.
+
+
+The design must balance:
+
+Aerodynamics
++
+Hydrodynamics
++
+Control
++
+Energy
+
+
+Potential ANRI role:
+
+Assist in organizing knowledge and exploring
+trade-offs between different HAUV architectures.
