@@ -279,14 +279,13 @@ but cross-domain performance remains the bottleneck.
 
 ### Gap 003
 
-Multimodal integration improves capability,
-but increases system complexity.
+Multimodal integration improves capability,but increases system complexity.
+
 
 ## ANRI Interpretation
 
 
-Current HAUV research reveals a
-multi-objective multidisciplinary design problem.
+Current HAUV research reveals a multi-objective multidisciplinary design problem.
 
 
 The design must balance:
@@ -302,5 +301,106 @@ Energy
 
 Potential ANRI role:
 
-Assist in organizing knowledge and exploring
-trade-offs between different HAUV architectures.
+Assist in organizing knowledge and exploring trade-offs between different HAUV architectures.
+
+## Core Technology
+
+Cross-domain motion control is one of the fundamental technologies required for HAUV operation.
+
+The main challenge:
+
+Maintaining stable motion while crossing air-water interface.
+
+## Challenge 001
+
+### Time-varying Dynamics During Transition
+
+
+Problem:
+
+The vehicle dynamics change significantly
+during air-water transition.
+
+
+Causes:
+
+- Buoyancy variation
+- Additional mass effect
+- Hydrodynamic damping change
+
+
+Implication:
+
+A fixed control model is insufficient.
+
+## Knowledge Node
+
+Cross-domain HAUV requires
+a hybrid dynamic model.
+
+
+The model should include:
+
+- Aerodynamic forces
+- Hydrodynamic forces
+- Buoyancy
+- Added mass
+- Damping
+- Propulsion characteristics
+
+## Fixed-wing Control Status
+
+
+Approach:
+
+State feedback controller
+with switching law.
+
+
+Result:
+
+Experimental success rate was limited.
+
+
+Insight:
+
+Cross-domain transition remains unreliable
+despite controller design.
+
+## Multi-rotor Control
+
+
+Common methods:
+
+- PD control
+- PID control
+- Gain scheduling PID
+
+
+Advantage:
+
+Stable closed-loop control.
+
+
+Limitation:
+
+Requires predefined models and parameters.
+
+## Fundamental Concept
+
+HAUV can be modeled as a hybrid system:
+
+
+Air dynamics
+
++
+
+Transition dynamics
+
++
+
+Water dynamics
+
+
+Connected by switching events.
+
