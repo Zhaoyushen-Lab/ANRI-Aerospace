@@ -20,6 +20,28 @@ for CDFV-001.
 # CP001: Multimodal HAUV Configuration Optimization
 
 
+## Status
+
+Open
+
+
+## Importance
+
+High
+
+
+## Evidence
+
+P001_HAUV_Review_2022
+
+
+## Related Research Areas
+
+- Multidisciplinary optimization
+- Aerodynamics
+- Hydrodynamics
+
+
 ## Source
 
 Paper:
@@ -159,3 +181,42 @@ Potential integration of:
 - dynamic modeling
 - control theory
 - adaptive reasoning
+
+# Problem Relationship
+
+
+
+CP001 Configuration Optimization
+
+        |
+        affects
+
+        ↓
+
+CP002 Transition Dynamics
+
+        |
+        affects
+
+        ↓
+
+CP003 Cross-domain Control
+
+# Open Questions
+
+
+## Related to CP001
+
+- What parameters define an optimal multimodal configuration?
+
+- How should aerial and underwater performance be weighted?
+
+
+## Related to CP002
+
+- Can transition dynamics be predicted before prototype fabrication?
+
+
+## Related to CP003
+
+- Can one controller handle air, transition, and underwater phases?
