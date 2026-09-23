@@ -171,10 +171,10 @@ Low priority:
 
 After reading P002, update:
 
-- AQ001
-- CP002
-- Gap002
-- First Principles
+1. AQ001
+2. Gap002
+3. CP002
+4. First Principles
   
 ## Search Strategy
 
@@ -199,3 +199,26 @@ Primary Sources:
 4. AIAA Arc
    Purpose:
    Aerospace-specific validation
+
+## Search Decision
+
+
+Decision:
+
+Prioritize IEEE Xplore and ScienceDirect
+before AIAA Arc.
+
+
+Reason:
+
+1. Institutional access availability
+
+2. Higher probability of obtaining full text
+
+3. Better alignment with current research questions
+
+
+Expected Benefit:
+
+Improve efficiency of evidence acquisition
+for AQ001.
