@@ -175,3 +175,27 @@ After reading P002, update:
 - CP002
 - Gap002
 - First Principles
+  
+## Search Strategy
+
+
+Primary Sources:
+
+1. IEEE Xplore
+   Purpose:
+   System-level HAUV dynamics and robotics
+
+
+2. ScienceDirect
+   Purpose:
+   Hydrodynamic modeling and CFD
+
+
+3. SpringerLink
+   Purpose:
+   Supporting robotics and control research
+
+
+4. AIAA Arc
+   Purpose:
+   Aerospace-specific validation
