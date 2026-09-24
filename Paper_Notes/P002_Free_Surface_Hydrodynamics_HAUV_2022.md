@@ -171,7 +171,93 @@ C3:
 Analyze free surface suction force and surge effect.
 
 
-# 5. Evidence
+# 5. Method Extraction
+
+### Model Simplification
+
+Research Object:
+Nezha HAUV
+
+Simplified Model:
+Vertical Cylinder
+
+Reason:
+Extract fundamental transition dynamics.
+
+---
+
+### Transition Process Decomposition
+
+Stage 1:
+Underwater floating
+
+Stage 2:
+Near free surface
+
+Stage 3:
+Surface crossing
+
+Stage 4:
+Air separation
+
+---
+
+### State Representation
+
+Coordinate:
+Earth frame + Body frame
+
+Variables:
+Velocity
+Force
+Moment
+
+## Coordinate System Representation
+
+### Frames
+
+Earth/Measurement Frame (E):
+Used for external measurements.
+
+Body Frame (O):
+Attached to vehicle center of mass.
+
+---
+
+### State Variables
+
+Velocity:
+vE = Earth frame velocity
+v = Body frame velocity
+
+Force:
+FE = Earth frame force
+F = Body frame force
+
+Moment:
+ME = Earth frame moment
+M = Body frame moment
+
+
+---
+
+### Transformation
+
+v = J^-1 vE
+
+where J represents attitude-dependent coordinate transformation.
+
+Variables:
+theta = pitch angle
+psi = yaw angle
+
+---
+
+### ANRI Relevance
+
+CDFV knowledge representation requires explicit coordinate frames because transition dynamics involve changing vehicle attitudes and multi-environment forces.
+
+# 6. Evidence
 
 
 E1:
@@ -191,7 +277,7 @@ Attitude-dependent hydrodynamic moment
 
 ---
 
-# 6. Research Impact
+# 7. Research Impact
 
 
 Before:
@@ -206,7 +292,7 @@ After:
 
 ---
 
-# 7. Limitations
+# 8. Limitations
 
 
 - Simplified cylindrical model
