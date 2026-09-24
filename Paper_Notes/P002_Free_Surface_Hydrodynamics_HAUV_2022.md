@@ -257,7 +257,142 @@ psi = yaw angle
 
 CDFV knowledge representation requires explicit coordinate frames because transition dynamics involve changing vehicle attitudes and multi-environment forces.
 
-# 6. Evidence
+# 6. Experimental Setup Extraction
+
+## 6.1 Purpose of Experiment
+
+### Research Gap from Introduction
+
+Previous HAUV studies mainly focused on:
+
+- vehicle motion
+- trajectory
+- kinematics
+
+However, the hydrodynamic characteristics during water-air transition were insufficiently understood.
+
+In particular:
+
+- time-varying hydrodynamic forces
+- transient moments
+- force evolution during free-surface crossing
+
+were difficult to obtain.
+
+Therefore, this paper develops a constrained model experiment to measure the dynamic forces during HAUV water-exit process.
+
+---
+
+## ANRI Interpretation
+
+### Research Question
+
+How can the transient hydrodynamic characteristics of HAUV during water-air transition be experimentally characterized?
+
+### Required Evidence
+
+To answer this question, the experiment needs:
+
+- controlled transition motion
+- measurable force
+- measurable moment
+- time-resolved data
+
+---
+
+# 6.2 Experimental Platform
+
+## Platform Overview
+
+The experiment was carried out in the towing tank of Shanghai Jiao Tong University.
+
+Main parameters:
+
+- Length: 110 m
+- Width: 6 m
+- Water depth: 3 m
+
+The experimental platform is composed of:
+
+- actuating motor
+- sliding module
+- six-component force balance
+- transformer
+- adjustable angle platform
+- modular main structure
+- structural support
+- triangle connection module
+
+---
+
+## Experimental Capability
+
+The platform can realize constrained model experiments with controlled:
+
+- velocity
+- acceleration
+- attitude
+
+
+Parameter range:
+
+| Parameter | Value |
+|---|---|
+| Velocity range | 0 - 0.5 m/s |
+| Acceleration range | 0.07 - 1 m/s² |
+| Attitude adjustment | -26° ~ 26° |
+| Attitude accuracy | 0.1° |
+| Force measurement frequency | 1000 Hz |
+
+---
+
+## Measurement System
+
+The six-component force balance enables measurement of:
+
+### Force
+
+- X direction force
+- Y direction force
+- Z direction force
+
+
+### Moment
+
+- Roll moment
+- Pitch moment
+- Yaw moment
+
+
+The system obtains time-varying hydrodynamic force and moment data during the water-air transition process.
+
+---
+
+# ANRI Knowledge Object
+
+```yaml
+Experimental_Platform:
+
+Purpose:
+  Measure HAUV transition dynamics
+
+Input:
+  - velocity
+  - acceleration
+  - attitude
+
+Process:
+  constrained water-exit motion
+
+Measurement:
+  - force
+  - moment
+
+Output:
+  time-varying hydrodynamic data
+
+
+# 7. Evidence
 
 
 E1:
@@ -277,7 +412,7 @@ Attitude-dependent hydrodynamic moment
 
 ---
 
-# 7. Research Impact
+# 8. Research Impact
 
 
 Before:
@@ -292,7 +427,7 @@ After:
 
 ---
 
-# 8. Limitations
+# 9. Limitations
 
 
 - Simplified cylindrical model
