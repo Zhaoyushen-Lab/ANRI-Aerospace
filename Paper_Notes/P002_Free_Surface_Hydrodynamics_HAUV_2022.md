@@ -48,22 +48,130 @@ Direct evidence source for:
 
 ## Problem
 
-...
+The paper investigates the hydrodynamic characteristics of hybrid unmanned aerial underwater vehicles (HAUVs) during the water-air trans-media transition process.
 
-
-## Method
-
-...
-
-
-## Findings
-
-...
+The key problem is that the transition process involves strong nonlinear interactions between the vehicle and the changing fluid environment. The time-varying hydrodynamic forces and moments during this process remain insufficiently understood.
 
 
 ---
 
-# 4. Evidence
+## Method
+
+The authors developed a novel experimental platform capable of controlling HAUV water-air transition profiles under different:
+
+- velocities
+- accelerations
+- attitudes
+
+The platform enables precise measurement of hydrodynamic forces and moments during the transition process.
+
+A series of constrained model experiments were conducted to analyze how hydrodynamic forces change with vehicle motion conditions.
+
+
+---
+
+## Findings
+
+The experiments revealed several important transition dynamics:
+
+
+### 1. Free surface suction effect
+
+When the velocity exceeds 0.1 m/s, the suction force caused by the free surface effect initially increases and then becomes approximately constant.
+
+The maximum suction force reaches about 10% of gravity.
+
+
+### 2. Acceleration-dependent vertical force
+
+At low accelerations (<0.15 m/s²), the vertical force approximately increases with the square of time.
+
+
+### 3. Attitude-dependent hydrodynamic moment
+
+The hydrodynamic moment changes significantly with vehicle attitude.
+
+When attitude is below 15°, the moment first decreases and then increases.
+
+When attitude increases further, the moment decreases toward a stable value.
+
+
+### 4. Additional hydrodynamic effects
+
+The influence of hydrodynamic moments caused by effects other than time-varying buoyancy cannot be ignored.
+
+
+---
+
+## Contribution to AQ001
+
+This paper provides experimental evidence that HAUV air-water transition dynamics are governed by:
+
+- free surface interaction
+- time-varying hydrodynamic forces
+- attitude-dependent hydrodynamic moments
+- non-buoyancy hydrodynamic effects
+
+---
+
+## Evidence Status
+
+Status:
+
+Preliminary
+
+
+Confidence:
+
+High for experimental observations
+
+Medium for generalization to full HAUV systems
+
+# 4. Introduction Extraction
+
+
+## Research Context
+
+HAUVs enable repeated air-water transitions.
+Multi-rotor HAUVs are suitable for smooth and controllable transitions.
+
+
+## Research Problem
+
+Water-air transition is strongly nonlinear and includes:
+- single medium motion
+- near free surface motion
+- free surface breaking
+
+
+## Existing Limitations
+
+Previous studies mainly focused on:
+- vehicle motion
+- trajectory
+- kinematics
+
+However, direct measurement of hydrodynamic forces during transition was lacking.
+
+
+## Research Gap
+
+Lack of experimentally measured time-varying hydrodynamic forces and moments during HAUV transition.
+
+
+## Contributions
+
+C1:
+Develop hydrodynamic measurement platform.
+
+C2:
+Obtain force and moment data under different velocities, accelerations, and attitudes.
+
+C3:
+Analyze free surface suction force and surge effect.
+
+
+# 5. Evidence
 
 
 E1:
@@ -83,7 +191,7 @@ Attitude-dependent hydrodynamic moment
 
 ---
 
-# 5. Research Impact
+# 6. Research Impact
 
 
 Before:
@@ -98,7 +206,7 @@ After:
 
 ---
 
-# 6. Limitations
+# 7. Limitations
 
 
 - Simplified cylindrical model
