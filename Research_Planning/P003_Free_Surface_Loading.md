@@ -99,12 +99,12 @@ Create and fill this table:
 
 | Quantity | P002 cylinder | CDFV-001 | Source / status |
 |---|---:|---:|---|
-| Water-exit velocity | 0.1–0.5 m/s | To fill | P002 Section 4.1 |
-| Mass / weight reference | Table 1 | To fill | P002 Table 1 |
-| Main diameter | 0.090 m | To fill | P002 Table 1 |
-| Main length | 0.323 m | To fill | P002 Table 1 |
-| Attitude condition | Separate tests | To fill | P002 Section 4.3 |
-| Free-surface load data | Figs. 11–12 | To fill | P002 Section 4.1.2 |
+| Water-exit velocity | 0.1–0.5 m/s | Blocked — source required | P002 §4.1 |
+| Mass / weight reference | 2.030 kg | Blocked — CDFV mass record required | P002 Table 1 |
+| Main diameter | 0.090 m | Not directly applicable until geometry mapping | P002 Table 1 |
+| Main length | 0.323 m | Blocked — CDFV geometry record required | P002 Table 1 |
+| Attitude condition | 5°–25°, at 0.1 m/s | Blocked — transition attitude required | P002 §4.3 |
+| Free-surface load data | Figs. 11–12 | Not yet measured or simulated | P002 §4.1.2 |
 
 Completion condition: every CDFV cell is sourced or explicitly blocked.
 
