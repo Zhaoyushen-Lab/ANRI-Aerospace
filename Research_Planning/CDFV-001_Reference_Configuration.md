@@ -47,18 +47,213 @@ These choices are proposed assumptions, not measured properties.
 
 ## 5. Parameter Register
 
-| Parameter | Value | Basis | Status |
-|---|---|---|---|
-| Body diameter | Not selected | Geometry decision | Open |
-| Body length | Not selected | Geometry decision | Open |
-| Mass | Not selected | Buoyancy and model purpose | Open |
-| Displaced volume | Not calculated | Derived from selected geometry | Open |
-| Water-exit velocity | Not selected | Study conditions | Open |
-| Initial immersion | Not selected | Define transition interval | Open |
-| Fluid properties | Not selected | Specify study environment | Open |
+## CDFV-001-Ref-01B — P002 Computational Benchmark
 
-Parameter basis must be one of:
-literature reference, design assumption, calculation, or measurement.
+### Purpose
+
+Ref-01B is a literature-based computational benchmark.
+It is used to test the baseline modeling workflow against
+the conditions reported in P002.
+
+It is not a finalized CDFV-001 vehicle design and does not
+represent a CDFV-specific experimental validation.
+
+### Source
+
+- Primary source: P002
+- Geometry and physical parameters: P002 Table 1
+- Coordinate definitions: P002 Section 2.2
+- Experimental platform: P002 Section 3.1
+- Velocity conditions: P002 Section 4.1
+- Attitude conditions: P002 Section 4.3
+- Suction-force evidence: P002 Figures 11–12
+
+### Confirmed Parameters
+
+| Parameter | Value | Basis | Status |
+|---|---:|---|---|
+| Body diameter | 0.090 m | P002 Table 1 | Literature reference |
+| Body length | 0.323 m | P002 Table 1 | Literature reference |
+| Model mass | 2.030 kg | P002 Table 1 | Literature reference |
+| CG position | (0, 0, -0.175) m | P002 Table 1 | Coordinate review required |
+| Ix | 0.147 kg·m² | P002 Table 1 | Literature reference |
+| Iy | 0.145 kg·m² | P002 Table 1 | Literature reference |
+| Water-exit velocity | 0.1–0.5 m/s | P002 Section 4.1 | Literature reference |
+| Velocity interval | 0.05 m/s | P002 Section 4.1 | Literature reference |
+| Initial attitude | 0° for first benchmark | Research simplification | Proposed |
+| Fluid | Fresh water assumption | Modeling assumption | Provisional |
+| Free-surface term | Excluded from baseline | Model definition | Defined |
+
+### Parameters Not Yet Used
+
+| Parameter | Status | Reason |
+|---|---|---|
+| Initial immersion depth | Open | P002 conditions vary between experiments |
+| Digital filter | Not reported in P002 | Cannot be reconstructed reliably |
+| Complete force/moment transformation | Review required | Coordinate convention must be confirmed |
+| Propulsion thrust | Not modeled | Motion is treated as prescribed |
+| CDFV-specific geometry | Not represented | Ref-01B is a P002 benchmark |
+| Hydrodynamic resistance coefficient | Blocked — source required | No coefficient selected yet |
+
+### Derived Geometry and Buoyancy Estimate
+
+The external cylindrical volume is estimated as:
+
+V = pi × (D / 2)^2 × L
+
+Using:
+
+- D = 0.090 m
+- L = 0.323 m
+
+The estimated volume is approximately:
+
+V ≈ 0.002055 m³
+
+Under a provisional freshwater assumption:
+
+- water density = 1000 kg/m³
+- gravitational acceleration = 9.81 m/s²
+
+Estimated fully submerged buoyancy:
+
+B ≈ 20.16 N
+
+Estimated model weight:
+
+W = m × g ≈ 19.91 N
+
+This estimate suggests near-neutral or slightly positive buoyancy
+under the stated assumptions.
+
+This buoyancy estimate is calculated from the external cylindrical
+dimensions and a freshwater assumption. It is not a directly reported
+P002 measurement and must not be treated as validated CDFV data.
+
+## Ref-01B Motion Scenario
+
+### Motion Type
+
+- Transition type: vertical water exit
+- Primary degree of freedom: vertical translation
+- Attitude: fixed upright reference attitude
+- Motion profile: prescribed velocity or prescribed acceleration
+- Fluid surface: initially calm
+- Primary output: vertical force during transition
+
+### Initial Research Boundary
+
+Included:
+
+- vertical water-exit motion;
+- free-surface interaction;
+- vertical resultant force;
+- velocity-dependent loading;
+- baseline-versus-extended model comparison.
+
+Excluded:
+
+- horizontal motion;
+- water entry;
+- changing attitude;
+- autonomous control;
+- rotor thrust modeling;
+- arm and appendage effects;
+- full six-degree-of-freedom dynamics;
+- complete flight-vehicle design.
+
+## Ref-01B Baseline Model
+
+The first baseline model excludes free-surface loading.
+
+State variables:
+
+- vertical position: z(t)
+- vertical velocity: v(t)
+- vertical acceleration: a(t)
+
+The general baseline force interface is:
+
+F_baseline =
+    F_gravity
+  + F_buoyancy
+  + F_inertial
+  + F_resistance
+
+The free-surface term is initially set to:
+
+F_free_surface = 0
+
+The extended model will later compare:
+
+F_extended =
+    F_baseline
+  + F_free_surface(z, v)
+
+The exact hydrodynamic-resistance coefficient has not yet been
+selected. No coefficient should be invented before a source or
+explicit modeling assumption is recorded.
+
+### Baseline Modeling Assumptions
+
+- Motion is prescribed rather than generated by a detailed propulsion model.
+- The first output is vertical resultant force.
+- Attitude remains fixed.
+- P002 geometry is used as a literature benchmark.
+- The baseline does not claim to reproduce the complete P002 force curve.
+- Free-surface loading is evaluated as a separate candidate contribution.
+
+## Representative Benchmark Cases
+
+| Case | Velocity | Purpose | Status |
+|---|---:|---|---|
+| B-01 | 0.10 m/s | P002 lower velocity region | Defined |
+| B-02 | 0.25 m/s | Approximate transition to suction plateau | Defined |
+| B-03 | 0.50 m/s | Upper tested velocity | Defined |
+
+For each case, record:
+
+- prescribed velocity;
+- prescribed acceleration, if available;
+- assumed water density;
+- initial immersion condition;
+- calculated buoyancy;
+- calculated weight;
+- included baseline terms;
+- excluded free-surface term;
+- missing coefficients or assumptions.
+
+If the initial immersion depth or acceleration profile is unavailable,
+record:
+
+Blocked — source required
+
+Do not infer initial immersion depth from the length of the connecting
+rod used in P002.
+
+## Ref-01B Completion Criteria
+
+Ref-01B is complete when:
+
+- all benchmark parameters have a source or explicit assumption;
+- derived quantities can be recalculated;
+- coordinate, unit, and sign conventions are recorded;
+- the baseline and extended model boundaries are explicit;
+- the three representative velocity cases are defined;
+- missing coefficients are explicitly identified;
+- no P002 result is presented as a CDFV-001 validation result.
+
+### Status
+
+```yaml
+configuration_id: CDFV-001-Ref-01B
+type: P002 computational benchmark
+status: computational benchmark defined
+experimental_validation: deferred
+cdfv_transfer: not established
+free_surface_term: excluded from baseline
+next_task: define and run baseline sensitivity analysis
+```
 
 ## 6. Baseline Model Interface
 
