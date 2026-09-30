@@ -308,3 +308,31 @@ materially affect the baseline result.
 | Version | Change | Reason |
 |---|---|---|
 | v0.1 | Created baseline model interface | Begin Ref-01B computational work |
+
+## Verification Status
+
+- Status: Internally verified computational baseline
+- Verification date: 2026-09-30
+- Verification artifact:
+  - `Models/CDFV-001/Ref-01B/results/verification.json`
+  - `Models/CDFV-001/Ref-01B/results/verification_report.md`
+- Cases verified:
+  - 0.10 m/s
+  - 0.25 m/s
+  - 0.50 m/s
+- Maximum force-balance residual: 3.55271368e-15 N
+- Experimental validation: Pending
+- P002-to-CDFV transfer: Not established
+- Free-surface loading: Excluded from this baseline
+
+## Decision
+
+Ref-01B-B is accepted as the internally consistent zero-free-surface
+computational baseline for CDFV-001.
+
+This acceptance verifies implementation consistency only. It does not
+establish experimental accuracy or the transferability of P002
+free-surface loading to CDFV-001.
+
+The next step is to extend the verifier before introducing a
+literature-bounded free-surface sensitivity term.
