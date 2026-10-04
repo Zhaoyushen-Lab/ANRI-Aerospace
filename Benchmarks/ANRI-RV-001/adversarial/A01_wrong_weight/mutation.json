@@ -1,0 +1,11 @@
+{
+  "case_id": "A01_wrong_weight",
+  "source_file": "Ref-01B-B-0p10mps.csv",
+  "mutated_file": "C:\\Users\\xiangming\\ANRI-Aerospace\\Benchmarks\\ANRI-RV-001\\adversarial\\A01_wrong_weight\\results\\Ref-01B-B-0p10mps.csv",
+  "row_index_zero_based": 0,
+  "column": "weight_N",
+  "original_value": 19.907499499999997,
+  "delta": 0.1,
+  "expected_detection": "FAIL",
+  "clean_results_untouched": true
+}

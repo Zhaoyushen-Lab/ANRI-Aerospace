@@ -1,0 +1,11 @@
+{
+  "case_id": "A02_broken_force_balance",
+  "source_file": "Ref-01B-B-0p10mps.csv",
+  "mutated_file": "C:\\Users\\xiangming\\ANRI-Aerospace\\Benchmarks\\ANRI-RV-001\\adversarial\\A02_broken_force_balance\\results\\Ref-01B-B-0p10mps.csv",
+  "row_index_zero_based": 0,
+  "column": "constraint_force_N",
+  "original_value": -0.24356987346715542,
+  "delta": 1.0,
+  "expected_detection": "FAIL",
+  "clean_results_untouched": true
+}
