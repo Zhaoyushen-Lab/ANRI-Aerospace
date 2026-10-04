@@ -1,0 +1,76 @@
+benchmark_id: ANRI-RV-001
+version: 0.1
+unit: criterion
+pass_policy: all_required_criteria_pass
+statuses: [PASS, FAIL, INCONCLUSIVE, NOT_RUN]
+
+criteria:
+  - id: C01
+    name: reference_configuration
+    points: 1
+    required: true
+    expected: "Mass 2.030 kg; diameter 0.090 m; length 0.323 m; freshwater density 1000 kg/m^3; gravity 9.80665 m/s^2."
+    evidence: [Research_Planning/CDFV-001_Reference_Configuration.md]
+
+  - id: C02
+    name: required_cases
+    points: 1
+    required: true
+    expected: "The three clean cases use 0.10, 0.25, and 0.50 m/s."
+    evidence: [Models/CDFV-001/Ref-01B/results]
+
+  - id: C03
+    name: csv_integrity
+    points: 1
+    required: true
+    expected: "Each clean CSV is readable, non-empty, and has the expected numeric columns."
+    evidence: [Models/CDFV-001/Ref-01B/results]
+
+  - id: C04
+    name: monotonic_progress
+    points: 1
+    required: true
+    expected: "Time and vertical position are monotonic in every clean case."
+    evidence: [Models/CDFV-001/Ref-01B/results]
+
+  - id: C05
+    name: weight_reference
+    points: 1
+    required: true
+    expected: "weight_N agrees with mass times gravity within 0.0001 N."
+    evidence: [Models/CDFV-001/Ref-01B/verify_baseline.py]
+
+  - id: C06
+    name: buoyancy_range
+    points: 1
+    required: true
+    expected: "Buoyancy lies between zero and the full-submergence reference value."
+    evidence: [Models/CDFV-001/Ref-01B/verify_baseline.py]
+
+  - id: C07
+    name: force_balance
+    points: 1
+    required: true
+    expected: "constraint_force_N + buoyancy_N - weight_N remains within tolerance."
+    evidence: [Models/CDFV-001/Ref-01B/verify_baseline.py]
+
+  - id: C08
+    name: excluded_terms_are_declared
+    points: 1
+    required: true
+    expected: "Free-surface force, drag, and added mass are identified as excluded assumptions."
+    evidence: [Models/CDFV-001/Ref-01B/baseline_model.py]
+
+  - id: C09
+    name: adversarial_error_detection
+    points: 1
+    required: true
+    expected: "At least one changed reference value and one broken force-balance row are detected."
+    evidence: [adversarial]
+
+  - id: C10
+    name: limitation_propagation
+    points: 1
+    required: true
+    expected: "The conclusion does not call the computational baseline experimental validation."
+    evidence: [task.md]

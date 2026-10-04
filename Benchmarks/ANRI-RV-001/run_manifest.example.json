@@ -1,0 +1,27 @@
+{
+  "benchmark_id": "ANRI-RV-001",
+  "run_id": "ANRI-RV-001-clean-YYYYMMDD-HHMMSS",
+  "status": "replace_before_commit",
+  "git_commit": "",
+  "python_version": "",
+  "platform": "",
+  "command": "py -3 Models/CDFV-001/Ref-01B/verify_baseline.py",
+  "inputs": [
+    "Research_Planning/CDFV-001_Reference_Configuration.md",
+    "Models/CDFV-001/Ref-01B/baseline_model.py",
+    "Models/CDFV-001/Ref-01B/results/*.csv"
+  ],
+  "outputs": [
+    "Models/CDFV-001/Ref-01B/results/verification.json",
+    "Models/CDFV-001/Ref-01B/results/verification_report.md"
+  ],
+  "assumptions": {
+    "water_density_kg_m3": 1000.0,
+    "free_surface_force_N": 0.0,
+    "drag_included": false,
+    "added_mass_included": false,
+    "experimental_validation": false
+  },
+  "output_sha256": {},
+  "notes": "Computational consistency only; free-surface loading remains unvalidated."
+}

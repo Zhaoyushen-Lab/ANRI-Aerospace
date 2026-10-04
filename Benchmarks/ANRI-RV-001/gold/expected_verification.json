@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "ANRI-RV-001",
+  "version": "0.1",
+  "clean_baseline": {
+    "overall_status": "PASS",
+    "cases": [
+      {"velocity_m_s": 0.10, "status": "PASS", "rows": 4846},
+      {"velocity_m_s": 0.25, "status": "PASS", "rows": 1940},
+      {"velocity_m_s": 0.50, "status": "PASS", "rows": 971}
+    ],
+    "weight_N": 19.9074995,
+    "full_buoyancy_N": 20.1510694,
+    "max_force_balance_residual_N": 3.55271368e-15,
+    "tolerance_N": 0.0001,
+    "free_surface_force_N": 0.0,
+    "experimental_validation": false
+  },
+  "interpretation": "PASS means internal consistency under the stated baseline assumptions. It does not establish experimental free-surface loading."
+}
