@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:anri:research-object:0.1",
+  "title": "ANRI Research Object",
+  "description": "A versioned, traceable unit of research that can be validated and reviewed.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "type",
+    "version",
+    "status",
+    "title",
+    "purpose",
+    "scope",
+    "claims",
+    "evidence",
+    "validators",
+    "artifacts",
+    "assumptions",
+    "limitations",
+    "review",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^RO-[A-Za-z0-9][A-Za-z0-9-]*$"
+    },
+    "type": {
+      "const": "research_object"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "enum": ["draft", "in_review", "verified", "rejected", "superseded"]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope": {
+      "$ref": "#/$defs/scope"
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/claim"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
+    },
+    "validators": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/validator"
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/artifact"
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/assumption"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/limitation"
+      }
+    },
+    "review": {
+      "$ref": "#/$defs/review"
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    }
+  },
+  "$defs": {
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["configuration_id", "research_question", "included", "excluded"],
+      "properties": {
+        "configuration_id": { "type": "string", "minLength": 1 },
+        "research_question": { "type": "string", "minLength": 1 },
+        "included": { "type": "array", "items": { "type": "string" } },
+        "excluded": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text", "status", "evidence_refs", "validator_refs", "limitation_refs"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^C-[A-Za-z0-9][A-Za-z0-9-]*$" },
+        "text": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["proposed", "supported", "inconclusive", "rejected"] },
+        "evidence_refs": { "type": "array", "items": { "type": "string" } },
+        "validator_refs": { "type": "array", "items": { "type": "string" } },
+        "limitation_refs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "source", "supports", "status"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^E-[A-Za-z0-9][A-Za-z0-9-]*$" },
+        "type": { "enum": ["literature", "measurement", "simulation", "calculation", "decision", "review"] },
+        "source": { "type": "string", "minLength": 1 },
+        "supports": { "type": "array", "items": { "type": "string" } },
+        "status": { "enum": ["mapped", "available", "missing", "unvalidated"] },
+        "conditions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "validator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "command", "result_ref"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^V-[A-Za-z0-9][A-Za-z0-9-]*$" },
+        "name": { "type": "string", "minLength": 1 },
+        "command": { "type": "string", "minLength": 1 },
+        "result_ref": { "type": "string", "minLength": 1 }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "role", "sha256"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "role": { "enum": ["input", "source", "model", "result", "report", "manifest", "review"] },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "assumption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text", "status"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^A-[A-Za-z0-9][A-Za-z0-9-]*$" },
+        "text": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["explicit", "provisional", "open"] }
+      }
+    },
+    "limitation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text", "status"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^L-[A-Za-z0-9][A-Za-z0-9-]*$" },
+        "text": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["open", "bounded", "resolved"] }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reviewer_refs"],
+      "properties": {
+        "status": { "enum": ["pending", "approved", "rejected", "revision_requested"] },
+        "reviewer_refs": { "type": "array", "items": { "type": "string" } },
+        "decision_ref": { "type": "string" }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "git_commit", "created_utc"],
+      "properties": {
+        "repository": { "type": "string", "minLength": 1 },
+        "git_commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+        "created_utc": { "type": "string", "format": "date-time" },
+        "author": { "type": "string" }
+      }
+    }
+  }
+}

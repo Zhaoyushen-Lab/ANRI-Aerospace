@@ -1,0 +1,163 @@
+{
+    "schema_version":  "0.1",
+    "id":  "RO-CDFV-001-Ref-01B",
+    "type":  "research_object",
+    "version":  "0.1.0",
+    "status":  "in_review",
+    "title":  "CDFV-001 Ref-01B computational hydrostatic benchmark",
+    "purpose":  "Establish an internally reproducible vertical water-exit baseline before adding free-surface loading or experimental data.",
+    "scope":  {
+                  "configuration_id":  "CDFV-001-Ref-01B",
+                  "research_question":  "Is the prescribed-motion hydrostatic baseline internally computationally consistent under the stated assumptions?",
+                  "included":  [
+                                   "vertical prescribed water-exit motion",
+                                   "gravity",
+                                   "partially submerged buoyancy",
+                                   "algebraic constraint force",
+                                   "CSV integrity and force-balance verification"
+                               ],
+                  "excluded":  [
+                                   "free-surface loading",
+                                   "drag",
+                                   "added mass",
+                                   "propulsion dynamics",
+                                   "attitude coupling",
+                                   "experimental validation"
+                               ]
+              },
+    "claims":  [
+                   {
+                       "id":  "C-CDFV-001-BASELINE-CONSISTENT",
+                       "text":  "The baseline is internally computationally consistent within the stated assumptions; it is not experimental validation of free-surface loading.",
+                       "status":  "supported",
+                       "evidence_refs":  [
+                                             "E-CDFV-001-CONFIG",
+                                             "E-CDFV-001-RESULTS"
+                                         ],
+                       "validator_refs":  [
+                                              "V-ANRI-RV-001"
+                                          ],
+                       "limitation_refs":  [
+                                               "L-NO-EXPERIMENT",
+                                               "L-EXCLUDED-PHYSICS"
+                                           ]
+                   }
+               ],
+    "evidence":  [
+                     {
+                         "id":  "E-CDFV-001-CONFIG",
+                         "type":  "literature",
+                         "source":  "Research_Planning/CDFV-001_Reference_Configuration.md",
+                         "supports":  [
+                                          "C-CDFV-001-BASELINE-CONSISTENT"
+                                      ],
+                         "status":  "mapped",
+                         "conditions":  [
+                                            "mass=2.030 kg",
+                                            "diameter=0.090 m",
+                                            "length=0.323 m",
+                                            "freshwater assumption"
+                                        ]
+                     },
+                     {
+                         "id":  "E-CDFV-001-RESULTS",
+                         "type":  "calculation",
+                         "source":  "Models/CDFV-001/Ref-01B/results/verification_report.md",
+                         "supports":  [
+                                          "C-CDFV-001-BASELINE-CONSISTENT"
+                                      ],
+                         "status":  "available",
+                         "conditions":  [
+                                            "0.10 m/s",
+                                            "0.25 m/s",
+                                            "0.50 m/s"
+                                        ]
+                     }
+                 ],
+    "validators":  [
+                       {
+                           "id":  "V-ANRI-RV-001",
+                           "name":  "ANRI-RV-001 Ref-01B baseline verifier",
+                           "command":  "python Models/CDFV-001/Ref-01B/verify_baseline.py",
+                           "result_ref":  "Models/CDFV-001/Ref-01B/results/verification.json"
+                       }
+                   ],
+    "artifacts":  [
+                      {
+                          "path":  "Research_Planning/CDFV-001_Reference_Configuration.md",
+                          "role":  "input",
+                          "sha256":  "c53fb260324211ba7cca8ff60ab23a352929ee7361be8c8f04b90f92210e5e6a"
+                      },
+                      {
+                          "path":  "Models/CDFV-001/Ref-01B/baseline_model.py",
+                          "role":  "model",
+                          "sha256":  "eee0828768e0e04cbd5b1f6120eebdea725133e6b0ea65c827f931e5599a7918"
+                      },
+                      {
+                          "path":  "Models/CDFV-001/Ref-01B/verify_baseline.py",
+                          "role":  "model",
+                          "sha256":  "4e07abe86d8bde2d888714c187583e47909c758bf4a126f6a8d7c5d51e58530f"
+                      },
+                      {
+                          "path":  "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p10mps.csv",
+                          "role":  "result",
+                          "sha256":  "751ef8c7f1bd575f836c98a900f70e7d3bafd34970ca5461ecebe51164268889"
+                      },
+                      {
+                          "path":  "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p25mps.csv",
+                          "role":  "result",
+                          "sha256":  "8373fa787b46ae1bd5022e1473bf901362b898aa86db16b2321eff4cbc7d89b8"
+                      },
+                      {
+                          "path":  "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p50mps.csv",
+                          "role":  "result",
+                          "sha256":  "810bcdf58f76570dc9de385e4748b7a2874a7ac5b6109103fb6a3614fbc4cbc9"
+                      },
+                      {
+                          "path":  "Models/CDFV-001/Ref-01B/results/summary.csv",
+                          "role":  "result",
+                          "sha256":  "683308932496cd8c97eaf111019b0d0a8874d0e7c18f21b8a86c0db9ffc63a2b"
+                      }
+                  ],
+    "assumptions":  [
+                        {
+                            "id":  "A-FRESHWATER",
+                            "text":  "Water density is 1000 kg/m^3.",
+                            "status":  "explicit"
+                        },
+                        {
+                            "id":  "A-FREE-SURFACE-ZERO",
+                            "text":  "Free-surface force is set to 0 N in the baseline.",
+                            "status":  "explicit"
+                        },
+                        {
+                            "id":  "A-PRESCRIBED-MOTION",
+                            "text":  "Motion is prescribed; propulsion dynamics are not modeled.",
+                            "status":  "explicit"
+                        }
+                    ],
+    "limitations":  [
+                        {
+                            "id":  "L-NO-EXPERIMENT",
+                            "text":  "No laboratory or field measurement is included.",
+                            "status":  "open"
+                        },
+                        {
+                            "id":  "L-EXCLUDED-PHYSICS",
+                            "text":  "Free-surface loading, drag, added mass, wave effects and attitude coupling are outside this baseline.",
+                            "status":  "bounded"
+                        }
+                    ],
+    "review":  {
+                   "status":  "pending",
+                   "reviewer_refs":  [
+
+                                     ]
+               },
+    "provenance":  {
+                       "repository":  "https://github.com/Zhaoyushen-Lab/ANRI-Aerospace.git",
+                       "git_commit":  "167d0fc242fff3f83bec37a2a79e5b17202dac34",
+                       "created_utc":  "2026-10-07T09:30:00Z",
+                       "author":  "ANRI-Aerospace"
+                   }
+}

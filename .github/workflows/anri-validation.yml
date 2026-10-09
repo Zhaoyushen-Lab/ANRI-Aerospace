@@ -1,0 +1,40 @@
+name: ANRI validation
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate Research Object
+        run: python scripts/validate_research_object.py Research_Objects/RO-CDFV-001-Ref-01B.json
+      - name: Run clean baseline verifier
+        run: python Models/CDFV-001/Ref-01B/verify_baseline.py
+      - name: Check adversarial wrong-weight case
+        shell: bash
+        run: |
+          set +e
+          python Models/CDFV-001/Ref-01B/verify_baseline.py \
+            Benchmarks/ANRI-RV-001/adversarial/A01_wrong_weight/results
+          status=$?
+          if [ "$status" -eq 0 ]; then
+            echo "Expected A01 to fail, but it passed"
+            exit 1
+          fi
+      - name: Check adversarial force-balance case
+        shell: bash
+        run: |
+          set +e
+          python Models/CDFV-001/Ref-01B/verify_baseline.py \
+            Benchmarks/ANRI-RV-001/adversarial/A02_broken_force_balance/results
+          status=$?
+          if [ "$status" -eq 0 ]; then
+            echo "Expected A02 to fail, but it passed"
+            exit 1
+          fi
