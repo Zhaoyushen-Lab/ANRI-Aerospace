@@ -2,7 +2,9 @@
 
 ## Metadata
 
-- Configuration ID: CDFV-001-Ref-01
+- Configuration ID: CDFV-001-Ref-01 (programme identifier; the research object
+  for the computational benchmark is `RO-CDFV-001-Ref-01B`, whose reference
+  configuration is `CDFV-001-Ref-01B` in section 17.1)
 - Version: v0.3
 - Status: Benchmark defined; scaled experiment candidate under review
 - Defined by task: P003-A
@@ -82,6 +84,9 @@ represent a CDFV-specific experimental validation.
 | Velocity interval | 0.05 m/s | P002 Section 4.1 | Literature reference |
 | Initial attitude | 0° for first benchmark | Research simplification | Proposed |
 | Fluid | Fresh water assumption | Modeling assumption | Provisional |
+| Water density | 1000 kg/m³ | Modeling assumption | Defined |
+| Gravity g | 9.80665 m/s² | Standard gravity, fixed value | Defined |
+| Force tolerance | 1e-4 N | Verifier acceptance tolerance | Defined |
 | Free-surface term | Excluded from baseline | Model definition | Defined |
 
 ### Parameters Not Yet Used
@@ -110,21 +115,26 @@ The estimated volume is approximately:
 
 V ≈ 0.002055 m³
 
-Under a provisional freshwater assumption:
+Under the frozen baseline assumption:
 
 - water density = 1000 kg/m³
-- gravitational acceleration = 9.81 m/s²
+- gravitational acceleration = 9.80665 m/s²
 
 Estimated fully submerged buoyancy:
 
-B ≈ 20.16 N
+B ≈ 20.1510694 N
 
 Estimated model weight:
 
-W = m × g ≈ 19.91 N
+W = m × g ≈ 19.9074995 N
 
-This estimate suggests near-neutral or slightly positive buoyancy
-under the stated assumptions.
+This estimate suggests near-neutral buoyancy, with a margin of only about
+1.2 % of the model weight (the fully submerged constraint force is about
+-0.2436 N). Small errors in mass, density, gravity or diameter therefore move
+the reported residual materially; see the sensitivity note below.
+
+The frozen numeric values are `weight_N = 19.9074995` and
+`full_buoyancy_N = 20.1510694`; the values above are rounded for reading only.
 
 This buoyancy estimate is calculated from the external cylindrical
 dimensions and a freshwater assumption. It is not a directly reported
@@ -393,7 +403,9 @@ The study should produce:
 - Configuration ID: CDFV-001-Ref-01B
 - Purpose: Literature benchmark and model reproduction
 - Scale ratio: 1.0
-- Status: Accepted as computational benchmark
+- Status: Accepted as computational benchmark (author self-check; the
+  independent review gate is recorded in
+  `Research_Objects/RO-CDFV-001-Ref-01B.json`)
 - Source: P002 Table 1 and Section 4.1
 
 | Parameter | Value | Basis | Status |
@@ -475,7 +487,8 @@ The baseline must be defined before F_fs is introduced.
 
 ## 19. Validity Statement
 
-Results from CDFV-001-Ref-01 apply only to the selected
+Results from CDFV-001-Ref-01 and its computational benchmark
+CDFV-001-Ref-01B apply only to the selected
 cylindrical reference geometry and prescribed vertical
 water-exit conditions.
 

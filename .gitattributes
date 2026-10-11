@@ -1,8 +1,21 @@
-﻿* text=auto eol=lf
+# ANRI-Aerospace: repository content is stored and checked out as LF only.
+#
+# Rationale: recorded SHA-256 values must be reproducible on every platform.
+# If a Windows checkout rewrites text files to CRLF, every recorded digest of a
+# text artifact becomes wrong on Linux (and vice versa).  See the
+# RO-CDFV-001-Ref-01B review report, finding F1.
+#
+# The explicit `-text` form is deliberate: `text eol=lf` still lets
+# `core.autocrlf=true` smudge the working tree to CRLF, whereas `-text`
+# disables all end-of-line conversion so the working tree always matches the
+# committed bytes on Windows and on Ubuntu alike.
 
-*.py   text eol=lf
-*.md   text eol=lf
-*.json text eol=lf
-*.csv  text eol=lf
-*.yml  text eol=lf
-*.yaml text eol=lf
+* -text
+
+*.py    -text
+*.md    -text
+*.json  -text
+*.csv   -text
+*.yml   -text
+*.yaml  -text
+*.txt   -text

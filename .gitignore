@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ANRI local operational metadata
+# Run timestamps, host identifiers and tool versions are not part of the
+# frozen research record.  The verifier writes them as ``local_run_meta.json``
+# next to its output; that file must never be committed or hashed, so that the
+# frozen verification artifacts stay byte-identical across runs.
+**/local_run_meta.json

@@ -243,8 +243,9 @@ because they are not fully specified for all P002 velocity cases.
 | Diameter D | 0.090 m | P002 Table 1 | Literature reference |
 | Length L | 0.323 m | P002 Table 1 | Literature reference |
 | Mass m | 2.030 kg | P002 Table 1 | Literature reference |
-| Gravity g | 9.81 m/s² | Standard modeling assumption | Provisional |
-| Water density | 1000 kg/m³ | Freshwater assumption | Provisional |
+| Gravity g | 9.80665 m/s² | Standard gravity, fixed value | Defined |
+| Water density | 1000 kg/m³ | Freshwater assumption | Defined |
+| Force tolerance | 1e-4 N | Verifier acceptance tolerance | Defined |
 | Water-exit velocity | 0.10–0.50 m/s | P002 Section 4.1 | Literature reference |
 | Initial immersion depth | Not selected | P002 conditions vary | Open |
 | Resistance coefficient | Not selected | No coefficient selected | Blocked |
@@ -311,28 +312,41 @@ materially affect the baseline result.
 
 ## Verification Status
 
-- Status: Internally verified computational baseline
-- Verification date: 2026-09-30
-- Verification artifact:
+- Status: Author self-check complete; independent review not yet approved
+- Verification date: 2026-10-11
+- Verification artifacts (deterministic, hash-registered):
   - `Models/CDFV-001/Ref-01B/results/verification.json`
   - `Models/CDFV-001/Ref-01B/results/verification_report.md`
+- Verifier: `Models/CDFV-001/Ref-01B/verify_baseline.py` (checks version 0.2)
+- Negative-case suite: `Models/CDFV-001/Ref-01B/verify_negative_cases.py`
 - Cases verified:
   - 0.10 m/s
   - 0.25 m/s
   - 0.50 m/s
 - Maximum force-balance residual: 3.55271368e-15 N
+- Sensitivity note: the fully submerged constraint force is only about 0.2436 N
+  against a 19.9075 N weight (about 1.2 %), so the residual is sensitive to the
+  frozen mass, density, gravity and diameter. Those four inputs are recorded
+  machine-readably in `Research_Objects/RO-CDFV-001-Ref-01B.json` and the
+  validator refuses any divergence from the executable model.
 - Experimental validation: Pending
 - P002-to-CDFV transfer: Not established
 - Free-surface loading: Excluded from this baseline
 
 ## Decision
 
-Ref-01B-B is accepted as the internally consistent zero-free-surface
-computational baseline for CDFV-001.
+CDFV-001-Ref-01B is recorded as an internally consistent zero-free-surface
+computational baseline for CDFV-001, pending the independent review gate.
 
-This acceptance verifies implementation consistency only. It does not
+> Author self-check only. This note must not be read as independent acceptance;
+> the gate status lives in `Research_Objects/RO-CDFV-001-Ref-01B.json`
+> (`review.status`), which is `revision_requested` until the blocking findings
+> of the independent review are closed.
+
+The self-check verifies implementation consistency only. It does not
 establish experimental accuracy or the transferability of P002
 free-surface loading to CDFV-001.
 
-The next step is to extend the verifier before introducing a
-literature-bounded free-surface sensitivity term.
+The next step is to close the review findings and re-run the verifier and the
+negative-case suite before introducing a literature-bounded free-surface
+sensitivity term.

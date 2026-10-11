@@ -1,152 +1,467 @@
-﻿{
-    "schema_version":  "0.1",
-    "manifest_type":  "research_run_manifest",
-    "benchmark_id":  "ANRI-RV-001",
-    "run_id":  "ANRI-RV-001-Ref-01B-clean-and-adversarial",
-    "status":  "completed",
-    "created_utc":  "2026-10-06T09:45:13.5168888Z",
-    "repository":  {
-                       "name":  "ANRI-Aerospace",
-                       "remote":  "https://github.com/Zhaoyushen-Lab/ANRI-Aerospace.git",
-                       "branch":  "main",
-                       "git_commit":  "a2d241df5aeaf4b9511c8fe21dacb2b2366f9b4d"
-                   },
-    "environment":  {
-                        "os":  "Windows",
-                        "shell":  "PowerShell",
-                        "python":  "Python 3.13.14",
-                        "execution_mode":  "local computational benchmark",
-                        "experimental_validation":  false
-                    },
-    "scope":  {
-                  "configuration_id":  "CDFV-001-Ref-01B",
-                  "benchmark_type":  "P002 computational benchmark",
-                  "purpose":  "Verify internal consistency of the CDFV-001 vertical baseline model and test detection of controlled adversarial mutations.",
-                  "model_scope":  "Quasi-static vertical force balance for a submerged reference configuration."
-              },
-    "reference_configuration":  {
-                                    "mass_kg":  2.03,
-                                    "weight_N":  19.9074995,
-                                    "main_diameter_m":  0.09,
-                                    "main_length_m":  0.323,
-                                    "displaced_volume_m3":  0.0020539453,
-                                    "full_buoyancy_N":  20.1510694,
-                                    "fluid":  "freshwater",
-                                    "fluid_density_kg_m3":  1000.0,
-                                    "gravity_m_s2":  9.80665,
-                                    "force_tolerance_N":  0.0001
-                                },
-    "assumptions":  {
-                        "free_surface_force_N":  0.0,
-                        "drag_included":  false,
-                        "added_mass_included":  false,
-                        "attitude_effects_included":  false,
-                        "fluid_is_incompressible":  true,
-                        "experimental_validation_completed":  false,
-                        "interpretation":  "A PASS establishes computational and internal consistency for the stated baseline assumptions; it does not establish experimental validity or complete CDFV vehicle performance."
-                    },
-    "inputs":  [
-                   "Research_Planning/CDFV-001_Reference_Configuration.md",
-                   "Models/CDFV-001/Ref-01B/verify_baseline.py",
-                   "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p10mps.csv",
-                   "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p25mps.csv",
-                   "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p50mps.csv"
-               ],
-    "commands":  [
-                     {
-                         "purpose":  "Verify clean baseline",
-                         "command":  "py -3 .\\Models\\CDFV-001\\Ref-01B\\verify_baseline.py",
-                         "expected_status":  "PASS"
-                     },
-                     {
-                         "purpose":  "Generate controlled adversarial cases",
-                         "command":  "py -3 .\\Benchmarks\\ANRI-RV-001\\make_adversarial_cases.py",
-                         "expected_status":  "completed"
-                     },
-                     {
-                         "purpose":  "Verify wrong-weight mutation",
-                         "command":  "py -3 .\\Models\\CDFV-001\\Ref-01B\\verify_baseline.py .\\Benchmarks\\ANRI-RV-001\\adversarial\\A01_wrong_weight\\results",
-                         "expected_status":  "FAIL"
-                     },
-                     {
-                         "purpose":  "Verify broken-force-balance mutation",
-                         "command":  "py -3 .\\Models\\CDFV-001\\Ref-01B\\verify_baseline.py .\\Benchmarks\\ANRI-RV-001\\adversarial\\A02_broken_force_balance\\results",
-                         "expected_status":  "FAIL"
-                     }
-                 ],
-    "outputs":  {
-                    "clean_baseline":  [
-                                           "Models/CDFV-001/Ref-01B/results/verification.json",
-                                           "Models/CDFV-001/Ref-01B/results/verification_report.md",
-                                           "Models/CDFV-001/Ref-01B/results/summary.csv"
-                                       ],
-                    "adversarial_cases":  [
-                                              "Benchmarks/ANRI-RV-001/adversarial/A01_wrong_weight/mutation.json",
-                                              "Benchmarks/ANRI-RV-001/adversarial/A01_wrong_weight/results/verification.json",
-                                              "Benchmarks/ANRI-RV-001/adversarial/A01_wrong_weight/results/verification_report.md",
-                                              "Benchmarks/ANRI-RV-001/adversarial/A02_broken_force_balance/mutation.json",
-                                              "Benchmarks/ANRI-RV-001/adversarial/A02_broken_force_balance/results/verification.json",
-                                              "Benchmarks/ANRI-RV-001/adversarial/A02_broken_force_balance/results/verification_report.md"
-                                          ],
-                    "sha256":  {
-                                   "Models/CDFV-001/Ref-01B/results/verification.json":  "275032a1e253619075451486e376dd9d6cda86a84af06b8423578bb5745fbf3d",
-                                   "Models/CDFV-001/Ref-01B/results/verification_report.md":  "dcf3b33100a3f2697fdcc666515130cd77748cca501046a309da1648509c2e5b",
-                                   "Benchmarks/ANRI-RV-001/adversarial/A01_wrong_weight/results/verification.json":  "42ba42924904e6660f0ec462685cfd9250f5d0f5f84b9c78578bdc817e4fbeeb",
-                                   "Benchmarks/ANRI-RV-001/adversarial/A02_broken_force_balance/results/verification.json":  "e9bf693e2d75019a08202c247ee811e98fb88d917e240c1b96e230dbd857768a"
-                               }
-                },
-    "observed_results":  {
-                             "clean_baseline":  {
-                                                    "overall_status":  "PASS",
-                                                    "maximum_force_balance_residual_N":  3.5527136788E-15,
-                                                    "cases":  [
-                                                                  {
-                                                                      "file":  "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p10mps.csv",
-                                                                      "velocity_m_s":  0.1,
-                                                                      "rows":  4846,
-                                                                      "status":  "PASS"
-                                                                  },
-                                                                  {
-                                                                      "file":  "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p25mps.csv",
-                                                                      "velocity_m_s":  0.25,
-                                                                      "rows":  1940,
-                                                                      "status":  "PASS"
-                                                                  },
-                                                                  {
-                                                                      "file":  "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p50mps.csv",
-                                                                      "velocity_m_s":  0.5,
-                                                                      "rows":  971,
-                                                                      "status":  "PASS"
-                                                                  }
-                                                              ]
-                                                },
-                             "adversarial":  [
-                                                 {
-                                                     "case_id":  "A01_wrong_weight",
-                                                     "overall_status":  "FAIL",
-                                                     "intended_detection":  "weight_reference",
-                                                     "description":  "Weight reference is deliberately changed; the verifier must reject the case."
-                                                 },
-                                                 {
-                                                     "case_id":  "A02_broken_force_balance",
-                                                     "overall_status":  "FAIL",
-                                                     "intended_detection":  "force_balance",
-                                                     "description":  "The force-balance relation is deliberately broken; the verifier must reject the case."
-                                                 }
-                                             ]
-                         },
-    "evidence_refs":  [
-                          "Benchmarks/ANRI-RV-001/README.md",
-                          "Benchmarks/ANRI-RV-001/task.md",
-                          "Benchmarks/ANRI-RV-001/rubric.yaml",
-                          "Benchmarks/ANRI-RV-001/decision_log.md",
-                          "Models/CDFV-001/Ref-01B/results/verification_report.md"
-                      ],
-    "limitations":  [
-                        "No laboratory or field measurement is included in this run.",
-                        "Free-surface loading, drag, added mass, wave effects, and attitude coupling are outside this baseline.",
-                        "The adversarial cases demonstrate verifier sensitivity; they are not physical vehicle cases.",
-                        "The manifest records provenance and outcomes but does not replace the verifier or the source model."
-                    ],
-    "next_action":  "Fill the repository commit, Python version, creation time, and SHA-256 values; validate this JSON; then commit it with the benchmark evidence."
+{
+  "schema_version": "0.2",
+  "manifest_type": "research_run_manifest",
+  "benchmark_id": "ANRI-RV-001",
+  "run_id": "ANRI-RV-001-Ref-01B-clean-and-adversarial",
+  "status": "completed",
+  "created_utc": "2026-10-11T06:32:35Z",
+  "generated_from_commit": "abc91031930943c308edea73a97a120cbd6b8bf5",
+  "repository": {
+    "name": "ANRI-Aerospace",
+    "remote": "https://github.com/Zhaoyushen-Lab/ANRI-Aerospace.git",
+    "branch": "feat/research-object-v0.1",
+    "git_commit": "abc91031930943c308edea73a97a120cbd6b8bf5"
+  },
+  "environment": {
+    "os": "Windows",
+    "shell": "PowerShell",
+    "python": "3.13.14",
+    "execution_mode": "local computational benchmark",
+    "experimental_validation": false,
+    "note": "Host details are recorded here for provenance but are NOT part of any hashed artifact. Frozen results and reports contain no timestamp and no machine path."
+  },
+  "scope": {
+    "configuration_id": "CDFV-001-Ref-01B",
+    "benchmark_type": "P002 computational benchmark",
+    "purpose": "Verify internal consistency of the CDFV-001 vertical baseline model and test detection of controlled adversarial mutations.",
+    "model_scope": "Quasi-static vertical force balance for a submerged reference configuration."
+  },
+  "reference_configuration": {
+    "mass_kg": 2.03,
+    "diameter_m": 0.09,
+    "length_m": 0.323,
+    "weight_N": 19.907499499999997,
+    "displaced_volume_m3": 0.002054837214896744,
+    "full_buoyancy_N": 20.151069373467152,
+    "fluid": "freshwater",
+    "fluid_density_kg_m3": 1000.0,
+    "gravity_m_s2": 9.80665,
+    "force_tolerance_N": 0.0001,
+    "source": "Research_Planning/CDFV-001_Reference_Configuration.md"
+  },
+  "assumptions": {
+    "free_surface_force_N": 0.0,
+    "drag_included": false,
+    "added_mass_included": false,
+    "attitude_effects_included": false,
+    "fluid_is_incompressible": true,
+    "experimental_validation_completed": false,
+    "interpretation": "A PASS establishes computational and internal consistency for the stated baseline assumptions; it does not establish experimental validity or complete CDFV vehicle performance."
+  },
+  "commands": [
+    {
+      "purpose": "Verify clean baseline",
+      "command": "py -3 ./Models/CDFV-001/Ref-01B/verify_baseline.py",
+      "expected_status": "PASS"
+    },
+    {
+      "purpose": "Run verifier negative-case suite",
+      "command": "py -3 ./Models/CDFV-001/Ref-01B/verify_negative_cases.py",
+      "expected_status": "PASS"
+    },
+    {
+      "purpose": "Regenerate adversarial cases from the clean results",
+      "command": "py -3 ./Benchmarks/ANRI-RV-001/make_adversarial_cases.py --source ./Models/CDFV-001/Ref-01B/results --dest ./Benchmarks/ANRI-RV-001/adversarial",
+      "expected_status": "completed"
+    },
+    {
+      "purpose": "Run every adversarial case and check it is rejected",
+      "command": "py -3 ./Benchmarks/ANRI-RV-001/run_adversarial_cases.py",
+      "expected_status": "PASS"
+    },
+    {
+      "purpose": "Validate the Research Object, schema, hashes and gate",
+      "command": "py -3 ./scripts/validate_research_object.py ./Research_Objects/RO-CDFV-001-Ref-01B.json --repo-root .",
+      "expected_status": "PASS"
+    },
+    {
+      "purpose": "Mutation-test the validator itself",
+      "command": "py -3 ./scripts/validate_gate_selftest.py <scratch-dir>",
+      "expected_status": "PASS"
+    }
+  ],
+  "observed_results": {
+    "clean_baseline": {
+      "overall_status": "PASS",
+      "checks_version": "0.2",
+      "maximum_force_balance_residual_N": 3.552713678800501e-15,
+      "cases": [
+        {
+          "file": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p10mps.csv",
+          "velocity_m_s": 0.1,
+          "rows": 4846,
+          "status": "PASS"
+        },
+        {
+          "file": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p25mps.csv",
+          "velocity_m_s": 0.25,
+          "rows": 1940,
+          "status": "PASS"
+        },
+        {
+          "file": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p50mps.csv",
+          "velocity_m_s": 0.5,
+          "rows": 971,
+          "status": "PASS"
+        }
+      ]
+    },
+    "verifier_negative_cases": {
+      "case_count": 18,
+      "status": "PASS"
+    },
+    "validator_gate_selftest": {
+      "scenario_count": 13,
+      "status": "PASS"
+    },
+    "adversarial": {
+      "case_count": 12,
+      "status": "PASS",
+      "cases": [
+        "A01_wrong_weight",
+        "A02_broken_force_balance",
+        "A03_wrong_weight_mid",
+        "A04_broken_force_balance_high",
+        "A05_time_not_monotonic",
+        "A06_position_not_monotonic",
+        "A07_missing_buoyancy_column",
+        "A08_missing_weight_column",
+        "A09_buoyancy_out_of_range",
+        "A10_weight_wrong_unit_mN",
+        "A11_buoyancy_wrong_unit_kN",
+        "A12_free_surface_nonzero"
+      ]
+    }
+  },
+  "artifacts": [
+    {
+      "path": "Research_Planning/CDFV-001_Reference_Configuration.md",
+      "role": "input",
+      "sha256": "be1dcf566ebd062639195c4d7d16f06e215da13d07143fd520d8f5c97f01a13c"
+    },
+    {
+      "path": "Models/CDFV-001/Ref-01B/baseline_model.py",
+      "role": "model",
+      "sha256": "1e97b8a413b2aaa321f26b8f47633c423a64c9f4972daabb41568fa67829236c"
+    },
+    {
+      "path": "Models/CDFV-001/Ref-01B/verify_baseline.py",
+      "role": "model",
+      "sha256": "328aafedbacc57a6356178df9eb8af3d1d9e81eeed2cde74b5414a416612c8bd"
+    },
+    {
+      "path": "Models/CDFV-001/Ref-01B/verify_negative_cases.py",
+      "role": "model",
+      "sha256": "78e0c3ebc31dd51a44c9792643425e2404b6c1153bc723be1bb9c7332a1f1f91"
+    },
+    {
+      "path": "Models/CDFV-001/Ref-01B/README.md",
+      "role": "report",
+      "sha256": "766ae4b492ae5813918199bc1b8dfb52e9001cff23636b1f94fb89ee92b6da2d"
+    },
+    {
+      "path": "Models/CDFV-001/Ref-01B/results/README.md",
+      "role": "report",
+      "sha256": "e2b23ec795a892c9219ecfe65c43f87600f7b2a4335dfde079bcb57d497d75aa"
+    },
+    {
+      "path": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p10mps.csv",
+      "role": "result",
+      "sha256": "5bd286dff8fd7e95ca1f7efe89324d465ba72de75c86fc3d6d7cb2077eaf2521"
+    },
+    {
+      "path": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p25mps.csv",
+      "role": "result",
+      "sha256": "7ab66dae1f65e588d2980db43715bc01044a7bafba37be547d9d86a349817e76"
+    },
+    {
+      "path": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p50mps.csv",
+      "role": "result",
+      "sha256": "721bb09efc6c9fc6067a16a6bd1e1004a086e8813f100debb913a246e12cc666"
+    },
+    {
+      "path": "Models/CDFV-001/Ref-01B/results/summary.csv",
+      "role": "result",
+      "sha256": "08da3bc20f38fddd1fd6b623c45121f073c0068456cf2daec24cb8c44f4e680c"
+    },
+    {
+      "path": "Models/CDFV-001/Ref-01B/results/verification.json",
+      "role": "report",
+      "sha256": "3e58806079794238db77b0610f04a598d9401c5fe332bf79848ed70831599c49"
+    },
+    {
+      "path": "Models/CDFV-001/Ref-01B/results/verification_report.md",
+      "role": "report",
+      "sha256": "3ba20b18133fa6f01f6926456c7b9f7b3f17e8c977a5d4e2494fd2a01eab713b"
+    },
+    {
+      "path": "scripts/validate_research_object.py",
+      "role": "model",
+      "sha256": "ca58353c995a5773414b4724be6e431bd8e8420c1c5f97d8ab250df3cb419ecc"
+    },
+    {
+      "path": "scripts/gen_research_object.py",
+      "role": "model",
+      "sha256": "3b38e948389ebba4af238ff57204ddb58224de2a3e2f9998a0bdb581f1b5bd16"
+    },
+    {
+      "path": "schema/research_object.schema.json",
+      "role": "schema",
+      "sha256": "7e1d549721a23066186709e3e8d854b6ab0d1e3589c79ce51f2ec4a6fb0f7200"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/make_adversarial_cases.py",
+      "role": "model",
+      "sha256": "c5526af73bc972a30c6a62a6d0353fd7c543e34b898154419258b80e03dd2027"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/run_adversarial_cases.py",
+      "role": "model",
+      "sha256": "5137d9d312276078237f0d3e3259c9ea4360ffadd5ae8f6aaf82ab000e79bd22"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/adversarial_cases.json",
+      "role": "index",
+      "sha256": "c821b54c0642208518e151cd709fa8cac4550f88ebc5f65cf8c1d5806b0de527"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/rubric.yaml",
+      "role": "input",
+      "sha256": "43dfd58b022da884e6b0e7a3a6543b378dcd3064ff62941afb594a3f67bfea81"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/task.md",
+      "role": "input",
+      "sha256": "016633fdb7e4788ca7349a3204832945e56db1ac9f3e99b129a11a2feef2f201"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/README.md",
+      "role": "report",
+      "sha256": "9527f961e94d57c41e5ee8e097f2855b76fef0fdb00910fc617d32a9c00222eb"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/README.md",
+      "role": "report",
+      "sha256": "bde53bf9d109933044490b6eb86c11c6728bbd26be332663d1d2964fc296f20d"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/decision_log.md",
+      "role": "review",
+      "sha256": "ddb72c255905ffae19fa38a6781e472a00604bb3ce516e525e1c182cc1cbccab"
+    },
+    {
+      "path": "Research_Planning/Decision_Log.md",
+      "role": "review",
+      "sha256": "85c8c1abf3207496a96812108300f2349e18d3990c8f2a40c4b2809ef8e55e30"
+    },
+    {
+      "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
+      "role": "review",
+      "sha256": "c7f6dd73911040290602a440a3fcaa0acacc42d90d0a6d5d599b1523c968fd80"
+    },
+    {
+      "path": "Reviews/DeepSeek_Harness_Repair_Report.md",
+      "role": "review",
+      "sha256": "34eaa9a6acd3eef3cf9d78d37545fc9f61d3d9912cb1d1625cddbc8317960b34"
+    },
+    {
+      "path": "Reviews/RO-CDFV-001-Ref-01B_Review_Checklist.md",
+      "role": "review",
+      "sha256": "303a05e4107a44b259619f0da9a417db3301127a72c1f7b9ec8c1c8ec5d53c04"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A01_wrong_weight/mutation.json",
+      "role": "index",
+      "sha256": "55cba3d028973f3bbeae45f29df451809e382341dc9e11015251a2c83f2aa56e"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A01_wrong_weight/results/verification.json",
+      "role": "report",
+      "sha256": "e3e1ebed58c724abe1b452d3e70eac2a6e09766fa45ef4301d8fb28414f9c323"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A01_wrong_weight/results/verification_report.md",
+      "role": "report",
+      "sha256": "81c3b3c513954cbaeb67c21c09a2759b7a71ec4c3a2309d2883c73b3b880f2e9"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A02_broken_force_balance/mutation.json",
+      "role": "index",
+      "sha256": "3aa4f5ce2ea7b3c27bab257c0b739d5f3b3b604f5a28f2dbe828157d69a677c3"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A02_broken_force_balance/results/verification.json",
+      "role": "report",
+      "sha256": "12eadefc0b8a720ca175bb90bcae178e36932e764407b6cf5adda84aeb589151"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A02_broken_force_balance/results/verification_report.md",
+      "role": "report",
+      "sha256": "eb3a2294c5e5f0d42064204f3c801031eb7260aba17a07fdcf166ddb846c9fe9"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A03_wrong_weight_mid/mutation.json",
+      "role": "index",
+      "sha256": "3794b6b54088f7a3f94a47ab2cdcef267703c0a718d1a3381e25956df7f644a2"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A03_wrong_weight_mid/results/verification.json",
+      "role": "report",
+      "sha256": "8530b50aa4e09cc7fbe97d01d726144dcc4c1d3f70e56c6666651aa16929686b"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A03_wrong_weight_mid/results/verification_report.md",
+      "role": "report",
+      "sha256": "ee10bad52c9cf94e75be76406a271aa26c689248cd096a4e59e59497050a8cb1"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A04_broken_force_balance_high/mutation.json",
+      "role": "index",
+      "sha256": "cc4523c54ae31e86d088986c959c940b6e01542aacbf238d382e8f6c2949b75f"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A04_broken_force_balance_high/results/verification.json",
+      "role": "report",
+      "sha256": "f71b31dd8e37955eeeeea7885bc0a95f0c4b463a556fb909e3c90f72119110d8"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A04_broken_force_balance_high/results/verification_report.md",
+      "role": "report",
+      "sha256": "2d4e9247fca554c57d7f2042c2a67c909738ce98014cc67b79a9803e509e1157"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A05_time_not_monotonic/mutation.json",
+      "role": "index",
+      "sha256": "be78d06e5020acc22201b62d10676f28a5e1f4f154fc601e5ca10501e31e0bb7"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A05_time_not_monotonic/results/verification.json",
+      "role": "report",
+      "sha256": "aedcc01caf21f59f0358f93a8c3dfe49c826ac561d90da18805d67732c654e47"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A05_time_not_monotonic/results/verification_report.md",
+      "role": "report",
+      "sha256": "d1841e40e862f96b13f3b27a9313dfd48e2226619e1aeebfd1a677a5ff17c9de"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A06_position_not_monotonic/mutation.json",
+      "role": "index",
+      "sha256": "512562cbe15893e8796ace6db409211650ddbcf476fc101bdae42b3308d9e3a6"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A06_position_not_monotonic/results/verification.json",
+      "role": "report",
+      "sha256": "796963316002260f3382f2bef86434d6f89f92249c51cd85908670f651af9943"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A06_position_not_monotonic/results/verification_report.md",
+      "role": "report",
+      "sha256": "d9dd4651ff24c1fb39ec2fe453732e232d8ba8c5ea69ca1607aea915f5712e52"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A07_missing_buoyancy_column/mutation.json",
+      "role": "index",
+      "sha256": "c0830fe8542e754e1490d567b71c983fee34ebc0d18ff35c2cc2cc6417402b01"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A07_missing_buoyancy_column/results/verification.json",
+      "role": "report",
+      "sha256": "153a204a110cdf4d2dd589e8d3a809e305e1b537a1019f80b1a4fdfe22bb9701"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A07_missing_buoyancy_column/results/verification_report.md",
+      "role": "report",
+      "sha256": "65a71ec6bcb4e809c9f62cb4995e61cb22e5943ee6a2e0002bdacafabc5465f3"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A08_missing_weight_column/mutation.json",
+      "role": "index",
+      "sha256": "48190b93c08cc37166240a45bcc8fbf6b3136debd130e802fc9a8a843818efc1"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A08_missing_weight_column/results/verification.json",
+      "role": "report",
+      "sha256": "c4f4a321e4c341e9bffa1f1e88be98f6cc90b90fe32a0623d124abdbfd5f5531"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A08_missing_weight_column/results/verification_report.md",
+      "role": "report",
+      "sha256": "5c4d5f22752949a5d7f37ccaebba38e97a993caebd98763e9e62a03b31723242"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A09_buoyancy_out_of_range/mutation.json",
+      "role": "index",
+      "sha256": "45c90978b55cba3dba86e44292d611bb68d1412acd6feafdae892ccb992f7b76"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A09_buoyancy_out_of_range/results/verification.json",
+      "role": "report",
+      "sha256": "ee65826f09e220b2689d52739c9326a2fc0032a45859bdb5543ad80456116e87"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A09_buoyancy_out_of_range/results/verification_report.md",
+      "role": "report",
+      "sha256": "76312c6f1af2427ae8f41b2ed2fcbada3af5f866853aa611d22d768fc81b1829"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A10_weight_wrong_unit_mN/mutation.json",
+      "role": "index",
+      "sha256": "1eb656eac6a8ff03fa17e68d9482d658378b113ed335f4a349b887786e8d7da6"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A10_weight_wrong_unit_mN/results/verification.json",
+      "role": "report",
+      "sha256": "5fa39b0cf20abdcd516a59d83e56878941e494e4f125d94f21dc50642d48e844"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A10_weight_wrong_unit_mN/results/verification_report.md",
+      "role": "report",
+      "sha256": "5bb11d4f5f1a152601c1487eaf0dddccd3997a9bf46d852ad75b4da948373755"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A11_buoyancy_wrong_unit_kN/mutation.json",
+      "role": "index",
+      "sha256": "30f3fb2ef416c8b8609be5ad4166fe1c91812eb553ff761d68a44b622fcad718"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A11_buoyancy_wrong_unit_kN/results/verification.json",
+      "role": "report",
+      "sha256": "0d212ef23f5e920435205f331110403292459bd32ee7a3479d29b28086c89484"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A11_buoyancy_wrong_unit_kN/results/verification_report.md",
+      "role": "report",
+      "sha256": "9b2cb5a191b651cae9be2e89fbc1253b0305526e8b119c6a20a67281cc11cb17"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A12_free_surface_nonzero/mutation.json",
+      "role": "index",
+      "sha256": "9e2f124cfe7eaf7737e8fe99a69d3028444e04e831a61a22f1039772dced22f4"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A12_free_surface_nonzero/results/verification.json",
+      "role": "report",
+      "sha256": "31823a3dc8b50d9d8fe10a4c9c461baea23256754aa7955fbd3d227f6db36c9f"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/adversarial/A12_free_surface_nonzero/results/verification_report.md",
+      "role": "report",
+      "sha256": "7ef3aa769cd25f428f3e9231d2658520148ae550bc173ee75ced96f1ecc4ebb1"
+    },
+    {
+      "path": "Research_Objects/RO-CDFV-001-Ref-01B.json",
+      "role": "manifest",
+      "sha256": "self"
+    }
+  ],
+  "reproducibility": {
+    "frozen_artifacts_are_deterministic": true,
+    "frozen_artifacts_contain": "no timestamp, no machine path",
+    "line_endings": "LF everywhere; .gitattributes sets * -text",
+    "local_metadata": "local_run_meta.json files are git-ignored and never hashed",
+    "self_placeholder": "The object and this manifest record each other's digest. The object records this manifest's real SHA-256; this manifest declares the object with the literal 'self', which the validator accepts only on these two entries.",
+    "note": "Every other artifact above is byte-reproducible from the clean checkout; generating twice must not change any hash."
+  },
+  "next_action": "Close the blocking findings of the independent review, then have an independent reviewer re-review and record a new review entry before the object may move to review.status = approved."
 }

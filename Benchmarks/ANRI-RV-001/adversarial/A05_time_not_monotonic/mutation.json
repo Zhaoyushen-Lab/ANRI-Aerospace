@@ -1,0 +1,13 @@
+{
+  "case_id": "A05_time_not_monotonic",
+  "mutation_kind": "time_not_monotonic",
+  "source_file": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p10mps.csv",
+  "mutated_file": "Benchmarks/ANRI-RV-001/adversarial/A05_time_not_monotonic/results/Ref-01B-B-0p10mps.csv",
+  "mutated_file_sha256": "a67220e07e6ee44daf0760d53c54f7cab1f89422fa1f3496df050defa17b5003",
+  "row_count": 4846,
+  "detail": "time_s values swapped between rows 1211 and 1212",
+  "expected_detection": "monotonic_time",
+  "expected_status": "FAIL",
+  "description": "Two adjacent time_s values are exchanged, so time is no longer monotonic while the force balance still holds.",
+  "clean_results_untouched": true
+}

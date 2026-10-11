@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:anri:research-object:0.1",
+  "$id": "urn:anri:research-object:0.2",
   "title": "ANRI Research Object",
   "description": "A versioned, traceable unit of research that can be validated and reviewed.",
   "type": "object",
@@ -14,6 +14,7 @@
     "title",
     "purpose",
     "scope",
+    "reference_configuration",
     "claims",
     "evidence",
     "validators",
@@ -25,7 +26,7 @@
   ],
   "properties": {
     "schema_version": {
-      "const": "0.1"
+      "const": "0.2"
     },
     "id": {
       "type": "string",
@@ -51,6 +52,14 @@
     },
     "scope": {
       "$ref": "#/$defs/scope"
+    },
+    "run_manifest_ref": {
+      "type": "string",
+      "description": "Repository-relative POSIX path of the run manifest that records this object. The validator cross-checks that manifest's hashes, so the link must be explicit rather than inferred from an artifact role.",
+      "minLength": 1
+    },
+    "reference_configuration": {
+      "$ref": "#/$defs/reference_configuration"
     },
     "claims": {
       "type": "array",
@@ -107,6 +116,41 @@
         "excluded": { "type": "array", "items": { "type": "string" } }
       }
     },
+    "reference_configuration": {
+      "type": "object",
+      "description": "Machine-readable frozen inputs. The validator compares these against the executable model so that a reference configuration and its implementation cannot silently diverge.",
+      "additionalProperties": false,
+      "required": [
+        "configuration_id",
+        "mass_kg",
+        "diameter_m",
+        "length_m",
+        "water_density_kg_m3",
+        "gravity_m_s2",
+        "force_tolerance_n",
+        "free_surface_force_n"
+      ],
+      "properties": {
+        "configuration_id": { "type": "string", "minLength": 1 },
+        "mass_kg": { "$ref": "#/$defs/quantity" },
+        "diameter_m": { "$ref": "#/$defs/quantity" },
+        "length_m": { "$ref": "#/$defs/quantity" },
+        "water_density_kg_m3": { "$ref": "#/$defs/quantity" },
+        "gravity_m_s2": { "$ref": "#/$defs/quantity" },
+        "force_tolerance_n": { "$ref": "#/$defs/quantity" },
+        "free_surface_force_n": { "$ref": "#/$defs/quantity" }
+      }
+    },
+    "quantity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "unit", "source"],
+      "properties": {
+        "value": { "type": "number" },
+        "unit": { "type": "string", "minLength": 1 },
+        "source": { "type": "string", "minLength": 1 }
+      }
+    },
     "claim": {
       "type": "object",
       "additionalProperties": false,
@@ -126,22 +170,47 @@
       "required": ["id", "type", "source", "supports", "status"],
       "properties": {
         "id": { "type": "string", "pattern": "^E-[A-Za-z0-9][A-Za-z0-9-]*$" },
-        "type": { "enum": ["literature", "measurement", "simulation", "calculation", "decision", "review"] },
+        "type": {
+          "enum": [
+            "literature",
+            "measurement",
+            "simulation",
+            "calculation",
+            "decision",
+            "review",
+            "configuration"
+          ]
+        },
         "source": { "type": "string", "minLength": 1 },
         "supports": { "type": "array", "items": { "type": "string" } },
         "status": { "enum": ["mapped", "available", "missing", "unvalidated"] },
-        "conditions": { "type": "array", "items": { "type": "string" } }
+        "conditions": { "type": "array", "items": { "type": "string" } },
+        "values": {
+          "type": "object",
+          "description": "Machine-readable copy of the reference quantities carried by this evidence.",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["value", "unit"],
+            "properties": {
+              "value": { "type": "number" },
+              "unit": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
       }
     },
     "validator": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "name", "command", "result_ref"],
+      "required": ["id", "name", "command", "result_ref", "checks_version"],
       "properties": {
         "id": { "type": "string", "pattern": "^V-[A-Za-z0-9][A-Za-z0-9-]*$" },
         "name": { "type": "string", "minLength": 1 },
         "command": { "type": "string", "minLength": 1 },
-        "result_ref": { "type": "string", "minLength": 1 }
+        "result_ref": { "type": "string", "minLength": 1 },
+        "report_ref": { "type": "string", "minLength": 1 },
+        "checks_version": { "type": "string", "minLength": 1 }
       }
     },
     "artifact": {
@@ -150,8 +219,13 @@
       "required": ["path", "role", "sha256"],
       "properties": {
         "path": { "type": "string", "minLength": 1 },
-        "role": { "enum": ["input", "source", "model", "result", "report", "manifest", "review"] },
-        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+        "role": {
+          "enum": ["input", "source", "model", "result", "report", "manifest", "index", "review", "schema"]
+        },
+        "sha256": {
+          "description": "Lowercase SHA-256 of the file. The literal 'self' is only valid on the entry for the object itself, which cannot contain its own digest; the validator resolves it against the run manifest's record.",
+          "pattern": "^([a-f0-9]{64}|self)$"
+        }
       }
     },
     "assumption": {
@@ -161,7 +235,10 @@
       "properties": {
         "id": { "type": "string", "pattern": "^A-[A-Za-z0-9][A-Za-z0-9-]*$" },
         "text": { "type": "string", "minLength": 1 },
-        "status": { "enum": ["explicit", "provisional", "open"] }
+        "status": { "enum": ["explicit", "provisional", "open"] },
+        "value": { "type": "number" },
+        "unit": { "type": "string", "minLength": 1 },
+        "source": { "type": "string", "minLength": 1 }
       }
     },
     "limitation": {
@@ -177,11 +254,54 @@
     "review": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["status", "reviewer_refs"],
+      "required": ["status", "reviewer_refs", "reviews"],
       "properties": {
-        "status": { "enum": ["pending", "approved", "rejected", "revision_requested"] },
+        "status": {
+          "description": "pending: no review recorded. revision_requested: an independent reviewer found blocking findings. approved: every blocking finding is closed. rejected: the claim is not supportable.",
+          "enum": ["pending", "revision_requested", "approved", "rejected"]
+        },
         "reviewer_refs": { "type": "array", "items": { "type": "string" } },
-        "decision_ref": { "type": "string" }
+        "decision_ref": { "type": "string" },
+        "reviews": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/review_record" }
+        }
+      }
+    },
+    "review_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "review_id",
+        "reviewer",
+        "independent",
+        "date",
+        "decision",
+        "report_path",
+        "report_sha256"
+      ],
+      "properties": {
+        "review_id": { "type": "string", "pattern": "^R-[A-Za-z0-9][A-Za-z0-9-]*$" },
+        "reviewer": { "type": "string", "minLength": 1 },
+        "independent": { "type": "boolean" },
+        "date": { "type": "string", "format": "date" },
+        "decision": {
+          "enum": ["approve", "approve_with_minor_fixes", "request_changes", "reject"]
+        },
+        "report_path": {
+          "type": "string",
+          "description": "Repository-relative POSIX path of the review report. A report that lives outside the repository is written as 'external:<name>' and must never contain an absolute host path.",
+          "minLength": 1
+        },
+        "report_sha256": { "type": "string", "pattern": "^([a-f0-9]{64}|not-captured)$" },
+        "scope": { "type": "string", "minLength": 1 },
+        "blocking_findings": { "type": "array", "items": { "type": "string" } },
+        "external_source_sha256": {
+          "type": "string",
+          "description": "SHA-256 of the verbatim original report when the archived copy had to be sanitised (for example to remove a machine path).",
+          "pattern": "^([a-f0-9]{64}|not-captured)$"
+        },
+        "external_note": { "type": "string", "minLength": 1 }
       }
     },
     "provenance": {
@@ -192,7 +312,8 @@
         "repository": { "type": "string", "minLength": 1 },
         "git_commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
         "created_utc": { "type": "string", "format": "date-time" },
-        "author": { "type": "string" }
+        "author": { "type": "string" },
+        "branch": { "type": "string" }
       }
     }
   }

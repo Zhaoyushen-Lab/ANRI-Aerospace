@@ -1,0 +1,13 @@
+{
+  "case_id": "A10_weight_wrong_unit_mN",
+  "mutation_kind": "unit_error",
+  "source_file": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p10mps.csv",
+  "mutated_file": "Benchmarks/ANRI-RV-001/adversarial/A10_weight_wrong_unit_mN/results/Ref-01B-B-0p10mps.csv",
+  "mutated_file_sha256": "d08178c5e6aca7453279702cda959ba7ca7507dedb39e7ce760ce078f6ba0194",
+  "row_count": 4846,
+  "detail": "weight_N multiplied by 0.001 in all 4846 rows (unit error, for example kN where N is expected)",
+  "expected_detection": "weight_reference",
+  "expected_status": "FAIL",
+  "description": "The weight column is written in mN instead of N; every value is 1000 times too small.",
+  "clean_results_untouched": true
+}
