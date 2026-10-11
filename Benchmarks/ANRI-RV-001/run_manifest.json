@@ -5,12 +5,12 @@
   "run_id": "ANRI-RV-001-Ref-01B-clean-and-adversarial",
   "status": "completed",
   "created_utc": "2026-10-11T06:32:35Z",
-  "generated_from_commit": "abc91031930943c308edea73a97a120cbd6b8bf5",
+  "generated_from_commit": "fb685ff526d3b116e8ea074207ce569234f8acef",
   "repository": {
     "name": "ANRI-Aerospace",
     "remote": "https://github.com/Zhaoyushen-Lab/ANRI-Aerospace.git",
     "branch": "feat/research-object-v0.1",
-    "git_commit": "abc91031930943c308edea73a97a120cbd6b8bf5"
+    "git_commit": "fb685ff526d3b116e8ea074207ce569234f8acef"
   },
   "environment": {
     "os": "Windows",

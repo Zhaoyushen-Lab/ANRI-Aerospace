@@ -294,7 +294,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "f598f2a0518a5bb5565707a9e1e8319f1d432181c2af1accdb6d7b7f05e8cd51"
+      "sha256": "f7c48ed13d6117da43aa6419d99a090f827f7d6c5c2f3e2f14ab95a1ca9382c3"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
@@ -585,7 +585,7 @@
   },
   "provenance": {
     "repository": "https://github.com/Zhaoyushen-Lab/ANRI-Aerospace.git",
-    "git_commit": "abc91031930943c308edea73a97a120cbd6b8bf5",
+    "git_commit": "fb685ff526d3b116e8ea074207ce569234f8acef",
     "created_utc": "2026-10-11T06:32:35Z",
     "author": "ANRI-Aerospace",
     "branch": "feat/research-object-v0.1"
