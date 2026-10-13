@@ -153,6 +153,103 @@ def parse_kpi_rows(relative: str) -> list[dict[str, object]]:
     return rows
 
 
+def collect_eem() -> dict:
+    """Measure the Engineering Evolution Module loop from in-repo artifacts.
+
+    The EEM cycle is
+        Knowledge -> Design -> Simulation -> Evaluation -> Knowledge Update
+    (Knowledge_Base/CDFV_Knowledge_Map.md section 5).  Per D-ANRI-002 the
+    generalisation metric is the NUMBER OF TIMES THAT LOOP CLOSES, not the number
+    of documents produced, so each stage is bound to an artifact that exists only
+    if the stage actually happened:
+
+      knowledge      : a KU<nnn>-<nnn> id appears in Research_Planning/
+      design         : a decision Status block exists in Decision_Log.md
+      simulation     : a model or benchmark script exists
+      evaluation     : a verification.json exists under Models/
+      knowledge_update: a KU id exists AND at least one decision is resolved
+                        (not 'Candidate')
+
+    Completion requires every link to hold simultaneously.
+    """
+
+    planning = REPO / "Research_Planning"
+    texts = {}
+    if planning.is_dir():
+        for path in sorted(planning.glob("*.md")):
+            texts[path.name] = path.read_text(encoding="utf-8", errors="replace")
+
+    knowledge_ids: set[str] = set()
+    for text in texts.values():
+        knowledge_ids |= set(re.findall(r"\bKU\d{3}-\d{3}\b", text))
+
+    models_dir = REPO / "Models"
+    bench_dir = REPO / "Benchmarks"
+    simulation_ok = bool(list(models_dir.rglob("*.py"))) if models_dir.is_dir() else False
+    if not simulation_ok and bench_dir.is_dir():
+        simulation_ok = bool(list(bench_dir.rglob("run_*.py")))
+
+    verification_files = (
+        sorted(models_dir.rglob("verification.json")) if models_dir.is_dir() else []
+    )
+
+    decision_statuses: list[str] = []
+    resolved: list[str] = []
+    # Only Decision_Log.md declares research decisions. Scanning every file under
+    # Research_Planning/ would also pick up unrelated '## Status' headings such as
+    # the 'Active' status of research questions in Active_Questions.md.
+    decision_text = texts.get("Decision_Log.md", "")
+    for match in re.finditer(
+        r"##\s*Status\s*\n(.*?)(?=\n##\s|\Z)", decision_text, re.S
+    ):
+        body = " ".join(
+            line.strip() for line in match.group(1).splitlines() if line.strip()
+        )
+        if not body:
+            continue
+        decision_statuses.append(body)
+        lowered = body.lower()
+        if any(
+            token in lowered
+            for token in ("needs cdfv experiment", "accepted", "rejected")
+        ):
+            resolved.append(body)
+
+    links = {
+        "knowledge": bool(knowledge_ids),
+        "design": bool(decision_statuses),
+        "simulation": simulation_ok,
+        "evaluation": bool(verification_files),
+        "knowledge_update": bool(knowledge_ids) and bool(resolved),
+    }
+    closed = all(links.values())
+
+    return {
+        "definition": (
+            "Knowledge -> Design -> Simulation -> Evaluation -> Knowledge Update "
+            "(Knowledge_Base/CDFV_Knowledge_Map.md section 5)"
+        ),
+        "metric": (
+            "number of times the loop closes (D-ANRI-002); document count is not a metric"
+        ),
+        "links": links,
+        "loops_closed": 1 if closed else 0,
+        "knowledge_ids": sorted(knowledge_ids),
+        "resolved_decisions": resolved,
+        "unresolved_decisions": [d for d in decision_statuses if d not in resolved],
+        "verification_artifacts": len(verification_files),
+        "generalisation_gate": (
+            "G1 satisfied"
+            if closed
+            else "G1 not satisfied: " + ", ".join(k for k, v in links.items() if not v)
+        ),
+        "note": (
+            "loops_closed counts one loop per research question, so it stays 1 until a "
+            "SECOND research question closes the same loop (D-ANRI-002 G2)."
+        ),
+    }
+
+
 def snapshot(*, run_suite: bool, scratch: Path, as_of: str) -> dict:
     state: dict = {
         "schema_version": SCHEMA_VERSION,
@@ -191,6 +288,8 @@ def snapshot(*, run_suite: bool, scratch: Path, as_of: str) -> dict:
         "index_crlf": sum(1 for line in eol_lines if line.startswith("i/crlf")),
         "worktree_crlf": sum(1 for line in eol_lines if "w/crlf" in line),
     }
+
+    state["eem"] = collect_eem()
 
     ro = load_json(RO_REL) or {}
     manifest = load_json(MANIFEST_REL) or {}
@@ -243,6 +342,15 @@ def snapshot(*, run_suite: bool, scratch: Path, as_of: str) -> dict:
     }
 
     state["checks"] = {}
+    # The drift check must reproduce the object from *its own recorded* provenance,
+    # not from HEAD. Once any later commit lands, HEAD necessarily differs from the
+    # recorded provenance commit, and feeding HEAD in would report false drift.
+    provenance = ro.get("provenance", {}) or {}
+    recorded_commit = str(provenance.get("git_commit") or "")
+    recorded_created = str(provenance.get("created_utc") or "")
+    review_records = (ro.get("review", {}) or {}).get("reviews", []) or []
+    recorded_review_date = str(review_records[-1].get("date") or "") if review_records else ""
+
     checks: list[tuple[str, list[str], int]] = [
         ("ro_validator", [sys.executable, VALIDATOR, RO_REL, "--repo-root", "."], 0),
         ("clean_baseline", [sys.executable, VERIFIER], 0),
@@ -254,8 +362,28 @@ def snapshot(*, run_suite: bool, scratch: Path, as_of: str) -> dict:
             ("verifier_negative_suite", [sys.executable, NEGATIVE], 0),
             ("adversarial_suite", [sys.executable, ADVERSARIAL], 0),
             ("gate_selftest", [sys.executable, GATE_SELFTEST, str(scratch)], 0),
-            ("object_manifest_drift", [sys.executable, GEN, "--git-commit", head or "", "--created-utc", "2026-10-11T06:32:35Z", "--review-date", "2026-10-11", "--check-only"], 0),
         ]
+        if recorded_commit and recorded_created and recorded_review_date:
+            checks.append(
+                (
+                    "object_manifest_drift",
+                    [
+                        sys.executable, GEN,
+                        "--git-commit", recorded_commit,
+                        "--created-utc", recorded_created,
+                        "--review-date", recorded_review_date,
+                        "--check-only",
+                    ],
+                    0,
+                )
+            )
+        else:
+            state["checks"]["object_manifest_drift"] = {
+                "exit": None,
+                "expected": 0,
+                "ok": False,
+                "note": "cannot reproduce: object has no recorded provenance to replay",
+            }
     for name, command, expected in checks:
         code, _ = run(command)
         state["checks"][name] = {

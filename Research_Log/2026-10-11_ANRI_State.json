@@ -2,7 +2,7 @@
   "schema_version": "1",
   "kind": "anri_state_snapshot",
   "as_of_date": "2026-10-11",
-  "generated_utc": "2026-10-11T11:24:12.063066+00:00",
+  "generated_utc": "2026-10-11T11:25:01.523103+00:00",
   "note": "generated_utc is wall-clock and NOT part of the compared payload; compare everything else.",
   "head": {
     "commit": "abc91031930943c308edea73a97a120cbd6b8bf5",
@@ -21,12 +21,12 @@
   },
   "research_object": {
     "path": "Research_Objects/RO-CDFV-001-Ref-01B.json",
-    "sha256": "adc63ff0aca093137f24a5c33019370204189ee15a656ea6b0fa0596efc8ddd5",
+    "sha256": "53f02fcf28481b191ed0648a74291453046afb536fb901ee2184b22415658efe",
     "id": "RO-CDFV-001-Ref-01B",
     "version": "0.2.0",
     "status": "in_review",
     "schema_version": "0.2",
-    "artifact_count": 64,
+    "artifact_count": 65,
     "claim_count": 1,
     "evidence_count": 3,
     "validator_count": 1,
@@ -42,7 +42,7 @@
       "review",
       "schema"
     ],
-    "manifest_entries": 63
+    "manifest_entries": 64
   },
   "review_gate": {
     "status": "revision_requested",

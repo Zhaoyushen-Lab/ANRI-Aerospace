@@ -14,26 +14,59 @@
 - E002-001
 - P002 Section 4.1.2
 - Fig. 11–12
+- `Paper_Notes/P002_Free_Surface_Hydrodynamics_HAUV_2022.md` Table 1（p.5）、§4.2、§4.3
+- `Research_Planning/P003_Free_Surface_Loading.md` §7.5（Path B 量纲筛选，2026-10-12）
+- `Models/CDFV-001/Ref-01B/results/summary.csv`：满浸没浮力 20.1510694 N
 
 ## Observation
 
 The reported suction force increases between approximately
 0.1 and 0.25 m/s and becomes approximately stable above 0.25 m/s
-within the tested range.
+within the tested range. The reported maximum is about **10% of vehicle weight
+≈ 1.99 N** for the 2.030 kg P002 cylinder.
 
-## Decision Candidate
+**2026-10-12 补充（Path B 量级检验）**：该 1.99 N 的量级**无法由动压解释**
+（0.5 m/s 以内至多 0.127 N，占 6.4%），**无法由表面张力解释**
+（σ·πD = 0.0206 N，占 1.03%）；准静态凹陷需 31.9 mm（9.9% L）偏大。
+量级自洽的解释是**空腔体积亏缺**：气腔使实际排水体积低于静水线暗示值，
+需损失约 9.9% 总排水体积（= 满浸没浮力 20.151 N 的 9.9%）。
+该假说同时解释饱和行为（几何机制而非动压机制）。**尚无反演证据。**
 
-CDFV-001 transition analysis should compare a baseline model
-against a model containing a velocity-dependent free-surface term.
+## Decision Candidate（2026-10-12 修订）
+
+**原表述**：CDFV-001 transition analysis should compare a baseline model
+against a model containing a **velocity-dependent** free-surface term.
+
+**修订后**：自由液面贡献应按**无量纲判据**处理，而非按速度区间处理。
+迁移的判据是三者是否可比：
+`Froude 数区间 + 机体有效密度比 ρ_w/ρ_body,eff + 几何`。
+若可比，则 `F_suction/W` 与尺度无关（空腔体积与排水体积同为 L³）；
+若不可比，则 P002 的载荷量级不可迁移。
+
+**修订理由**：动压解释已被量级判除，故"velocity-dependent"这一机理描述不成立。
 
 ## Status
 
-Candidate — not yet validated on CDFV-001.
+**Needs CDFV experiment** — 附条件（记录日期 2026-10-12）
+
+**为何不是 Accepted 或 Rejected**：两者都要求已知 CDFV-001 的机体有效密度
+`ρ_body,eff = m_body / (πD²L/4)`，而该量在本仓库中不存在
+（CDFV-001 几何与质量参数缺失，实测依据见
+`Research_Planning/P003_Stage1_Sourcing_Checklist.md` §0）。
+在缺少该量的情况下记 Accepted 或 Rejected 均属**用推测替代事实**，
+违反 `P003_Free_Surface_Loading.md` §6 与 §11 的禁止条款。
 
 ## Next Action
 
-Determine whether the CDFV-001 geometry and operating range justify
-a dedicated free-surface loading test.
+1. **执行 B1（推荐）**：同一几何、两种尺度、**相同 Froude 数**下测 `F_suction/W`，
+   直接检验"该比值与尺度无关"这一迁移所依赖的不变量。
+   不需要先确认空腔机制，也不需要 Stage 1 的四个 CDFV 参数。
+   - 比值一致 → D002-001 转为 **Accepted**（附无量纲适用条件）；
+   - 比值不一致 → 转为 **Needs CDFV experiment（无条件）**。
+2. 取得 CDFV-001 的机体有效密度（按 `P003_Stage1_Sourcing_Checklist.md` §3），
+   用于最终的 material / immaterial 判定。
+3. `KU003-001`（`P003_Free_Surface_Loading.md` §13）在 D002-001 转为 Accepted 时
+   由 proposed 转为 active。
 
 ---
 ---
@@ -311,3 +344,22 @@ G1 闭合时，或 2027-04-11（6 个月），以先到者为准。
 | 2026-10-11 | `D-ANRI-001` | 新建 | 两份同日评估（体系建成概率 / 被抢先概率）给出方向相反的结论，需要一次定位与资源分配决策 |
 | 2026-10-11 | `D-ANRI-002` | 新建 | 回答"专业化之后能否向通用化进军"，并设定 G1–G4 门槛以防跳级 |
 | 2026-10-11 | `D-ANRI-001` | 更正 | 原报告称"人类锚点"为本项目缺口；复核发现 `ANRI_Principles_v0.1.md` Principle 5 早已记载该原则，准确表述为"已具备、未制度化" |
+| 2026-10-12 | `D002-001` | **状态更新**：`Candidate` → `Needs CDFV experiment`（附条件） | P003 Path B 量纲筛选完成：1.99 N 无法由动压（≤6.4%）或表面张力（1.03%）解释，空腔体积亏缺假说量级自洽；因 CDFV 机体有效密度未知而无法记 Accepted/Rejected |
+| 2026-10-12 | `D002-001` | **Decision Candidate 修订**：删除"velocity-dependent"机理描述，改为无量纲判据（Fr + 有效密度比 + 几何） | 动压解释已被量级判除，原机理表述不成立 |
+| 2026-10-12 | `D002-001` | **Next Action 具体化**：改为可执行的 B1（同几何两尺度、同 Fr_D 测 `F_suction/W`） | Path B 结论要求把"是否需要专用实验"转化为可检验的判据，而非继续讨论 |
+
+> **EEM 闭环记录**：2026-10-12 的 `D002-001` 更新构成 `Knowledge → Design → Simulation →
+> Evaluation → Knowledge Update` 环在本仓库的**第一次闭合尝试**。
+> 对照 `D-ANRI-002` 的 G1 判据：
+>
+> | G1 判据 | 状态 |
+> |---|---|
+> | 结果落入 material / immaterial-within-range / unresolved 之一 | ✅ `unresolved`（附条件），见 `P003` §7.5.6 |
+> | `D002-001` 更新为 Accepted / Rejected / Needs CDFV experiment | ✅ 本条（Needs CDFV experiment，附条件） |
+> | 产出 `KU003-001` | ✅ 已起草（status: proposed），见 `P003` §13 |
+> | 结论可溯源到文件 / 章节 / 工况 / 坐标与单位 | ✅ 见 `P003` §7.5.2 与 §8 |
+>
+> **判定：G1 判据全部满足。** 但须注意其质量边界——结论是 `unresolved` 而非
+> material/immaterial，即**环闭合了，但环内的物理问题尚未解决**。
+> 按 `D-ANRI-002` §4，这意味着 G2（同域第二个问题复用）的进入条件已具备，
+> 而 G3（跨域）仍不得启动。

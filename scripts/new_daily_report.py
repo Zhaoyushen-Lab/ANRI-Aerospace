@@ -99,6 +99,40 @@ def build(day: str) -> str:
         if len(parts) == 2:
             body = parts[1]
 
+    # EEM block: D-ANRI-002 makes the closed-loop count the generalisation metric,
+    # so it belongs in the machine-generated half rather than in hand-written prose.
+    eem_lines = ["### EEM 闭环（D-ANRI-002 通用化度量）", ""]
+    if snapshot.is_file():
+        try:
+            eem = json.loads(snapshot.read_text(encoding="utf-8")).get("eem", {})
+        except Exception:
+            eem = {}
+        if eem:
+            eem_lines.append(f"- 定义：{eem.get('definition', '?')}")
+            eem_lines.append(
+                f"- **loops_closed = {eem.get('loops_closed')}**"
+                f"（{eem.get('generalisation_gate', '?')}）"
+            )
+            eem_lines.append("")
+            eem_lines.append("| 环节 | 是否成立 |")
+            eem_lines.append("|---|---|")
+            for link, ok in (eem.get("links") or {}).items():
+                eem_lines.append(f"| {link} | {'✅' if ok else '❌'} |")
+            eem_lines.append("")
+            eem_lines.append(
+                f"- KU id：`{', '.join(eem.get('knowledge_ids') or []) or '（无）'}`"
+            )
+            eem_lines.append(
+                f"- 已决议 decision：{len(eem.get('resolved_decisions') or [])} 条；"
+                f"未决议：{len(eem.get('unresolved_decisions') or [])} 条"
+            )
+            eem_lines.append(f"- 说明：{eem.get('note', '')}")
+        else:
+            eem_lines.append("-（快照中无 eem 字段：请用最新版 `collect_state.py` 重新采集）")
+    else:
+        eem_lines.append("-（无当日快照，无法计算）")
+    eem_block = "\n".join(eem_lines) + "\n"
+
     machine_block = (
         f"\n---\n\n## 0. 机器生成部分（由脚本填充，请勿手改）\n\n"
         f"> 生成命令：\n>\n"
@@ -117,7 +151,7 @@ def build(day: str) -> str:
         f"- 上一份日报：见 §4.5（由 `compare_snapshots.py` 自动识别）\n"
     )
 
-    return header + machine_block + "\n---\n" + body
+    return header + machine_block + "\n" + eem_block + "\n---\n" + body
 
 
 def main(argv: list[str] | None = None) -> int:

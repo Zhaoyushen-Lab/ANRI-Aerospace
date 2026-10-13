@@ -177,6 +177,26 @@
       "sha256": "be1dcf566ebd062639195c4d7d16f06e215da13d07143fd520d8f5c97f01a13c"
     },
     {
+      "path": "Research_Planning/P003_Free_Surface_Loading.md",
+      "role": "input",
+      "sha256": "f4387de0d27da6c9d61450d8775175209679764256bd31831ea949429391faba"
+    },
+    {
+      "path": "Research_Planning/P003_Stage1_Sourcing_Checklist.md",
+      "role": "input",
+      "sha256": "72be826a9e39dd597306237035daca7f51662c5a5aeb719a802571aee01e9fd2"
+    },
+    {
+      "path": "Research_Planning/P003_B1_Measurement_Spec.md",
+      "role": "input",
+      "sha256": "16db32603b61f2d8fc7d6382f3b53e13dacbbe8a856bb8211097880716d9f932"
+    },
+    {
+      "path": "Research_Planning/P003_B1_Preregistration.md",
+      "role": "input",
+      "sha256": "60149d12190c9d8350e504c429f816dabad76e16b51ced1379e4f57a0a8f72f5"
+    },
+    {
       "path": "Models/CDFV-001/Ref-01B/baseline_model.py",
       "role": "model",
       "sha256": "1e97b8a413b2aaa321f26b8f47633c423a64c9f4972daabb41568fa67829236c"
@@ -239,7 +259,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "3b38e948389ebba4af238ff57204ddb58224de2a3e2f9998a0bdb581f1b5bd16"
+      "sha256": "7531d82642e89a597899c6b9d3f5a91beb8bdefdfad2ed04fadf5747410fc735"
     },
     {
       "path": "schema/research_object.schema.json",
@@ -289,12 +309,12 @@
     {
       "path": "Research_Planning/Decision_Log.md",
       "role": "review",
-      "sha256": "85c8c1abf3207496a96812108300f2349e18d3990c8f2a40c4b2809ef8e55e30"
+      "sha256": "22f1319808a51d864d12e4949c9da9f308387c2eb0d87b45196e4c01459741b3"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "f7c48ed13d6117da43aa6419d99a090f827f7d6c5c2f3e2f14ab95a1ca9382c3"
+      "sha256": "0250870cf3ac7436a9c10c17b3fe1666ae4e59739c59d8ee0ffac2e6a1898bd4"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",

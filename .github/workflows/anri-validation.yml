@@ -46,8 +46,12 @@ jobs:
 
       - name: Check the object and manifest are not stale
         run: |
+          # The drift check must replay the object from ITS OWN recorded
+          # provenance. Passing ${{ github.sha }} would compare the object against
+          # the commit that merely triggered the run, so the check would fail on
+          # every run after the object was generated — a false alarm, not drift.
           python scripts/gen_research_object.py \
-            --git-commit "${{ github.sha }}" \
+            --git-commit "$(python -c 'import json;print(json.load(open("Research_Objects/RO-CDFV-001-Ref-01B.json"))["provenance"]["git_commit"])')" \
             --created-utc "$(python -c 'import json;print(json.load(open("Research_Objects/RO-CDFV-001-Ref-01B.json"))["provenance"]["created_utc"])')" \
             --review-date "$(python -c 'import json;print(json.load(open("Research_Objects/RO-CDFV-001-Ref-01B.json"))["review"]["reviews"][0]["date"])')" \
             --check-only

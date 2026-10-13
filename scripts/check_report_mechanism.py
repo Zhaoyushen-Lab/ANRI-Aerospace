@@ -132,25 +132,38 @@ def check_triggers(triggers: list[dict]) -> list[str]:
     return problems
 
 
-def check_report(report: Path, trigger_ids: set[str]) -> tuple[list[str], set[str]]:
+def check_report(
+    report: Path, triggers: list[dict], trigger_ids: set[str]
+) -> tuple[list[str], set[str]]:
     problems: list[str] = []
     text = report.read_text(encoding="utf-8")
     lines = text.splitlines()
 
+    # Only triggers that already existed on the report's own date are expected in
+    # its prose; a report cannot describe a trigger created after it was written.
+    try:
+        report_day = date.fromisoformat(report.name.split("_")[0])
+        expected_ids = {
+            t["id"] for t in triggers if date.fromisoformat(t["created"]) <= report_day
+        }
+    except Exception:
+        expected_ids = set(trigger_ids)
+
     headings = [line for line in lines if line.startswith("## ")]
-    sections = [h for h in headings if re.match(r"^## \d+\. ", h)]
+    # Section 0 is the machine-generated block; the template's own sections are 1-8.
+    sections = [h for h in headings if re.match(r"^## [1-9]\d*\. ", h)]
     if len(sections) != len(REQUIRED_SECTIONS):
         problems.append(
-            f"expected {len(REQUIRED_SECTIONS)} numbered sections, found {len(sections)}"
+            f"expected {len(REQUIRED_SECTIONS)} numbered sections (1-8), "
+            f"found {len(sections)}"
         )
     for expected in REQUIRED_SECTIONS:
         if not any(h.startswith(expected) for h in sections):
             problems.append(f"missing section heading starting {expected!r}")
 
-    headings_all = [line for line in lines if line.startswith("## ")]
-    numbered = [h for h in headings_all if re.match(r"^## \d+\. ", h)]
-    order = [re.match(r"^## (\d+)\. ", h).group(1) for h in numbered]
-    if order != sorted(order, key=int):
+    numbered = [h for h in headings if re.match(r"^## \d+\. ", h)]
+    order = [int(re.match(r"^## (\d+)\. ", h).group(1)) for h in numbered]
+    if order != sorted(order):
         problems.append(f"numbered sections out of order: {order}")
 
     if "### 4.5" not in text:
@@ -164,22 +177,20 @@ def check_report(report: Path, trigger_ids: set[str]) -> tuple[list[str], set[st
             f"report mentions trigger ids that do not exist in the code: {sorted(phantom)}"
         )
 
-    # The observation section should actually reference the declared triggers.
-    missing_in_prose = trigger_ids - mentioned
+    # Triggers that already existed on this report's date must be described in it.
+    missing_in_prose = expected_ids - mentioned
     if missing_in_prose:
         problems.append(
-            "declared triggers are never mentioned in the report prose: "
-            f"{sorted(missing_in_prose)}"
+            "triggers that existed on this report's date are never mentioned in "
+            f"its prose: {sorted(missing_in_prose)}"
         )
 
     # The machine-generated section is required only for reports produced by the
-    # generator. Detection keys on the generator's own section heading, not on a
-    # mention of the script name — the baseline report documents the workflow and
-    # therefore names the script without having been produced by it.
+    # generator. Detection keys on the generator's own heading, not on a mention of
+    # the script name — the baseline report documents the workflow and therefore
+    # names the script without having been produced by it.
     if GENERATOR_MARKER in text and "## 0. " not in text:
-        problems.append(
-            "report declares the generator section but is missing '## 0.'"
-        )
+        problems.append("report declares the generator section but is missing '## 0.'")
 
     return problems, mentioned
 
@@ -239,7 +250,7 @@ def main(argv: list[str] | None = None) -> int:
     reports = sorted(LOG_DIR.glob("*_ANRI_Daily.md"))
     report_notes: list[str] = []
     for report in reports:
-        report_problems, _ = check_report(report, trigger_ids)
+        report_problems, _ = check_report(report, triggers, trigger_ids)
         problems += [f"{report.name}: {p}" for p in report_problems]
         report_notes.append(f"{report.name}: {len(report.read_text(encoding='utf-8').splitlines())} lines")
 

@@ -57,7 +57,7 @@ TRIGGERS: list[dict[str, Any]] = [
         ),
         "threshold": "2026-10-14",
         "effect": "L2 -0.05, L3 -0.05",
-        "check": "repair_uncommitted",
+        "check": "worktree_dirty",
     },
     {
         "id": "T2",
@@ -165,6 +165,59 @@ TRIGGERS: list[dict[str, Any]] = [
         "effect": "D-ANRI-001: mark Principle 5 as not institutionalised; L4 -> 0.15",
         "check": "human_review",
     },
+    {
+        "id": "T12",
+        "created": "2026-10-12",
+        "description": (
+            "An institutional platform (e.g. CAS ROCK/Panshi) publishes its "
+            "provenance or trusted-evaluation specification, and it turns out to "
+            "include cryptographic hash freezing or a review-state gate. Raised "
+            "after the 2026-10-01 Panshi announcement, whose wording overlaps "
+            "C2c but whose mechanism is not yet public."
+        ),
+        "threshold": "2027-04-01",
+        "effect": (
+            "C2c scoop probability -> 0.85; per D-ANRI-001 adopt their "
+            "specification and drop the independent claim (manual)"
+        ),
+        "check": "manual",
+    },
+    {
+        "id": "T13",
+        "created": "2026-10-12",
+        "description": (
+            "The local repair commits are still unpushed, so reproducibility is "
+            "not yet exposed to any third party."
+        ),
+        "threshold": "2026-10-19",
+        "effect": "L2 -0.03, L3 -0.03",
+        "check": "unpushed",
+    },
+    {
+        "id": "T14",
+        "created": "2026-10-13",
+        "description": (
+            "The remote CI run is still failing, so the gate has never passed in a "
+            "real environment. Raised after the 2026-10-13 finding that all four "
+            "GitHub Actions runs failed from the workflow's inception."
+        ),
+        "threshold": "2026-10-20",
+        "effect": (
+            "L3 -0.05; declare the gate unable to pass in a real environment (manual)"
+        ),
+        "check": "manual",
+    },
+    {
+        "id": "T15",
+        "created": "2026-10-13",
+        "description": (
+            "main and feat still differ by more than 50 files, i.e. the real research "
+            "content has stayed off the default branch."
+        ),
+        "threshold": "2026-10-20",
+        "effect": "L3 -0.03, L5 -0.02 (manual)",
+        "check": "manual",
+    },
 ]
 
 REPAIR_BASE_COMMIT = "abc91031930943c308edea73a97a120cbd6b8bf5"
@@ -256,7 +309,11 @@ def check_trigger(trigger: dict[str, Any], current: dict, today: date) -> dict[s
     threshold = date.fromisoformat(trigger["threshold"])
     wires = today >= threshold
 
-    if kind == "repair_uncommitted":
+    if kind == "worktree_dirty":
+        pending = dig(current, "worktree.pending_entries") or 0
+        fired = wires and pending > 0
+        detail = f"pending_entries={pending}"
+    elif kind == "repair_uncommitted":
         head = dig(current, "head.commit") or ""
         pending = dig(current, "worktree.pending_entries") or 0
         fired = wires and head == REPAIR_BASE_COMMIT and pending > 0
@@ -278,6 +335,14 @@ def check_trigger(trigger: dict[str, Any], current: dict, today: date) -> dict[s
         else:
             fired = wires and blocked > 0
             detail = f"P003 Stage 1 unresolved Blocked cells = {blocked}"
+    elif kind == "unpushed":
+        unpushed = dig(current, "worktree.unpushed_commits")
+        if unpushed is None:
+            fired = False
+            detail = "cannot evaluate: snapshot has no unpushed_commits field"
+        else:
+            fired = wires and unpushed > 0
+            detail = f"unpushed_commits = {unpushed}"
     elif kind == "human_review":
         reviews = dig(current, "review_gate.independent_human_reviews")
         if reviews is None:

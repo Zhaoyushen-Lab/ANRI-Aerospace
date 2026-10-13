@@ -116,6 +116,10 @@ def build_artifact_list() -> list[tuple[str, str]]:
 
     artifacts: list[tuple[str, str]] = [
         ("Research_Planning/CDFV-001_Reference_Configuration.md", "input"),
+        ("Research_Planning/P003_Free_Surface_Loading.md", "input"),
+        ("Research_Planning/P003_Stage1_Sourcing_Checklist.md", "input"),
+        ("Research_Planning/P003_B1_Measurement_Spec.md", "input"),
+        ("Research_Planning/P003_B1_Preregistration.md", "input"),
         ("Models/CDFV-001/Ref-01B/baseline_model.py", "model"),
         ("Models/CDFV-001/Ref-01B/verify_baseline.py", "model"),
         ("Models/CDFV-001/Ref-01B/verify_negative_cases.py", "model"),
@@ -481,18 +485,16 @@ def main(argv: Sequence[str] | None = None) -> int:
         },
     }
 
-    # The manifest records every frozen artifact plus the Research Object itself,
-    # whose digest is fully determined before the manifest is written. It does not
-    # list itself: a file cannot contain its own digest. The object's digest is
-    # carried as the "self" placeholder because the object's artifact list holds
-    # the manifest's real digest, so exactly one side of the pair is concrete and
-    # the pairing stays acyclic.
+    # The manifest records every frozen artifact, and it also covers the Research
+    # Object itself using the documented "self" placeholder: a file cannot contain
+    # its own digest, so the object's entry borrows from the object's own record of
+    # the manifest, which is concrete. The manifest does not list itself.
     manifest_artifacts = [
         {"path": path, "role": role, "sha256": hashes[path]}
         for path, role in artifacts
         if path not in (MANIFEST_REL, RO_REL)
     ]
-    manifest_artifacts.append({"path": RO_REL, "role": "manifest", "sha256": "self"})
+    manifest_artifacts.append({"path": RO_REL, "role": "review", "sha256": "self"})
 
     manifest = {
         "schema_version": "0.2",
