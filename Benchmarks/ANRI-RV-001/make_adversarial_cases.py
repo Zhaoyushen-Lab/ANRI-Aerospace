@@ -302,9 +302,14 @@ def mutate_one(
 
     result_dir = case_dir / "results"
     result_dir.mkdir(parents=True, exist_ok=True)
-    for stale in result_dir.iterdir():
-        if stale.is_file() and stale.name not in (SUMMARY_FILE_NAME,):
-            stale.unlink()
+    # Copy every clean CSV over the case's copy. shutil.copyfile overwrites, so no
+    # pre-deletion is needed. Deliberately NOT deleting other files here: this
+    # generator produces only the case inputs (the CSVs and mutation.json). The
+    # verifier outputs (verification.json / verification_report.md) live beside
+    # them and are produced by verify_baseline.py, and they are hash-registered in
+    # the Research Object. An earlier pre-deletion loop removed those files, so a
+    # regeneration after a verified commit left the tree dirty and the CI drift
+    # check failed on every run.
     for csv_file in sorted(source_dir.glob("*.csv")):
         if csv_file.name.lower() == SUMMARY_FILE_NAME:
             continue
