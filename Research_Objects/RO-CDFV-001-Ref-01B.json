@@ -199,7 +199,7 @@
     {
       "path": "Experiment_Requests/CLEANROOM-Replication_Task.md",
       "role": "input",
-      "sha256": "f56d66e7a9fd124c82f2c7ff1efce1aedab2d96872ecad1a719ada9022c39a54"
+      "sha256": "5f7eace1f3d6683ae352b70330be534591a5d3622e51f39280708af56fc5a87b"
     },
     {
       "path": "Models/CDFV-001/Ref-01B/baseline_model.py",
@@ -264,7 +264,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "40ad9e90bc3e7f3e4fc7d1cfcf7aff92424183daa9d39fc51f3770a57adced0e"
+      "sha256": "c3bfa324915b42deacce56612391f40229d42275e9e381089ccad4441642938d"
     },
     {
       "path": "schema/research_object.schema.json",
@@ -280,6 +280,11 @@
       "path": "Benchmarks/ANRI-RV-001/run_adversarial_cases.py",
       "role": "model",
       "sha256": "5137d9d312276078237f0d3e3259c9ea4360ffadd5ae8f6aaf82ab000e79bd22"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/make_blind_copy.py",
+      "role": "model",
+      "sha256": "8f2f121064a81e2a0127f4750369bfaa2fdfa7e70deea4973b26fa5658548f41"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/adversarial_cases.json",
@@ -319,7 +324,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "f515ead055a947bcd7e4c6279f816649d029585534ae784f08aea1e293c1901d"
+      "sha256": "5b7db0752a1bfc1650bd2445b062f23b845883b2d60e86974b84027b8008a201"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",

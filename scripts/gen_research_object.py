@@ -137,6 +137,7 @@ def build_artifact_list() -> list[tuple[str, str]]:
         ("schema/research_object.schema.json", "schema"),
         ("Benchmarks/ANRI-RV-001/make_adversarial_cases.py", "model"),
         ("Benchmarks/ANRI-RV-001/run_adversarial_cases.py", "model"),
+        ("Benchmarks/ANRI-RV-001/make_blind_copy.py", "model"),
         ("Benchmarks/ANRI-RV-001/adversarial/adversarial_cases.json", "index"),
         ("Benchmarks/ANRI-RV-001/rubric.yaml", "input"),
         ("Benchmarks/ANRI-RV-001/task.md", "input"),

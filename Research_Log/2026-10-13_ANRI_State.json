@@ -2,20 +2,20 @@
   "schema_version": "1",
   "kind": "anri_state_snapshot",
   "as_of_date": "2026-10-13",
-  "generated_utc": "2026-10-13T15:13:08.891879+00:00",
+  "generated_utc": "2026-10-13T15:18:06.768202+00:00",
   "note": "generated_utc is wall-clock and NOT part of the compared payload; compare everything else.",
   "head": {
-    "commit": "d389ecac4493d4af1bba6deda640059d0066296b",
-    "summary": "d389eca 2026-10-13 Record D-ANRI-003: split human capacity into production and judgment"
+    "commit": "e3edde096c7f1d5941e68c300a8e625bc9ab432d",
+    "summary": "e3edde0 2026-10-13 Add the clean-room replication task brief"
   },
   "worktree": {
-    "pending_entries": 4,
-    "staged": 3,
-    "untracked": 1,
-    "unpushed_commits": 5
+    "pending_entries": 7,
+    "staged": 7,
+    "untracked": 0,
+    "unpushed_commits": 6
   },
   "line_endings": {
-    "files": 158,
+    "files": 160,
     "index_crlf": 0,
     "worktree_crlf": 0
   },
@@ -43,12 +43,12 @@
   },
   "research_object": {
     "path": "Research_Objects/RO-CDFV-001-Ref-01B.json",
-    "sha256": "2f93d1520100acc79c3b9cad5e7b134652fd06ef8e68bcae32b8288cae9b3089",
+    "sha256": "fdc24420394746fd4d9927e553b651090b908ace563844557364aab574b543ef",
     "id": "RO-CDFV-001-Ref-01B",
     "version": "0.2.0",
     "status": "in_review",
     "schema_version": "0.2",
-    "artifact_count": 70,
+    "artifact_count": 71,
     "claim_count": 1,
     "evidence_count": 3,
     "validator_count": 1,
@@ -64,7 +64,7 @@
       "review",
       "schema"
     ],
-    "manifest_entries": 69
+    "manifest_entries": 70
   },
   "review_gate": {
     "status": "revision_requested",
