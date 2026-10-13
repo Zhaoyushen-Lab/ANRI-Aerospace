@@ -2,20 +2,20 @@
   "schema_version": "1",
   "kind": "anri_state_snapshot",
   "as_of_date": "2026-10-13",
-  "generated_utc": "2026-10-13T06:35:01.192635+00:00",
+  "generated_utc": "2026-10-13T15:07:37.782574+00:00",
   "note": "generated_utc is wall-clock and NOT part of the compared payload; compare everything else.",
   "head": {
-    "commit": "1705724edf2523d19c7c32e0e6e7a132f378b979",
-    "summary": "1705724 2026-10-11 Update research object provenance"
+    "commit": "81c6ff1c4e6485cb05dd89e36ffbb1cb8b28599f",
+    "summary": "81c6ff1 2026-10-13 Stop the adversarial case generator from deleting verifier outputs"
   },
   "worktree": {
-    "pending_entries": 16,
-    "staged": 16,
+    "pending_entries": 3,
+    "staged": 3,
     "untracked": 0,
-    "unpushed_commits": 2
+    "unpushed_commits": 4
   },
   "line_endings": {
-    "files": 156,
+    "files": 158,
     "index_crlf": 0,
     "worktree_crlf": 0
   },
@@ -43,7 +43,7 @@
   },
   "research_object": {
     "path": "Research_Objects/RO-CDFV-001-Ref-01B.json",
-    "sha256": "4a0c3e340a274b136cbf5ea23adac0034ad39147f81d4635c19a2683afb7b509",
+    "sha256": "d9e1e0468ae5dc7635f3b94b9c04c6ecf87119c60cbbf795e953edc556213321",
     "id": "RO-CDFV-001-Ref-01B",
     "version": "0.2.0",
     "status": "in_review",
