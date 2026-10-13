@@ -2,17 +2,17 @@
   "schema_version": "1",
   "kind": "anri_state_snapshot",
   "as_of_date": "2026-10-13",
-  "generated_utc": "2026-10-13T15:07:37.782574+00:00",
+  "generated_utc": "2026-10-13T15:13:08.891879+00:00",
   "note": "generated_utc is wall-clock and NOT part of the compared payload; compare everything else.",
   "head": {
-    "commit": "81c6ff1c4e6485cb05dd89e36ffbb1cb8b28599f",
-    "summary": "81c6ff1 2026-10-13 Stop the adversarial case generator from deleting verifier outputs"
+    "commit": "d389ecac4493d4af1bba6deda640059d0066296b",
+    "summary": "d389eca 2026-10-13 Record D-ANRI-003: split human capacity into production and judgment"
   },
   "worktree": {
-    "pending_entries": 3,
+    "pending_entries": 4,
     "staged": 3,
-    "untracked": 0,
-    "unpushed_commits": 4
+    "untracked": 1,
+    "unpushed_commits": 5
   },
   "line_endings": {
     "files": 158,
@@ -43,12 +43,12 @@
   },
   "research_object": {
     "path": "Research_Objects/RO-CDFV-001-Ref-01B.json",
-    "sha256": "d9e1e0468ae5dc7635f3b94b9c04c6ecf87119c60cbbf795e953edc556213321",
+    "sha256": "2f93d1520100acc79c3b9cad5e7b134652fd06ef8e68bcae32b8288cae9b3089",
     "id": "RO-CDFV-001-Ref-01B",
     "version": "0.2.0",
     "status": "in_review",
     "schema_version": "0.2",
-    "artifact_count": 69,
+    "artifact_count": 70,
     "claim_count": 1,
     "evidence_count": 3,
     "validator_count": 1,
@@ -64,7 +64,7 @@
       "review",
       "schema"
     ],
-    "manifest_entries": 68
+    "manifest_entries": 69
   },
   "review_gate": {
     "status": "revision_requested",
