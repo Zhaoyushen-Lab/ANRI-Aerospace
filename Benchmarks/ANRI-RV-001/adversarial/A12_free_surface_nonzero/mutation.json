@@ -1,0 +1,13 @@
+{
+  "case_id": "A12_free_surface_nonzero",
+  "mutation_kind": "excluded_term_present",
+  "source_file": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p50mps.csv",
+  "mutated_file": "Benchmarks/ANRI-RV-001/adversarial/A12_free_surface_nonzero/results/Ref-01B-B-0p50mps.csv",
+  "mutated_file_sha256": "c83311e4d212b40be0998ca6c67b18036279a77553fa811604dcf7e4badb06e6",
+  "row_count": 971,
+  "detail": "free_surface_force_N row 728 (A12_free_surface_nonzero): 0.0 -> '0.25' (delta +0.25)",
+  "expected_detection": "free_surface_zero",
+  "expected_status": "FAIL",
+  "description": "A non-zero free-surface force appears in a baseline that defines that term as exactly zero.",
+  "clean_results_untouched": true
+}

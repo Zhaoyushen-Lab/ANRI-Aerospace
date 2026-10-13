@@ -1,40 +1,92 @@
 name: ANRI validation
 
+# Gate summary
+# ------------
+# * the Research Object must satisfy the JSON schema, every recorded SHA-256 must
+#   match the bytes in the checkout, and every evidence / validator path must
+#   exist;
+# * the validator itself is mutation-tested, so a gate that stopped rejecting bad
+#   objects fails the build;
+# * the clean baseline verifier must pass, and the verifier's own negative-case
+#   suite must pass;
+# * the adversarial inputs are regenerated from the clean baseline and the tree
+#   must stay byte-identical, so a stale or hand-edited case fails the build;
+# * every adversarial case must be rejected by its intended check;
+# * reproducing the frozen artifacts twice must not change any hash;
+# * `status: verified` is refused unless `review.status` is `approved`.
+
 on:
   push:
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Validate Research Object
-        run: python scripts/validate_research_object.py Research_Objects/RO-CDFV-001-Ref-01B.json
+
+      - name: Show git line-ending state
+        run: |
+          git ls-files --eol -- Models Benchmarks Research_Objects schema scripts |
+            grep -v 'w/lf' || echo "all listed files are checked out as LF"
+
+      - name: Validate Research Object, schema, hashes and review gate
+        run: |
+          python scripts/validate_research_object.py \
+            Research_Objects/RO-CDFV-001-Ref-01B.json \
+            --repo-root .
+
+      - name: Check the object and manifest are not stale
+        run: |
+          # The drift check must replay the object from ITS OWN recorded
+          # provenance. Passing ${{ github.sha }} would compare the object against
+          # the commit that merely triggered the run, so the check would fail on
+          # every run after the object was generated — a false alarm, not drift.
+          python scripts/gen_research_object.py \
+            --git-commit "$(python -c 'import json;print(json.load(open("Research_Objects/RO-CDFV-001-Ref-01B.json"))["provenance"]["git_commit"])')" \
+            --created-utc "$(python -c 'import json;print(json.load(open("Research_Objects/RO-CDFV-001-Ref-01B.json"))["provenance"]["created_utc"])')" \
+            --review-date "$(python -c 'import json;print(json.load(open("Research_Objects/RO-CDFV-001-Ref-01B.json"))["review"]["reviews"][0]["date"])')" \
+            --check-only
+
+      - name: Validate the validator itself (gate self-test)
+        run: |
+          python scripts/validate_gate_selftest.py \
+            "${{ runner.temp }}/anri-gate-selftest"
+
       - name: Run clean baseline verifier
         run: python Models/CDFV-001/Ref-01B/verify_baseline.py
-      - name: Check adversarial wrong-weight case
-        shell: bash
+
+      - name: Run verifier negative-case suite
+        run: python Models/CDFV-001/Ref-01B/verify_negative_cases.py
+
+      - name: Regenerate adversarial cases and check for drift
         run: |
-          set +e
-          python Models/CDFV-001/Ref-01B/verify_baseline.py \
-            Benchmarks/ANRI-RV-001/adversarial/A01_wrong_weight/results
-          status=$?
-          if [ "$status" -eq 0 ]; then
-            echo "Expected A01 to fail, but it passed"
+          python Benchmarks/ANRI-RV-001/make_adversarial_cases.py \
+            --source Models/CDFV-001/Ref-01B/results \
+            --dest Benchmarks/ANRI-RV-001/adversarial
+          if ! git diff --exit-code --quiet -- Benchmarks/ANRI-RV-001/adversarial; then
+            echo "::error::adversarial cases are stale; regenerate and commit them"
+            git --no-pager diff --stat -- Benchmarks/ANRI-RV-001/adversarial
             exit 1
           fi
-      - name: Check adversarial force-balance case
-        shell: bash
+
+      - name: Run every adversarial case and require rejection
+        run: python Benchmarks/ANRI-RV-001/run_adversarial_cases.py
+
+      - name: Reproduce frozen artifacts and check hash stability
         run: |
-          set +e
-          python Models/CDFV-001/Ref-01B/verify_baseline.py \
-            Benchmarks/ANRI-RV-001/adversarial/A02_broken_force_balance/results
-          status=$?
-          if [ "$status" -eq 0 ]; then
-            echo "Expected A02 to fail, but it passed"
+          python Models/CDFV-001/Ref-01B/verify_baseline.py
+          if ! git diff --exit-code --quiet -- Models/CDFV-001/Ref-01B/results; then
+            echo "::error::frozen verification artifacts are not reproducible"
+            git --no-pager diff --stat -- Models/CDFV-001/Ref-01B/results
             exit 1
           fi
+          echo "frozen artifacts are byte-identical after regeneration"

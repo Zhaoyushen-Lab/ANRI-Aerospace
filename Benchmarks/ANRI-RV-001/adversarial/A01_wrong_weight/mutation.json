@@ -1,11 +1,13 @@
 {
   "case_id": "A01_wrong_weight",
-  "source_file": "Ref-01B-B-0p10mps.csv",
-  "mutated_file": "C:\\Users\\xiangming\\ANRI-Aerospace\\Benchmarks\\ANRI-RV-001\\adversarial\\A01_wrong_weight\\results\\Ref-01B-B-0p10mps.csv",
-  "row_index_zero_based": 0,
-  "column": "weight_N",
-  "original_value": 19.907499499999997,
-  "delta": 0.1,
-  "expected_detection": "FAIL",
+  "mutation_kind": "reference_value_changed",
+  "source_file": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p10mps.csv",
+  "mutated_file": "Benchmarks/ANRI-RV-001/adversarial/A01_wrong_weight/results/Ref-01B-B-0p10mps.csv",
+  "mutated_file_sha256": "184dba5f481b3897daa4059ce6a391916cf429e6317fabd2767e6ededee1d54b",
+  "row_count": 4846,
+  "detail": "weight_N row 0 (A01_wrong_weight): 19.907499499999997 -> '20.007499499999998' (delta +0.1)",
+  "expected_detection": "weight_reference",
+  "expected_status": "FAIL",
+  "description": "A single weight_N value is increased by 0.1 N. The verifier must reject the case because the weight no longer matches m*g.",
   "clean_results_untouched": true
 }
