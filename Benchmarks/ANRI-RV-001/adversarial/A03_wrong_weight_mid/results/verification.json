@@ -1,0 +1,419 @@
+{
+  "results_directory": "Benchmarks/ANRI-RV-001/adversarial/A03_wrong_weight_mid/results",
+  "overall_status": "FAIL",
+  "checks_version": "0.2",
+  "tolerance_n": 0.0001,
+  "reference": {
+    "mass_kg": 2.03,
+    "diameter_m": 0.09,
+    "length_m": 0.323,
+    "water_density_kg_m3": 1000.0,
+    "gravity_m_s2": 9.80665,
+    "force_tolerance_n": 0.0001,
+    "free_surface_force_n": 0.0,
+    "weight_n": 19.907499499999997,
+    "displaced_volume_m3": 0.002054837214896744,
+    "full_buoyancy_n": 20.151069373467152
+  },
+  "files": [
+    {
+      "file": "Ref-01B-B-0p10mps.csv",
+      "status": "PASS",
+      "rows": 4846,
+      "headers": [
+        "case_id",
+        "time_s",
+        "z_center_m",
+        "velocity_m_s",
+        "acceleration_m_s2",
+        "submerged_length_m",
+        "immersion_fraction",
+        "submerged_volume_m3",
+        "buoyancy_N",
+        "weight_N",
+        "net_hydrostatic_force_N",
+        "free_surface_force_N",
+        "constraint_force_N",
+        "constraint_force_abs_N"
+      ],
+      "columns": {
+        "time": "time_s",
+        "position": "z_center_m",
+        "speed": "velocity_m_s",
+        "acceleration": "acceleration_m_s2",
+        "buoyancy": "buoyancy_N",
+        "weight": "weight_N",
+        "constraint": "constraint_force_N",
+        "free_surface": "free_surface_force_N"
+      },
+      "checks": [
+        {
+          "label": "read_csv",
+          "status": "PASS",
+          "detail": "14 columns, 4846 data rows"
+        },
+        {
+          "label": "non_empty",
+          "status": "PASS",
+          "detail": "4846 rows"
+        },
+        {
+          "label": "numeric_time",
+          "status": "PASS",
+          "detail": "column=time_s; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_position",
+          "status": "PASS",
+          "detail": "column=z_center_m; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_speed",
+          "status": "PASS",
+          "detail": "column=velocity_m_s; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_acceleration",
+          "status": "PASS",
+          "detail": "column=acceleration_m_s2; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_buoyancy",
+          "status": "PASS",
+          "detail": "column=buoyancy_N; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_weight",
+          "status": "PASS",
+          "detail": "column=weight_N; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_constraint",
+          "status": "PASS",
+          "detail": "column=constraint_force_N; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_free_surface",
+          "status": "PASS",
+          "detail": "column=free_surface_force_N; missing_or_non_numeric=0"
+        },
+        {
+          "label": "monotonic_time",
+          "status": "PASS",
+          "detail": "increasing"
+        },
+        {
+          "label": "monotonic_position",
+          "status": "PASS",
+          "detail": "increasing"
+        },
+        {
+          "label": "monotonic_speed",
+          "status": "PASS",
+          "detail": "increasing"
+        },
+        {
+          "label": "weight_reference",
+          "status": "PASS",
+          "detail": "max_error=0 N; expected=19.9074995 N"
+        },
+        {
+          "label": "buoyancy_range",
+          "status": "PASS",
+          "detail": "range=[0, 20.1510694] N; expected=[0, 20.1510694] N"
+        },
+        {
+          "label": "free_surface_zero",
+          "status": "PASS",
+          "detail": "max_error=0 N; expected=0.0 N (excluded from the baseline)"
+        },
+        {
+          "label": "prescribed_zero_acceleration",
+          "status": "PASS",
+          "detail": "max_abs(acceleration)=0 m/s^2; the constant-velocity baseline prescribes a = 0"
+        },
+        {
+          "label": "force_balance",
+          "status": "PASS",
+          "detail": "max_abs(constraint + buoyancy - weight)=3.55271368e-15 N"
+        },
+        {
+          "label": "buoyancy_unit_sanity",
+          "status": "PASS",
+          "detail": "max(buoyancy)=20.1510694 N vs full_submergence=20.1510694 N; a unit error (kN or mN written as N) changes this ratio by orders of magnitude"
+        },
+        {
+          "label": "weight_unit_sanity",
+          "status": "PASS",
+          "detail": "max(weight)/reference_weight=1; expected 1"
+        }
+      ]
+    },
+    {
+      "file": "Ref-01B-B-0p25mps.csv",
+      "status": "FAIL",
+      "rows": 1940,
+      "headers": [
+        "case_id",
+        "time_s",
+        "z_center_m",
+        "velocity_m_s",
+        "acceleration_m_s2",
+        "submerged_length_m",
+        "immersion_fraction",
+        "submerged_volume_m3",
+        "buoyancy_N",
+        "weight_N",
+        "net_hydrostatic_force_N",
+        "free_surface_force_N",
+        "constraint_force_N",
+        "constraint_force_abs_N"
+      ],
+      "columns": {
+        "time": "time_s",
+        "position": "z_center_m",
+        "speed": "velocity_m_s",
+        "acceleration": "acceleration_m_s2",
+        "buoyancy": "buoyancy_N",
+        "weight": "weight_N",
+        "constraint": "constraint_force_N",
+        "free_surface": "free_surface_force_N"
+      },
+      "checks": [
+        {
+          "label": "read_csv",
+          "status": "PASS",
+          "detail": "14 columns, 1940 data rows"
+        },
+        {
+          "label": "non_empty",
+          "status": "PASS",
+          "detail": "1940 rows"
+        },
+        {
+          "label": "numeric_time",
+          "status": "PASS",
+          "detail": "column=time_s; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_position",
+          "status": "PASS",
+          "detail": "column=z_center_m; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_speed",
+          "status": "PASS",
+          "detail": "column=velocity_m_s; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_acceleration",
+          "status": "PASS",
+          "detail": "column=acceleration_m_s2; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_buoyancy",
+          "status": "PASS",
+          "detail": "column=buoyancy_N; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_weight",
+          "status": "PASS",
+          "detail": "column=weight_N; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_constraint",
+          "status": "PASS",
+          "detail": "column=constraint_force_N; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_free_surface",
+          "status": "PASS",
+          "detail": "column=free_surface_force_N; missing_or_non_numeric=0"
+        },
+        {
+          "label": "monotonic_time",
+          "status": "PASS",
+          "detail": "increasing"
+        },
+        {
+          "label": "monotonic_position",
+          "status": "PASS",
+          "detail": "increasing"
+        },
+        {
+          "label": "monotonic_speed",
+          "status": "PASS",
+          "detail": "increasing"
+        },
+        {
+          "label": "weight_reference",
+          "status": "FAIL",
+          "detail": "max_error=0.05 N; expected=19.9074995 N"
+        },
+        {
+          "label": "buoyancy_range",
+          "status": "PASS",
+          "detail": "range=[0, 20.1510694] N; expected=[0, 20.1510694] N"
+        },
+        {
+          "label": "free_surface_zero",
+          "status": "PASS",
+          "detail": "max_error=0 N; expected=0.0 N (excluded from the baseline)"
+        },
+        {
+          "label": "prescribed_zero_acceleration",
+          "status": "PASS",
+          "detail": "max_abs(acceleration)=0 m/s^2; the constant-velocity baseline prescribes a = 0"
+        },
+        {
+          "label": "force_balance",
+          "status": "FAIL",
+          "detail": "max_abs(constraint + buoyancy - weight)=0.05 N"
+        },
+        {
+          "label": "buoyancy_unit_sanity",
+          "status": "PASS",
+          "detail": "max(buoyancy)=20.1510694 N vs full_submergence=20.1510694 N; a unit error (kN or mN written as N) changes this ratio by orders of magnitude"
+        },
+        {
+          "label": "weight_unit_sanity",
+          "status": "FAIL",
+          "detail": "max(weight)/reference_weight=1.00251162; expected 1"
+        }
+      ]
+    },
+    {
+      "file": "Ref-01B-B-0p50mps.csv",
+      "status": "PASS",
+      "rows": 971,
+      "headers": [
+        "case_id",
+        "time_s",
+        "z_center_m",
+        "velocity_m_s",
+        "acceleration_m_s2",
+        "submerged_length_m",
+        "immersion_fraction",
+        "submerged_volume_m3",
+        "buoyancy_N",
+        "weight_N",
+        "net_hydrostatic_force_N",
+        "free_surface_force_N",
+        "constraint_force_N",
+        "constraint_force_abs_N"
+      ],
+      "columns": {
+        "time": "time_s",
+        "position": "z_center_m",
+        "speed": "velocity_m_s",
+        "acceleration": "acceleration_m_s2",
+        "buoyancy": "buoyancy_N",
+        "weight": "weight_N",
+        "constraint": "constraint_force_N",
+        "free_surface": "free_surface_force_N"
+      },
+      "checks": [
+        {
+          "label": "read_csv",
+          "status": "PASS",
+          "detail": "14 columns, 971 data rows"
+        },
+        {
+          "label": "non_empty",
+          "status": "PASS",
+          "detail": "971 rows"
+        },
+        {
+          "label": "numeric_time",
+          "status": "PASS",
+          "detail": "column=time_s; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_position",
+          "status": "PASS",
+          "detail": "column=z_center_m; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_speed",
+          "status": "PASS",
+          "detail": "column=velocity_m_s; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_acceleration",
+          "status": "PASS",
+          "detail": "column=acceleration_m_s2; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_buoyancy",
+          "status": "PASS",
+          "detail": "column=buoyancy_N; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_weight",
+          "status": "PASS",
+          "detail": "column=weight_N; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_constraint",
+          "status": "PASS",
+          "detail": "column=constraint_force_N; missing_or_non_numeric=0"
+        },
+        {
+          "label": "numeric_free_surface",
+          "status": "PASS",
+          "detail": "column=free_surface_force_N; missing_or_non_numeric=0"
+        },
+        {
+          "label": "monotonic_time",
+          "status": "PASS",
+          "detail": "increasing"
+        },
+        {
+          "label": "monotonic_position",
+          "status": "PASS",
+          "detail": "increasing"
+        },
+        {
+          "label": "monotonic_speed",
+          "status": "PASS",
+          "detail": "increasing"
+        },
+        {
+          "label": "weight_reference",
+          "status": "PASS",
+          "detail": "max_error=0 N; expected=19.9074995 N"
+        },
+        {
+          "label": "buoyancy_range",
+          "status": "PASS",
+          "detail": "range=[0, 20.1510694] N; expected=[0, 20.1510694] N"
+        },
+        {
+          "label": "free_surface_zero",
+          "status": "PASS",
+          "detail": "max_error=0 N; expected=0.0 N (excluded from the baseline)"
+        },
+        {
+          "label": "prescribed_zero_acceleration",
+          "status": "PASS",
+          "detail": "max_abs(acceleration)=0 m/s^2; the constant-velocity baseline prescribes a = 0"
+        },
+        {
+          "label": "force_balance",
+          "status": "PASS",
+          "detail": "max_abs(constraint + buoyancy - weight)=3.55271368e-15 N"
+        },
+        {
+          "label": "buoyancy_unit_sanity",
+          "status": "PASS",
+          "detail": "max(buoyancy)=20.1510694 N vs full_submergence=20.1510694 N; a unit error (kN or mN written as N) changes this ratio by orders of magnitude"
+        },
+        {
+          "label": "weight_unit_sanity",
+          "status": "PASS",
+          "detail": "max(weight)/reference_weight=1; expected 1"
+        }
+      ]
+    }
+  ]
+}

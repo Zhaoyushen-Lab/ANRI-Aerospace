@@ -204,9 +204,18 @@ FIELDNAMES = [
 
 
 def write_csv(path: Path, rows: Iterable[dict[str, float | str]]) -> None:
+    """Write one case CSV with LF terminators on every platform.
+
+    ``lineterminator="\\n"`` is deliberate: the csv module defaults to CRLF, and
+    a platform-dependent terminator would change the SHA-256 of a frozen result
+    artifact between Windows and Linux.
+    """
+
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=FIELDNAMES)
+        writer = csv.DictWriter(
+            handle, fieldnames=FIELDNAMES, lineterminator="\n"
+        )
         writer.writeheader()
         writer.writerows(rows)
 
@@ -227,7 +236,9 @@ def write_summary(
     ]
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=summary_fields)
+        writer = csv.DictWriter(
+            handle, fieldnames=summary_fields, lineterminator="\n"
+        )
         writer.writeheader()
         for case_id, velocity, rows in case_rows:
             constraints = [float(row["constraint_force_N"]) for row in rows]

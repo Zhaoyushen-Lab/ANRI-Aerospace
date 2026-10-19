@@ -1,0 +1,13 @@
+{
+  "case_id": "A09_buoyancy_out_of_range",
+  "mutation_kind": "buoyancy_out_of_range",
+  "source_file": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p50mps.csv",
+  "mutated_file": "Benchmarks/ANRI-RV-001/adversarial/A09_buoyancy_out_of_range/results/Ref-01B-B-0p50mps.csv",
+  "mutated_file_sha256": "87b4859d937dab91f0a4f979e99d8aab24121039b438a833cd453a0a1aed6f0f",
+  "row_count": 971,
+  "detail": "buoyancy_N row 0 (A09_buoyancy_out_of_range): 20.151069373467152 -> '21.151069373467152' (delta +1)",
+  "expected_detection": "buoyancy_range",
+  "expected_status": "FAIL",
+  "description": "One buoyancy_N value exceeds the fully submerged reference buoyancy, which is impossible for this geometry.",
+  "clean_results_untouched": true
+}

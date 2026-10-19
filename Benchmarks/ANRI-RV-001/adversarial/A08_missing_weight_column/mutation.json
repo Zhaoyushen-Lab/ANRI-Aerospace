@@ -1,0 +1,13 @@
+{
+  "case_id": "A08_missing_weight_column",
+  "mutation_kind": "missing_column",
+  "source_file": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p10mps.csv",
+  "mutated_file": "Benchmarks/ANRI-RV-001/adversarial/A08_missing_weight_column/results/Ref-01B-B-0p10mps.csv",
+  "mutated_file_sha256": "74ae0493a5c92d41c29af70af8a3fa01371338b85ccff67990f9bb711497ccb3",
+  "row_count": 4846,
+  "detail": "column 'weight_N' removed from the header and every row",
+  "expected_detection": "column_weight",
+  "expected_status": "FAIL",
+  "description": "The weight_N column is removed from the 0.10 m/s case.",
+  "clean_results_untouched": true
+}

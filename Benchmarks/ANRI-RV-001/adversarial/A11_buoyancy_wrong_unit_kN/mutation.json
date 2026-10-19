@@ -1,0 +1,13 @@
+{
+  "case_id": "A11_buoyancy_wrong_unit_kN",
+  "mutation_kind": "unit_error",
+  "source_file": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p25mps.csv",
+  "mutated_file": "Benchmarks/ANRI-RV-001/adversarial/A11_buoyancy_wrong_unit_kN/results/Ref-01B-B-0p25mps.csv",
+  "mutated_file_sha256": "6fedaedd1336fe3905ac1dc3733f816792de1b935dbc3689693afbb10cdb8414",
+  "row_count": 1940,
+  "detail": "buoyancy_N multiplied by 0.001 in all 1940 rows (unit error, for example kN where N is expected)",
+  "expected_detection": "buoyancy_unit_sanity",
+  "expected_status": "FAIL",
+  "description": "The buoyancy column is written in kN instead of N in the 0.25 m/s case, so every value is 1000 times too small.",
+  "clean_results_untouched": true
+}

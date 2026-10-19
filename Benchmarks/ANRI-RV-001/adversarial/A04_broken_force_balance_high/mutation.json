@@ -1,0 +1,13 @@
+{
+  "case_id": "A04_broken_force_balance_high",
+  "mutation_kind": "force_balance_broken",
+  "source_file": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p50mps.csv",
+  "mutated_file": "Benchmarks/ANRI-RV-001/adversarial/A04_broken_force_balance_high/results/Ref-01B-B-0p50mps.csv",
+  "mutated_file_sha256": "8e5186981666f87eca1b13659699acf29e81355031d841335b05f2b6c1bf04a0",
+  "row_count": 971,
+  "detail": "constraint_force_N row 485 (A04_broken_force_balance_high): 9.84756161618706 -> '9.3475616161870594' (delta -0.5)",
+  "expected_detection": "force_balance",
+  "expected_status": "FAIL",
+  "description": "The force-balance fault appears in the 0.50 m/s case, in the middle of the file rather than in the first row.",
+  "clean_results_untouched": true
+}

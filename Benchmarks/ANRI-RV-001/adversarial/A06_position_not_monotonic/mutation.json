@@ -1,0 +1,13 @@
+{
+  "case_id": "A06_position_not_monotonic",
+  "mutation_kind": "position_not_monotonic",
+  "source_file": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p25mps.csv",
+  "mutated_file": "Benchmarks/ANRI-RV-001/adversarial/A06_position_not_monotonic/results/Ref-01B-B-0p25mps.csv",
+  "mutated_file_sha256": "9b90259b6bdd627817c22e7af3639a83f2ff7d321f0ab66204581d9843e24238",
+  "row_count": 1940,
+  "detail": "z_center_m values swapped between rows 485 and 486",
+  "expected_detection": "monotonic_position",
+  "expected_status": "FAIL",
+  "description": "Two adjacent z_center_m values are exchanged, so the vertical position is no longer monotonic.",
+  "clean_results_untouched": true
+}

@@ -1,0 +1,13 @@
+{
+  "case_id": "A07_missing_buoyancy_column",
+  "mutation_kind": "missing_column",
+  "source_file": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p50mps.csv",
+  "mutated_file": "Benchmarks/ANRI-RV-001/adversarial/A07_missing_buoyancy_column/results/Ref-01B-B-0p50mps.csv",
+  "mutated_file_sha256": "94cbb0bb41ff5c147c69ba849c9ac167e49dacaefdca46f25fdb62cd42976f5d",
+  "row_count": 971,
+  "detail": "column 'buoyancy_N' removed from the header and every row",
+  "expected_detection": "column_match_buoyancy",
+  "expected_status": "FAIL",
+  "description": "The buoyancy_N column is removed. The verifier must refuse the file: the leftover submerged_volume_m3 column matches the buoyancy alias fuzzily, and a fuzzy match is never accepted silently.",
+  "clean_results_untouched": true
+}
