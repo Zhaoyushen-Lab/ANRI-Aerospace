@@ -120,6 +120,7 @@ def build_artifact_list() -> list[tuple[str, str]]:
         ("Research_Planning/P003_Stage1_Sourcing_Checklist.md", "input"),
         ("Research_Planning/P003_B1_Measurement_Spec.md", "input"),
         ("Research_Planning/P003_B1_Preregistration.md", "input"),
+        ("Research_Planning/P004_Candidate_Comparison.md", "input"),
         ("Experiment_Requests/CLEANROOM-Replication_Task.md", "input"),
         ("Models/CDFV-001/Ref-01B/baseline_model.py", "model"),
         ("Models/CDFV-001/Ref-01B/verify_baseline.py", "model"),

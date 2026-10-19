@@ -406,6 +406,134 @@ G1 闭合时，或 2027-04-11（6 个月），以先到者为准。
 清室复现实验有结果时，或 2026-11-13（1 个月），以先到者为准。
 
 ---
+
+# D-ANRI-004 — 默认分支门禁建成，以及冷启动暴露的两个缺陷
+
+- **日期**：2026-10-19
+- **状态**：**Accepted**
+- **触发**：`main` 首次具备**强制**门禁；随后冷启动验证暴露两处"只在有 `.git`
+  的工作副本里成立"的缺陷
+
+## 一、事实（全部由仓库与本会话命令实测）
+
+### 1.1 门禁建成
+
+`main` 上的规则集（ruleset id `25410404`）现有四条生效规则：
+
+| 规则 | 作用 | 实测方式 |
+|---|---|---|
+| `deletion` | 禁止删除 `main` | `GET /rules/branches/main` 返回该 type |
+| `non_fast_forward` | 禁止强推 | 同上 |
+| `pull_request` | 强制走 PR（approvals = 0） | 同上 |
+| `required_status_checks` | 必须 `validate` 绿（strict = true） | 同上，`check: validate` |
+
+**建成的证据**：一次直推 `main` 被 GitHub 明确拦下并打印
+
+```
+remote: Bypassed rule violations for refs/heads/main:
+remote: - Changes must be made through a pull request.
+```
+
+即**规则在拦人，只是因为 admin 在 bypass list 才放行**。
+
+### 1.2 CI 首次在默认分支通过
+
+`main` 的 `6754cfe`（PR #1 合并提交）触发 `push` 事件，
+`ANRI validation` 12 步**全部 success**。这是本仓库历史上第一次默认分支通过门禁。
+
+### 1.3 冷启动暴露缺陷 A：产物里写进了随检出位置变化的路径
+
+用 `git archive` 导出 tag `v0.2-gate-live`（**无 `.git`**）后运行门禁：
+
+| 检查 | 结果 |
+|---|---|
+| RO validator | exit 0 |
+| clean baseline | exit 0 |
+| negative cases | exit 0 |
+| report mechanism | exit 0 |
+| **drift check** | **exit 1** |
+
+根因（实测差异）：
+
+```diff
+- 源仓库: "results_directory": "Models/CDFV-001/Ref-01B/results"
+- 导出树: "results_directory": "AppData/Local/Temp/anri-cleancheck/Models/CDFV-001/Ref-01B/results"
+```
+
+`verify_baseline.py` 的 `repository_root()` 靠**向上查找 `.git`** 定位仓库根。
+导出树无 `.git` 时它退化为模型目录，于是结果目录"看起来"在根之上，
+`relative_to` 算出带 `../` 的路径并写入 `verification.json`——
+**而该文件是哈希注册产物**。
+
+**推论（判断）**：修复前，本仓库**只能在保留 `.git` 的工作副本里通过校验**。
+任何拿到导出树（tag 的 zip、`git archive`、镜像）的人都会看到哈希不符。
+
+**修复**：`to_posix_relative` 把"逃出仓库根的相对路径"视为无法表达，
+退化为稳定目录名。验证：同一导出树上 `drift exit=0`、`RO validator exit=0`。
+
+### 1.4 冷启动暴露缺陷 B：完整克隆在本机网络下失败
+
+| 方式 | 耗时 | 结果 |
+|---|---|---|
+| `git clone --depth 1 --branch <tag>` | **795 s** | ❌ `early EOF` / `unexpected disconnect` |
+| `git clone --filter=blob:none --no-checkout` | **4.0 s** | ✅ 成功 |
+
+体积分布（`git ls-tree -r -l HEAD` 实测）：
+
+| 目录 | 体积 | 占比 |
+|---|---:|---:|
+| `Paper_Library`（2 个 PDF） | 32.92 MB | **62.8%** |
+| `Benchmarks`（46 个哈希冻结产物） | 17.50 MB | 33.4% |
+| 其余全部 | ~2% | ~3% |
+
+**`Paper_Library` 中的 PDF 不在 RO 注册清单内**（注册数 0），
+而 `Benchmarks` 的 46 个产物全部冻结、不可删。
+
+### 1.5 处置：离线 bundle
+
+已生成并验证 `git bundle create --all`，30.2 MB，`git bundle verify` 报
+"The bundle records a complete history."。恢复不依赖网络。
+
+## 二、决策
+
+1. **阈值 A 的门槛含义改变**：从"有校验脚本"变为"默认分支强制执行校验"。
+   这是 L4 第一次具备**强制力**，而不是仅有工具。日报口径应据此更新，但
+   **不得据此上调 L4 或门槛 B**——`independent_human_reviews` 仍为 0，
+   门禁的强制力约束的是"提交路径"，不是"判断性人力"。
+2. **`admin bypass` 必须显式披露**。准确表述：
+   > `main` 受规则集保护，强制经由 PR 且禁止删除与强推；
+   > 仓库管理员保留可审计的 bypass 权限。
+   **禁止**对外声称"绝对不可绕过"或"证据不可篡改"。
+3. **冷启动必须成为常规检查**，且**必须在无 `.git` 的导出树上做**。
+   CI 永远抓不到缺陷 A 这类问题，因为 `actions/checkout` 总是提供 `.git`。
+4. **`Paper_Library` 的 PDF 建议移出版本控制**，但**本次未执行**——
+   属于用户决策（涉及"仓库是否能独立分发论文"），不擅自处置。
+5. **每次重要节点后生成一次离线 bundle**，作为"机器故障"这一具体风险的直接对策。
+
+## 三、本决策不改变的事
+
+- **不改变** `D-ANRI-001` 的定位判断（放弃基础设施新颖性）。
+- **不改变** `D-ANRI-002` 的 G1–G4 门槛。`loops_closed` 仍为 **1**。
+- **不改变**门槛 A/B 的数值口径。本次是过程改进，不是研究进展。
+- **不声称**上游因本次工作而改变评价。Sakana 等同类工作已公开，
+  这是 `D-ANRI-001` 既有判断的强化，不是新发现。
+
+## 四、遗留缺陷（已知未修）
+
+1. **`main` 分支的旧 `.gitattributes` 遗留**：`* text=auto eol=lf` 与
+   `*.csv text eol=lf` 会把 CRLF 内容的注册产物判定为 modified，
+   **即使字节完全相同**。这在本会话中真实阻塞过一次 fast-forward 合并，
+   当时用 `.git/info/attributes` 临时 `-text` 绕过（未提交、未推送）。
+   `feat` 上的 `* -text` 已修复该规则，但**旧规则仍留在 `main` 的历史里**。
+2. **`required_approving_review_count = 0`**：当前强制走 PR，但不要求第二人签字。
+   这与"仅作者一人"的人力现实相符，但**不等于拥有了独立评审**。
+3. **`Paper_Library` 体积问题未处置**（见决策 4）。
+
+## 复核日期
+
+2026-10-26（一周），或首次出现"默认分支 CI 红"、或清室复现结果返回时，以先到者为准。
+
+---
 ---
 
 # 修订记录
@@ -419,6 +547,7 @@ G1 闭合时，或 2027-04-11（6 个月），以先到者为准。
 | 2026-10-12 | `D002-001` | **Decision Candidate 修订**：删除"velocity-dependent"机理描述，改为无量纲判据（Fr + 有效密度比 + 几何） | 动压解释已被量级判除，原机理表述不成立 |
 | 2026-10-12 | `D002-001` | **Next Action 具体化**：改为可执行的 B1（同几何两尺度、同 Fr_D 测 `F_suction/W`） | Path B 结论要求把"是否需要专用实验"转化为可检验的判据，而非继续讨论 |
 | 2026-10-13 | `D-ANRI-003` | 新建 | 用户提供人力约束：同学可直接投入，业内人士/实验室需单独申请。据此把人力区分为"生产性"与"判断性"，并指出瓶颈在后者（L4） |
+| 2026-10-19 | `D-ANRI-004` | 新建 | `main` 首次具备强制门禁（四条规则）；冷启动暴露产物路径随检出位置变化、以及完整克隆在本机网络下失败两个缺陷 |
 
 > **EEM 闭环记录**：2026-10-12 的 `D002-001` 更新构成 `Knowledge → Design → Simulation →
 > Evaluation → Knowledge Update` 环在本仓库的**第一次闭合尝试**。
