@@ -162,7 +162,12 @@
     {
       "path": "Research_Planning/P004_Candidate_Comparison.md",
       "role": "input",
-      "sha256": "bbfbff12754e026072f22deac38a3c95b2ab39b57c81a7349af9f295d4d00017"
+      "sha256": "f715072109a4c506282d395a421a9f0ffba69c217eae9c0da2cdc39b684a10eb"
+    },
+    {
+      "path": "Research_Planning/P002_Data_Availability_Check.md",
+      "role": "input",
+      "sha256": "a3837155caa1a7eaadff7124b30e70825932badf72e2f4b8a6d97e8a3bf28597"
     },
     {
       "path": "Experiment_Requests/CLEANROOM-Replication_Task.md",
@@ -232,7 +237,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "30ae3058888e1aeb576531834ae66b350fe7f38277f45628ea0c94c7a8eecdbf"
+      "sha256": "3167f5eb177ca2c6956f0ff632c6c4660f749570fdaa146eba91ec1b2d09ead5"
     },
     {
       "path": "schema/research_object.schema.json",
