@@ -145,8 +145,22 @@ def simulate_case(
     dt_s: float,
     z_start_m: Optional[float] = None,
     z_end_m: Optional[float] = None,
+    acceleration_m_s2: float = 0.0,
 ) -> list[dict[str, float | str]]:
-    """Simulate one constant-speed upward water-exit case."""
+    """Simulate one upward water-exit case along a prescribed motion.
+
+    ``acceleration_m_s2`` defaults to 0.0, which reproduces the original
+    constant-speed case byte for byte: the time step collapses to
+    ``distance / velocity`` and the position stays linear in time.  A non-zero
+    value prescribes constant acceleration, so
+
+        z(t) = z_start + v0*t + a*t^2/2
+        v(t) = v0 + a*t
+
+    which is what makes the inertial term in the force balance observable at all.
+    With a = 0 the recorded ``constraint_force_N`` cannot distinguish "added mass
+    was omitted" from "added mass is negligible", because m*a vanishes either way.
+    """
 
     if velocity_m_s <= 0.0:
         raise ValueError("velocity_m_s must be positive")
@@ -163,26 +177,80 @@ def simulate_case(
         raise ValueError("z_end_m must be greater than z_start_m")
 
     distance_m = z_end_m - z_start_m
-    duration_s = distance_m / velocity_m_s
+
+    if acceleration_m_s2 == 0.0:
+        duration_s = distance_m / velocity_m_s
+    else:
+        # Solve (a/2) t^2 + v0 t - distance = 0 for the positive root.
+        discriminant = velocity_m_s**2 + 2.0 * acceleration_m_s2 * distance_m
+        if discriminant < 0.0:
+            raise ValueError(
+                "prescribed acceleration cannot cover the requested distance"
+            )
+        duration_s = (-velocity_m_s + math.sqrt(discriminant)) / acceleration_m_s2
+        if duration_s <= 0.0:
+            raise ValueError("prescribed acceleration gives a non-positive duration")
+
     steps = max(1, math.ceil(duration_s / dt_s))
 
     rows: list[dict[str, float | str]] = []
     for step in range(steps + 1):
-        # Force the final row to land exactly on z_end_m.
-        distance_at_step = min(distance_m, step * velocity_m_s * dt_s)
-        z_center_m = z_start_m + distance_at_step
-        time_s = distance_at_step / velocity_m_s
+        if acceleration_m_s2 == 0.0:
+            # Constant-speed path, kept literally identical to the original so
+            # existing outputs stay byte-for-byte unchanged.  Computing
+            # distance/velocity via the general helpers reorders the floating-point
+            # operations and shifts time_s in the last few digits, which is enough
+            # to change the recorded CSV and therefore the registered hashes.
+            distance_at_step = min(distance_m, step * velocity_m_s * dt_s)
+            z_center_m = z_start_m + distance_at_step
+            time_s = distance_at_step / velocity_m_s
+            speed_at_step = velocity_m_s
+        else:
+            # Force the final row to land exactly on z_end_m.
+            distance_at_step = min(
+                distance_m, _distance_at(step * dt_s, velocity_m_s, acceleration_m_s2)
+            )
+            time_s = _time_for_distance(
+                distance_at_step, velocity_m_s, acceleration_m_s2
+            )
+            z_center_m = z_start_m + distance_at_step
+            speed_at_step = velocity_m_s + acceleration_m_s2 * time_s
+
         rows.append(
             row_for_state(
                 cfg,
                 case_id=case_id,
                 time_s=time_s,
                 z_center_m=z_center_m,
-                velocity_m_s=velocity_m_s,
+                velocity_m_s=speed_at_step,
+                acceleration_m_s2=acceleration_m_s2,
             )
         )
 
     return rows
+
+
+def _distance_at(
+    time_s: float, velocity_m_s: float, acceleration_m_s2: float
+) -> float:
+    """Distance travelled under constant acceleration from the initial speed."""
+
+    return velocity_m_s * time_s + 0.5 * acceleration_m_s2 * time_s**2
+
+
+def _time_for_distance(
+    distance_m: float, velocity_m_s: float, acceleration_m_s2: float
+) -> float:
+    """Inverse of ``_distance_at`` for the positive root.
+
+    With zero acceleration this is exactly ``distance / velocity``, which keeps the
+    constant-speed cases identical to their previous bytes.
+    """
+
+    if acceleration_m_s2 == 0.0:
+        return distance_m / velocity_m_s
+    discriminant = velocity_m_s**2 + 2.0 * acceleration_m_s2 * distance_m
+    return (-velocity_m_s + math.sqrt(discriminant)) / acceleration_m_s2
 
 
 FIELDNAMES = [
@@ -271,6 +339,18 @@ def parse_args() -> argparse.Namespace:
         help="Upward prescribed velocities in m/s (default: 0.10 0.25 0.50).",
     )
     parser.add_argument(
+        "--accelerations",
+        nargs="+",
+        type=float,
+        default=None,
+        help=(
+            "Prescribed constant accelerations in m/s^2. When omitted the original "
+            "constant-speed cases are produced with their original file names, so "
+            "existing outputs stay byte-identical. When given, one case is written "
+            "per (velocity, acceleration) pair with an 'a<value>mps2' suffix."
+        ),
+    )
+    parser.add_argument(
         "--dt",
         type=float,
         default=0.001,
@@ -303,6 +383,9 @@ def main() -> None:
 
     case_rows: list[tuple[str, float, list[dict[str, float | str]]]] = []
     for velocity in args.velocities:
+        # The constant-speed case for each velocity is always produced, so the
+        # default run keeps its original file names and bytes, and an accelerated
+        # run still yields a summary that contains both kinds of case.
         case_id = f"Ref-01B-B-{velocity:.2f}mps".replace(".", "p")
         rows = simulate_case(
             cfg,
@@ -316,6 +399,24 @@ def main() -> None:
         output_path = args.output_dir / f"{case_id}.csv"
         write_csv(output_path, rows)
         print(f"wrote {output_path} ({len(rows)} rows)")
+
+        for acceleration in args.accelerations or ():
+            case_id_acc = (
+                f"Ref-01B-B-{velocity:.2f}mps-a{acceleration:.2f}mps2"
+            ).replace(".", "p")
+            rows_acc = simulate_case(
+                cfg,
+                case_id=case_id_acc,
+                velocity_m_s=velocity,
+                dt_s=args.dt,
+                z_start_m=args.z_start,
+                z_end_m=args.z_end,
+                acceleration_m_s2=acceleration,
+            )
+            case_rows.append((case_id_acc, velocity, rows_acc))
+            output_path_acc = args.output_dir / f"{case_id_acc}.csv"
+            write_csv(output_path_acc, rows_acc)
+            print(f"wrote {output_path_acc} ({len(rows_acc)} rows)")
 
     summary_path = args.output_dir / "summary.csv"
     write_summary(summary_path, case_rows)

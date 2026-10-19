@@ -20,9 +20,95 @@
 
 | File | Rows | Status |
 |---|---:|---|
+| `Ref-01B-B-0p10mps-a0p10mps2.csv` | 2271 | **PASS** |
+| `Ref-01B-B-0p10mps-a1p00mps2.csv` | 891 | **PASS** |
 | `Ref-01B-B-0p10mps.csv` | 4846 | **PASS** |
+| `Ref-01B-B-0p25mps-a0p10mps2.csv` | 1494 | **PASS** |
+| `Ref-01B-B-0p25mps-a1p00mps2.csv` | 767 | **PASS** |
 | `Ref-01B-B-0p25mps.csv` | 1940 | **PASS** |
+| `Ref-01B-B-0p50mps-a0p10mps2.csv` | 891 | **PASS** |
+| `Ref-01B-B-0p50mps-a1p00mps2.csv` | 606 | **PASS** |
 | `Ref-01B-B-0p50mps.csv` | 971 | **PASS** |
+
+## `Ref-01B-B-0p10mps-a0p10mps2.csv`
+
+| Check | Status | Detail |
+|---|---|---|
+| read_csv | **PASS** | 14 columns, 2271 data rows |
+| non_empty | **PASS** | 2271 rows |
+| numeric_time | **PASS** | column=time_s; missing_or_non_numeric=0 |
+| numeric_position | **PASS** | column=z_center_m; missing_or_non_numeric=0 |
+| numeric_speed | **PASS** | column=velocity_m_s; missing_or_non_numeric=0 |
+| numeric_acceleration | **PASS** | column=acceleration_m_s2; missing_or_non_numeric=0 |
+| numeric_buoyancy | **PASS** | column=buoyancy_N; missing_or_non_numeric=0 |
+| numeric_weight | **PASS** | column=weight_N; missing_or_non_numeric=0 |
+| numeric_constraint | **PASS** | column=constraint_force_N; missing_or_non_numeric=0 |
+| numeric_free_surface | **PASS** | column=free_surface_force_N; missing_or_non_numeric=0 |
+| monotonic_time | **PASS** | increasing |
+| monotonic_position | **PASS** | increasing |
+| monotonic_speed | **PASS** | increasing |
+| weight_reference | **PASS** | max_error=0 N; expected=19.9074995 N |
+| buoyancy_range | **PASS** | range=[0, 20.1510694] N; expected=[0, 20.1510694] N |
+| free_surface_zero | **PASS** | max_error=0 N; expected=0.0 N (excluded from the baseline) |
+| motion_type | **PASS** | accelerated (max\|a\| = 0.1 m/s^2), so m*a must appear in the balance |
+| force_balance | **PASS** | max_abs(constraint + buoyancy - weight - mass*acceleration)=2.96984659e-15 N |
+| buoyancy_unit_sanity | **PASS** | max(buoyancy)=20.1510694 N vs full_submergence=20.1510694 N; a unit error (kN or mN written as N) changes this ratio by orders of magnitude |
+| weight_unit_sanity | **PASS** | max(weight)/reference_weight=1; expected 1 |
+
+Recognised columns:
+
+```json
+{
+  "time": "time_s",
+  "position": "z_center_m",
+  "speed": "velocity_m_s",
+  "acceleration": "acceleration_m_s2",
+  "buoyancy": "buoyancy_N",
+  "weight": "weight_N",
+  "constraint": "constraint_force_N",
+  "free_surface": "free_surface_force_N"
+}
+```
+
+## `Ref-01B-B-0p10mps-a1p00mps2.csv`
+
+| Check | Status | Detail |
+|---|---|---|
+| read_csv | **PASS** | 14 columns, 891 data rows |
+| non_empty | **PASS** | 891 rows |
+| numeric_time | **PASS** | column=time_s; missing_or_non_numeric=0 |
+| numeric_position | **PASS** | column=z_center_m; missing_or_non_numeric=0 |
+| numeric_speed | **PASS** | column=velocity_m_s; missing_or_non_numeric=0 |
+| numeric_acceleration | **PASS** | column=acceleration_m_s2; missing_or_non_numeric=0 |
+| numeric_buoyancy | **PASS** | column=buoyancy_N; missing_or_non_numeric=0 |
+| numeric_weight | **PASS** | column=weight_N; missing_or_non_numeric=0 |
+| numeric_constraint | **PASS** | column=constraint_force_N; missing_or_non_numeric=0 |
+| numeric_free_surface | **PASS** | column=free_surface_force_N; missing_or_non_numeric=0 |
+| monotonic_time | **PASS** | increasing |
+| monotonic_position | **PASS** | increasing |
+| monotonic_speed | **PASS** | increasing |
+| weight_reference | **PASS** | max_error=0 N; expected=19.9074995 N |
+| buoyancy_range | **PASS** | range=[0, 20.1510694] N; expected=[0, 20.1510694] N |
+| free_surface_zero | **PASS** | max_error=0 N; expected=0.0 N (excluded from the baseline) |
+| motion_type | **PASS** | accelerated (max\|a\| = 1 m/s^2), so m*a must appear in the balance |
+| force_balance | **PASS** | max_abs(constraint + buoyancy - weight - mass*acceleration)=2.22044605e-15 N |
+| buoyancy_unit_sanity | **PASS** | max(buoyancy)=20.1510694 N vs full_submergence=20.1510694 N; a unit error (kN or mN written as N) changes this ratio by orders of magnitude |
+| weight_unit_sanity | **PASS** | max(weight)/reference_weight=1; expected 1 |
+
+Recognised columns:
+
+```json
+{
+  "time": "time_s",
+  "position": "z_center_m",
+  "speed": "velocity_m_s",
+  "acceleration": "acceleration_m_s2",
+  "buoyancy": "buoyancy_N",
+  "weight": "weight_N",
+  "constraint": "constraint_force_N",
+  "free_surface": "free_surface_force_N"
+}
+```
 
 ## `Ref-01B-B-0p10mps.csv`
 
@@ -44,8 +130,88 @@
 | weight_reference | **PASS** | max_error=0 N; expected=19.9074995 N |
 | buoyancy_range | **PASS** | range=[0, 20.1510694] N; expected=[0, 20.1510694] N |
 | free_surface_zero | **PASS** | max_error=0 N; expected=0.0 N (excluded from the baseline) |
-| prescribed_zero_acceleration | **PASS** | max_abs(acceleration)=0 m/s^2; the constant-velocity baseline prescribes a = 0 |
-| force_balance | **PASS** | max_abs(constraint + buoyancy - weight)=3.55271368e-15 N |
+| motion_type | **PASS** | constant velocity (a = 0), so the acceleration term vanishes |
+| force_balance | **PASS** | max_abs(constraint + buoyancy - weight - mass*acceleration)=3.55271368e-15 N |
+| buoyancy_unit_sanity | **PASS** | max(buoyancy)=20.1510694 N vs full_submergence=20.1510694 N; a unit error (kN or mN written as N) changes this ratio by orders of magnitude |
+| weight_unit_sanity | **PASS** | max(weight)/reference_weight=1; expected 1 |
+
+Recognised columns:
+
+```json
+{
+  "time": "time_s",
+  "position": "z_center_m",
+  "speed": "velocity_m_s",
+  "acceleration": "acceleration_m_s2",
+  "buoyancy": "buoyancy_N",
+  "weight": "weight_N",
+  "constraint": "constraint_force_N",
+  "free_surface": "free_surface_force_N"
+}
+```
+
+## `Ref-01B-B-0p25mps-a0p10mps2.csv`
+
+| Check | Status | Detail |
+|---|---|---|
+| read_csv | **PASS** | 14 columns, 1494 data rows |
+| non_empty | **PASS** | 1494 rows |
+| numeric_time | **PASS** | column=time_s; missing_or_non_numeric=0 |
+| numeric_position | **PASS** | column=z_center_m; missing_or_non_numeric=0 |
+| numeric_speed | **PASS** | column=velocity_m_s; missing_or_non_numeric=0 |
+| numeric_acceleration | **PASS** | column=acceleration_m_s2; missing_or_non_numeric=0 |
+| numeric_buoyancy | **PASS** | column=buoyancy_N; missing_or_non_numeric=0 |
+| numeric_weight | **PASS** | column=weight_N; missing_or_non_numeric=0 |
+| numeric_constraint | **PASS** | column=constraint_force_N; missing_or_non_numeric=0 |
+| numeric_free_surface | **PASS** | column=free_surface_force_N; missing_or_non_numeric=0 |
+| monotonic_time | **PASS** | increasing |
+| monotonic_position | **PASS** | increasing |
+| monotonic_speed | **PASS** | increasing |
+| weight_reference | **PASS** | max_error=0 N; expected=19.9074995 N |
+| buoyancy_range | **PASS** | range=[0, 20.1510694] N; expected=[0, 20.1510694] N |
+| free_surface_zero | **PASS** | max_error=0 N; expected=0.0 N (excluded from the baseline) |
+| motion_type | **PASS** | accelerated (max\|a\| = 0.1 m/s^2), so m*a must appear in the balance |
+| force_balance | **PASS** | max_abs(constraint + buoyancy - weight - mass*acceleration)=2.96984659e-15 N |
+| buoyancy_unit_sanity | **PASS** | max(buoyancy)=20.1510694 N vs full_submergence=20.1510694 N; a unit error (kN or mN written as N) changes this ratio by orders of magnitude |
+| weight_unit_sanity | **PASS** | max(weight)/reference_weight=1; expected 1 |
+
+Recognised columns:
+
+```json
+{
+  "time": "time_s",
+  "position": "z_center_m",
+  "speed": "velocity_m_s",
+  "acceleration": "acceleration_m_s2",
+  "buoyancy": "buoyancy_N",
+  "weight": "weight_N",
+  "constraint": "constraint_force_N",
+  "free_surface": "free_surface_force_N"
+}
+```
+
+## `Ref-01B-B-0p25mps-a1p00mps2.csv`
+
+| Check | Status | Detail |
+|---|---|---|
+| read_csv | **PASS** | 14 columns, 767 data rows |
+| non_empty | **PASS** | 767 rows |
+| numeric_time | **PASS** | column=time_s; missing_or_non_numeric=0 |
+| numeric_position | **PASS** | column=z_center_m; missing_or_non_numeric=0 |
+| numeric_speed | **PASS** | column=velocity_m_s; missing_or_non_numeric=0 |
+| numeric_acceleration | **PASS** | column=acceleration_m_s2; missing_or_non_numeric=0 |
+| numeric_buoyancy | **PASS** | column=buoyancy_N; missing_or_non_numeric=0 |
+| numeric_weight | **PASS** | column=weight_N; missing_or_non_numeric=0 |
+| numeric_constraint | **PASS** | column=constraint_force_N; missing_or_non_numeric=0 |
+| numeric_free_surface | **PASS** | column=free_surface_force_N; missing_or_non_numeric=0 |
+| monotonic_time | **PASS** | increasing |
+| monotonic_position | **PASS** | increasing |
+| monotonic_speed | **PASS** | increasing |
+| weight_reference | **PASS** | max_error=0 N; expected=19.9074995 N |
+| buoyancy_range | **PASS** | range=[0, 20.1510694] N; expected=[0, 20.1510694] N |
+| free_surface_zero | **PASS** | max_error=0 N; expected=0.0 N (excluded from the baseline) |
+| motion_type | **PASS** | accelerated (max\|a\| = 1 m/s^2), so m*a must appear in the balance |
+| force_balance | **PASS** | max_abs(constraint + buoyancy - weight - mass*acceleration)=2.22044605e-15 N |
 | buoyancy_unit_sanity | **PASS** | max(buoyancy)=20.1510694 N vs full_submergence=20.1510694 N; a unit error (kN or mN written as N) changes this ratio by orders of magnitude |
 | weight_unit_sanity | **PASS** | max(weight)/reference_weight=1; expected 1 |
 
@@ -84,8 +250,88 @@ Recognised columns:
 | weight_reference | **PASS** | max_error=0 N; expected=19.9074995 N |
 | buoyancy_range | **PASS** | range=[0, 20.1510694] N; expected=[0, 20.1510694] N |
 | free_surface_zero | **PASS** | max_error=0 N; expected=0.0 N (excluded from the baseline) |
-| prescribed_zero_acceleration | **PASS** | max_abs(acceleration)=0 m/s^2; the constant-velocity baseline prescribes a = 0 |
-| force_balance | **PASS** | max_abs(constraint + buoyancy - weight)=3.55271368e-15 N |
+| motion_type | **PASS** | constant velocity (a = 0), so the acceleration term vanishes |
+| force_balance | **PASS** | max_abs(constraint + buoyancy - weight - mass*acceleration)=3.55271368e-15 N |
+| buoyancy_unit_sanity | **PASS** | max(buoyancy)=20.1510694 N vs full_submergence=20.1510694 N; a unit error (kN or mN written as N) changes this ratio by orders of magnitude |
+| weight_unit_sanity | **PASS** | max(weight)/reference_weight=1; expected 1 |
+
+Recognised columns:
+
+```json
+{
+  "time": "time_s",
+  "position": "z_center_m",
+  "speed": "velocity_m_s",
+  "acceleration": "acceleration_m_s2",
+  "buoyancy": "buoyancy_N",
+  "weight": "weight_N",
+  "constraint": "constraint_force_N",
+  "free_surface": "free_surface_force_N"
+}
+```
+
+## `Ref-01B-B-0p50mps-a0p10mps2.csv`
+
+| Check | Status | Detail |
+|---|---|---|
+| read_csv | **PASS** | 14 columns, 891 data rows |
+| non_empty | **PASS** | 891 rows |
+| numeric_time | **PASS** | column=time_s; missing_or_non_numeric=0 |
+| numeric_position | **PASS** | column=z_center_m; missing_or_non_numeric=0 |
+| numeric_speed | **PASS** | column=velocity_m_s; missing_or_non_numeric=0 |
+| numeric_acceleration | **PASS** | column=acceleration_m_s2; missing_or_non_numeric=0 |
+| numeric_buoyancy | **PASS** | column=buoyancy_N; missing_or_non_numeric=0 |
+| numeric_weight | **PASS** | column=weight_N; missing_or_non_numeric=0 |
+| numeric_constraint | **PASS** | column=constraint_force_N; missing_or_non_numeric=0 |
+| numeric_free_surface | **PASS** | column=free_surface_force_N; missing_or_non_numeric=0 |
+| monotonic_time | **PASS** | increasing |
+| monotonic_position | **PASS** | increasing |
+| monotonic_speed | **PASS** | increasing |
+| weight_reference | **PASS** | max_error=0 N; expected=19.9074995 N |
+| buoyancy_range | **PASS** | range=[0, 20.1510694] N; expected=[0, 20.1510694] N |
+| free_surface_zero | **PASS** | max_error=0 N; expected=0.0 N (excluded from the baseline) |
+| motion_type | **PASS** | accelerated (max\|a\| = 0.1 m/s^2), so m*a must appear in the balance |
+| force_balance | **PASS** | max_abs(constraint + buoyancy - weight - mass*acceleration)=2.96984659e-15 N |
+| buoyancy_unit_sanity | **PASS** | max(buoyancy)=20.1510694 N vs full_submergence=20.1510694 N; a unit error (kN or mN written as N) changes this ratio by orders of magnitude |
+| weight_unit_sanity | **PASS** | max(weight)/reference_weight=1; expected 1 |
+
+Recognised columns:
+
+```json
+{
+  "time": "time_s",
+  "position": "z_center_m",
+  "speed": "velocity_m_s",
+  "acceleration": "acceleration_m_s2",
+  "buoyancy": "buoyancy_N",
+  "weight": "weight_N",
+  "constraint": "constraint_force_N",
+  "free_surface": "free_surface_force_N"
+}
+```
+
+## `Ref-01B-B-0p50mps-a1p00mps2.csv`
+
+| Check | Status | Detail |
+|---|---|---|
+| read_csv | **PASS** | 14 columns, 606 data rows |
+| non_empty | **PASS** | 606 rows |
+| numeric_time | **PASS** | column=time_s; missing_or_non_numeric=0 |
+| numeric_position | **PASS** | column=z_center_m; missing_or_non_numeric=0 |
+| numeric_speed | **PASS** | column=velocity_m_s; missing_or_non_numeric=0 |
+| numeric_acceleration | **PASS** | column=acceleration_m_s2; missing_or_non_numeric=0 |
+| numeric_buoyancy | **PASS** | column=buoyancy_N; missing_or_non_numeric=0 |
+| numeric_weight | **PASS** | column=weight_N; missing_or_non_numeric=0 |
+| numeric_constraint | **PASS** | column=constraint_force_N; missing_or_non_numeric=0 |
+| numeric_free_surface | **PASS** | column=free_surface_force_N; missing_or_non_numeric=0 |
+| monotonic_time | **PASS** | increasing |
+| monotonic_position | **PASS** | increasing |
+| monotonic_speed | **PASS** | increasing |
+| weight_reference | **PASS** | max_error=0 N; expected=19.9074995 N |
+| buoyancy_range | **PASS** | range=[0, 20.1510694] N; expected=[0, 20.1510694] N |
+| free_surface_zero | **PASS** | max_error=0 N; expected=0.0 N (excluded from the baseline) |
+| motion_type | **PASS** | accelerated (max\|a\| = 1 m/s^2), so m*a must appear in the balance |
+| force_balance | **PASS** | max_abs(constraint + buoyancy - weight - mass*acceleration)=2.22044605e-15 N |
 | buoyancy_unit_sanity | **PASS** | max(buoyancy)=20.1510694 N vs full_submergence=20.1510694 N; a unit error (kN or mN written as N) changes this ratio by orders of magnitude |
 | weight_unit_sanity | **PASS** | max(weight)/reference_weight=1; expected 1 |
 
@@ -124,8 +370,8 @@ Recognised columns:
 | weight_reference | **PASS** | max_error=0 N; expected=19.9074995 N |
 | buoyancy_range | **PASS** | range=[0, 20.1510694] N; expected=[0, 20.1510694] N |
 | free_surface_zero | **PASS** | max_error=0 N; expected=0.0 N (excluded from the baseline) |
-| prescribed_zero_acceleration | **PASS** | max_abs(acceleration)=0 m/s^2; the constant-velocity baseline prescribes a = 0 |
-| force_balance | **PASS** | max_abs(constraint + buoyancy - weight)=3.55271368e-15 N |
+| motion_type | **PASS** | constant velocity (a = 0), so the acceleration term vanishes |
+| force_balance | **PASS** | max_abs(constraint + buoyancy - weight - mass*acceleration)=3.55271368e-15 N |
 | buoyancy_unit_sanity | **PASS** | max(buoyancy)=20.1510694 N vs full_submergence=20.1510694 N; a unit error (kN or mN written as N) changes this ratio by orders of magnitude |
 | weight_unit_sanity | **PASS** | max(weight)/reference_weight=1; expected 1 |
 

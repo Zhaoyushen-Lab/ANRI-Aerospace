@@ -43,7 +43,7 @@
 | monotonic_speed | **PASS** | increasing |
 | buoyancy_range | **PASS** | range=[0, 20.1510694] N; expected=[0, 20.1510694] N |
 | free_surface_zero | **PASS** | max_error=0 N; expected=0.0 N (excluded from the baseline) |
-| prescribed_zero_acceleration | **PASS** | max_abs(acceleration)=0 m/s^2; the constant-velocity baseline prescribes a = 0 |
+| motion_type | **PASS** | constant velocity (a = 0), so the acceleration term vanishes |
 | force_balance | **SKIP** | Need recognised buoyancy, weight, and constraint columns of equal length |
 | buoyancy_unit_sanity | **PASS** | max(buoyancy)=20.1510694 N vs full_submergence=20.1510694 N; a unit error (kN or mN written as N) changes this ratio by orders of magnitude |
 
@@ -82,8 +82,8 @@ Recognised columns:
 | weight_reference | **PASS** | max_error=0 N; expected=19.9074995 N |
 | buoyancy_range | **PASS** | range=[0, 20.1510694] N; expected=[0, 20.1510694] N |
 | free_surface_zero | **PASS** | max_error=0 N; expected=0.0 N (excluded from the baseline) |
-| prescribed_zero_acceleration | **PASS** | max_abs(acceleration)=0 m/s^2; the constant-velocity baseline prescribes a = 0 |
-| force_balance | **PASS** | max_abs(constraint + buoyancy - weight)=3.55271368e-15 N |
+| motion_type | **PASS** | constant velocity (a = 0), so the acceleration term vanishes |
+| force_balance | **PASS** | max_abs(constraint + buoyancy - weight - mass*acceleration)=3.55271368e-15 N |
 | buoyancy_unit_sanity | **PASS** | max(buoyancy)=20.1510694 N vs full_submergence=20.1510694 N; a unit error (kN or mN written as N) changes this ratio by orders of magnitude |
 | weight_unit_sanity | **PASS** | max(weight)/reference_weight=1; expected 1 |
 
@@ -122,8 +122,8 @@ Recognised columns:
 | weight_reference | **PASS** | max_error=0 N; expected=19.9074995 N |
 | buoyancy_range | **PASS** | range=[0, 20.1510694] N; expected=[0, 20.1510694] N |
 | free_surface_zero | **PASS** | max_error=0 N; expected=0.0 N (excluded from the baseline) |
-| prescribed_zero_acceleration | **PASS** | max_abs(acceleration)=0 m/s^2; the constant-velocity baseline prescribes a = 0 |
-| force_balance | **PASS** | max_abs(constraint + buoyancy - weight)=3.55271368e-15 N |
+| motion_type | **PASS** | constant velocity (a = 0), so the acceleration term vanishes |
+| force_balance | **PASS** | max_abs(constraint + buoyancy - weight - mass*acceleration)=3.55271368e-15 N |
 | buoyancy_unit_sanity | **PASS** | max(buoyancy)=20.1510694 N vs full_submergence=20.1510694 N; a unit error (kN or mN written as N) changes this ratio by orders of magnitude |
 | weight_unit_sanity | **PASS** | max(weight)/reference_weight=1; expected 1 |
 

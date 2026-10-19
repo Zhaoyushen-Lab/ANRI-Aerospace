@@ -209,7 +209,7 @@
     {
       "path": "Research_Planning/P004_Added_Mass_Screening.md",
       "role": "input",
-      "sha256": "10fc83d5b2cc7900d578e82dd53d83187deaeb8f8988948cddd9ca7c38e44975"
+      "sha256": "a8de0d45e81695dfb159f9712bf2ed9c71c19bb384073aeecdab1fae2b45cd1a"
     },
     {
       "path": "Experiment_Requests/CLEANROOM-Replication_Task.md",
@@ -219,17 +219,17 @@
     {
       "path": "Models/CDFV-001/Ref-01B/baseline_model.py",
       "role": "model",
-      "sha256": "1e97b8a413b2aaa321f26b8f47633c423a64c9f4972daabb41568fa67829236c"
+      "sha256": "6a85c2bfb4953ae15d92364c3fc3527061eefd1bc1ad58474e1ebde71dc7cd77"
     },
     {
       "path": "Models/CDFV-001/Ref-01B/verify_baseline.py",
       "role": "model",
-      "sha256": "2072e161430be8981c4e5c861f73d8055c6da018ef9e117cf531e2e2b93cd5cb"
+      "sha256": "821e0ee5169fda6bf6b2b3b9da16c9118a1615dd0a230debeb9ee88ddc7b44c7"
     },
     {
       "path": "Models/CDFV-001/Ref-01B/verify_negative_cases.py",
       "role": "model",
-      "sha256": "78e0c3ebc31dd51a44c9792643425e2404b6c1153bc723be1bb9c7332a1f1f91"
+      "sha256": "05842d56342f5c54733f8149f3c8a3fcec2add729d3d25cc96e2088f7148018a"
     },
     {
       "path": "Models/CDFV-001/Ref-01B/README.md",
@@ -257,19 +257,49 @@
       "sha256": "721bb09efc6c9fc6067a16a6bd1e1004a086e8813f100debb913a246e12cc666"
     },
     {
+      "path": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p10mps-a0p10mps2.csv",
+      "role": "result",
+      "sha256": "3d66b32b9159ab126878a5c86fe36cbbd91f004cd1246c9c691a431641bc7019"
+    },
+    {
+      "path": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p10mps-a1p00mps2.csv",
+      "role": "result",
+      "sha256": "8d70a8edab95517552fe6f45287567de68df9ae7464797c03619baacc2bf0605"
+    },
+    {
+      "path": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p25mps-a0p10mps2.csv",
+      "role": "result",
+      "sha256": "cc4cd3b0546d20d8abedbdf9b096b8d4823e88105efb66cf09f1a55e4269747b"
+    },
+    {
+      "path": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p25mps-a1p00mps2.csv",
+      "role": "result",
+      "sha256": "dc97e123c89ff8e3de0de2368b1fefc2741abe872e1e582d70f05807f23ad3f9"
+    },
+    {
+      "path": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p50mps-a0p10mps2.csv",
+      "role": "result",
+      "sha256": "64e1f42fd64cf38cb663165ee591668a5249dfc327539b2499818a2eebdc8824"
+    },
+    {
+      "path": "Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p50mps-a1p00mps2.csv",
+      "role": "result",
+      "sha256": "dde445605dde0940c5d34b083aa1f76325e84aaf87bfba191b8337f490880e2d"
+    },
+    {
       "path": "Models/CDFV-001/Ref-01B/results/summary.csv",
       "role": "result",
-      "sha256": "08da3bc20f38fddd1fd6b623c45121f073c0068456cf2daec24cb8c44f4e680c"
+      "sha256": "89ac2b525bcbf411be64e3167bdf70527e9233a5c3a73492fd6f0dfc7902ddf2"
     },
     {
       "path": "Models/CDFV-001/Ref-01B/results/verification.json",
       "role": "report",
-      "sha256": "3e58806079794238db77b0610f04a598d9401c5fe332bf79848ed70831599c49"
+      "sha256": "a3f08cd90d71d8c92af4fa27f92e5d46377863b686106baf1fcd4225f3b0236a"
     },
     {
       "path": "Models/CDFV-001/Ref-01B/results/verification_report.md",
       "role": "report",
-      "sha256": "3ba20b18133fa6f01f6926456c7b9f7b3f17e8c977a5d4e2494fd2a01eab713b"
+      "sha256": "4e98d8a7e8b2b1e52db035ee51cb3268ee4f1e712774658b145c3034eb8ef11b"
     },
     {
       "path": "scripts/validate_research_object.py",
@@ -279,7 +309,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "efd637079c11b4bfa058575a822cf38880747f068c87745ae0b719d87952aca7"
+      "sha256": "13bf9f13dd59fd2f6bbe37855815e93b63a233d42087600503789a98f3b16bac"
     },
     {
       "path": "schema/research_object.schema.json",
@@ -339,7 +369,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "f98a3d83c73ebdcc0e1ad7a8e39f2388a7de2bc71c908f294a6c94d0022efcd1"
+      "sha256": "43c41d485d5cf10198f3dbf8406d6ae0106d897725d83c70644ac2f7c9cbcce2"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
@@ -364,12 +394,12 @@
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A01_wrong_weight/results/verification.json",
       "role": "report",
-      "sha256": "e3e1ebed58c724abe1b452d3e70eac2a6e09766fa45ef4301d8fb28414f9c323"
+      "sha256": "f0f70412d9fd1e108825a9225686c9a60be91024e813cb53819a53574b91d5e2"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A01_wrong_weight/results/verification_report.md",
       "role": "report",
-      "sha256": "81c3b3c513954cbaeb67c21c09a2759b7a71ec4c3a2309d2883c73b3b880f2e9"
+      "sha256": "cd2fab2d57fdab793e1cf0a1c99b0e838c6b09787d75c018c5798288bf05244a"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A02_broken_force_balance/mutation.json",
@@ -379,12 +409,12 @@
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A02_broken_force_balance/results/verification.json",
       "role": "report",
-      "sha256": "12eadefc0b8a720ca175bb90bcae178e36932e764407b6cf5adda84aeb589151"
+      "sha256": "729a5e38a4291cbc52f69e6bac4a340f10ec6c1a5db6c9c62ab75f87acdb99db"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A02_broken_force_balance/results/verification_report.md",
       "role": "report",
-      "sha256": "eb3a2294c5e5f0d42064204f3c801031eb7260aba17a07fdcf166ddb846c9fe9"
+      "sha256": "0b9f0dd4eafbab757119e6327b72195b2791c496a7025b716486585c3f4c331f"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A03_wrong_weight_mid/mutation.json",
@@ -394,12 +424,12 @@
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A03_wrong_weight_mid/results/verification.json",
       "role": "report",
-      "sha256": "8530b50aa4e09cc7fbe97d01d726144dcc4c1d3f70e56c6666651aa16929686b"
+      "sha256": "138fde0931a005551fc3322fe8738184f1c818ab342c5df99972359aec8df780"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A03_wrong_weight_mid/results/verification_report.md",
       "role": "report",
-      "sha256": "ee10bad52c9cf94e75be76406a271aa26c689248cd096a4e59e59497050a8cb1"
+      "sha256": "6d0eae9c81afc76854f60167cb4403918ad3ea50f43c7acb310271615fb4efa9"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A04_broken_force_balance_high/mutation.json",
@@ -409,12 +439,12 @@
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A04_broken_force_balance_high/results/verification.json",
       "role": "report",
-      "sha256": "f71b31dd8e37955eeeeea7885bc0a95f0c4b463a556fb909e3c90f72119110d8"
+      "sha256": "93edbe77857928a71ae24f55d40e883543f0041cac4898412a1657cba9f3a29d"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A04_broken_force_balance_high/results/verification_report.md",
       "role": "report",
-      "sha256": "2d4e9247fca554c57d7f2042c2a67c909738ce98014cc67b79a9803e509e1157"
+      "sha256": "dfb7446252edc6f013fe144546d6f75e3631304c94cba5fcb4f4600471d0b5f8"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A05_time_not_monotonic/mutation.json",
@@ -424,12 +454,12 @@
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A05_time_not_monotonic/results/verification.json",
       "role": "report",
-      "sha256": "aedcc01caf21f59f0358f93a8c3dfe49c826ac561d90da18805d67732c654e47"
+      "sha256": "cf192551539c74f13cb0bef1834d60ecae14fbdd9db397f38d38a0321032144b"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A05_time_not_monotonic/results/verification_report.md",
       "role": "report",
-      "sha256": "d1841e40e862f96b13f3b27a9313dfd48e2226619e1aeebfd1a677a5ff17c9de"
+      "sha256": "7da030ac423b0c05b16c6a290f46e2cc88a2b4571a148f58fff0892437575660"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A06_position_not_monotonic/mutation.json",
@@ -439,12 +469,12 @@
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A06_position_not_monotonic/results/verification.json",
       "role": "report",
-      "sha256": "796963316002260f3382f2bef86434d6f89f92249c51cd85908670f651af9943"
+      "sha256": "9b55435bdb54b1fcb82e5c574c3edc2c1e0715d501e5939df221af96cd770faa"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A06_position_not_monotonic/results/verification_report.md",
       "role": "report",
-      "sha256": "d9dd4651ff24c1fb39ec2fe453732e232d8ba8c5ea69ca1607aea915f5712e52"
+      "sha256": "5f51e1e6f401d2fdaea6e6f53bc1ff7c26fd01c2004d033b9974caa422f5528d"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A07_missing_buoyancy_column/mutation.json",
@@ -454,12 +484,12 @@
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A07_missing_buoyancy_column/results/verification.json",
       "role": "report",
-      "sha256": "153a204a110cdf4d2dd589e8d3a809e305e1b537a1019f80b1a4fdfe22bb9701"
+      "sha256": "ff7a26fa0bfcb2568056ad2eeaaa7bc2eb83f62c8c608d8342840211acc8ee86"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A07_missing_buoyancy_column/results/verification_report.md",
       "role": "report",
-      "sha256": "65a71ec6bcb4e809c9f62cb4995e61cb22e5943ee6a2e0002bdacafabc5465f3"
+      "sha256": "625e99f861211ce9173edb427dc1154b5711e21877c184659a9e2be5797f385b"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A08_missing_weight_column/mutation.json",
@@ -469,12 +499,12 @@
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A08_missing_weight_column/results/verification.json",
       "role": "report",
-      "sha256": "c4f4a321e4c341e9bffa1f1e88be98f6cc90b90fe32a0623d124abdbfd5f5531"
+      "sha256": "0e9a956678523422f7651e8ed7e37738b68e778f7ea1973aa9860c075cc1647e"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A08_missing_weight_column/results/verification_report.md",
       "role": "report",
-      "sha256": "5c4d5f22752949a5d7f37ccaebba38e97a993caebd98763e9e62a03b31723242"
+      "sha256": "b1e3a1f61184c407264e3c866d32141b2476d44f28377c7f47eea5c961761a4f"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A09_buoyancy_out_of_range/mutation.json",
@@ -484,12 +514,12 @@
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A09_buoyancy_out_of_range/results/verification.json",
       "role": "report",
-      "sha256": "ee65826f09e220b2689d52739c9326a2fc0032a45859bdb5543ad80456116e87"
+      "sha256": "06a0d90ced3979d5371e8204c9574f34e69519172595a5db417492a0fde81836"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A09_buoyancy_out_of_range/results/verification_report.md",
       "role": "report",
-      "sha256": "76312c6f1af2427ae8f41b2ed2fcbada3af5f866853aa611d22d768fc81b1829"
+      "sha256": "c4f9e4b579391c95aa1f1977febc963fb09c189a82b5ad238c72627a00b3ab06"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A10_weight_wrong_unit_mN/mutation.json",
@@ -499,12 +529,12 @@
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A10_weight_wrong_unit_mN/results/verification.json",
       "role": "report",
-      "sha256": "5fa39b0cf20abdcd516a59d83e56878941e494e4f125d94f21dc50642d48e844"
+      "sha256": "feda74f79f51bb365678cfd68710d8f053caaf4bf7522f3bcb56ad377b131338"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A10_weight_wrong_unit_mN/results/verification_report.md",
       "role": "report",
-      "sha256": "5bb11d4f5f1a152601c1487eaf0dddccd3997a9bf46d852ad75b4da948373755"
+      "sha256": "3149859cce453c807f6df0f3095e17b0154a0593e42cd33424edda37df3aa4f6"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A11_buoyancy_wrong_unit_kN/mutation.json",
@@ -514,12 +544,12 @@
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A11_buoyancy_wrong_unit_kN/results/verification.json",
       "role": "report",
-      "sha256": "0d212ef23f5e920435205f331110403292459bd32ee7a3479d29b28086c89484"
+      "sha256": "0f825e65bea90ddf16b0d1e1df1f4314d7ef24df474110cbd46f016ed095a4a0"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A11_buoyancy_wrong_unit_kN/results/verification_report.md",
       "role": "report",
-      "sha256": "9b2cb5a191b651cae9be2e89fbc1253b0305526e8b119c6a20a67281cc11cb17"
+      "sha256": "44d62d1c9b913e6cf35763795e8dee3e246c12337d8373b59d805d53326abf7f"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A12_free_surface_nonzero/mutation.json",
@@ -529,12 +559,12 @@
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A12_free_surface_nonzero/results/verification.json",
       "role": "report",
-      "sha256": "31823a3dc8b50d9d8fe10a4c9c461baea23256754aa7955fbd3d227f6db36c9f"
+      "sha256": "467cc3dd9f301b8ec2bbd0e0098179ad9b99bf41c9e0d92ff8303c6ad55c3124"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A12_free_surface_nonzero/results/verification_report.md",
       "role": "report",
-      "sha256": "7ef3aa769cd25f428f3e9231d2658520148ae550bc173ee75ced96f1ecc4ebb1"
+      "sha256": "25c133ddf82e6fa244404f78b557b445fcc6ff18e30f660c52603e98b155392e"
     },
     {
       "path": "Research_Objects/RO-CDFV-001-Ref-01B.json",

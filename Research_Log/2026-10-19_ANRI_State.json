@@ -2,17 +2,17 @@
   "schema_version": "1",
   "kind": "anri_state_snapshot",
   "as_of_date": "2026-10-19",
-  "generated_utc": "2026-10-19T16:36:03.469434+00:00",
+  "generated_utc": "2026-10-19T16:43:59.903243+00:00",
   "note": "generated_utc is wall-clock and NOT part of the compared payload; compare everything else.",
   "head": {
-    "commit": "f157e6a573c2941d1e3f16c55c736ea5953d66a0",
-    "summary": "f157e6a 2026-10-20 Count a knowledge update only when it is defined, not when it is named"
+    "commit": "bcf213e6d05712ed6fd2d74eb834d145594bd24f",
+    "summary": "bcf213e 2026-10-20 Record D002-002 and KU004-001, closing P004 Stage 1"
   },
   "worktree": {
-    "pending_entries": 6,
-    "staged": 6,
-    "untracked": 0,
-    "unpushed_commits": 8
+    "pending_entries": 40,
+    "staged": 34,
+    "untracked": 6,
+    "unpushed_commits": 9
   },
   "line_endings": {
     "files": 165,
@@ -59,12 +59,12 @@
   },
   "research_object": {
     "path": "Research_Objects/RO-CDFV-001-Ref-01B.json",
-    "sha256": "8907567b576925399296ae03b6580db5a2959bd715522c688b52c820663c4b95",
+    "sha256": "df8052cf4c352f5b0e19a8709b02ac647124f1908275574acb71a049ecd0074d",
     "id": "RO-CDFV-001-Ref-01B",
     "version": "0.2.0",
     "status": "in_review",
     "schema_version": "0.2",
-    "artifact_count": 74,
+    "artifact_count": 80,
     "claim_count": 1,
     "evidence_count": 3,
     "validator_count": 1,
@@ -80,7 +80,7 @@
       "review",
       "schema"
     ],
-    "manifest_entries": 73
+    "manifest_entries": 79
   },
   "review_gate": {
     "status": "revision_requested",

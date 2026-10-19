@@ -239,7 +239,9 @@ def to_posix_relative(path: Path, repo_root: Path) -> str:
     return relative.as_posix()
 
 
-def verify_data_file(path: Path, tolerance_n: float) -> dict[str, Any]:
+def verify_data_file(
+    path: Path, tolerance_n: float, mass_kg: float = 0.0
+) -> dict[str, Any]:
     checks: list[dict[str, str]] = []
     try:
         headers, rows = load_rows(path)
@@ -366,32 +368,56 @@ def verify_data_file(path: Path, tolerance_n: float) -> dict[str, Any]:
 
     accelerations = numeric_values.get("acceleration")
     if accelerations:
-        max_error = max(abs(value) for value in accelerations)
+        # The original baseline prescribes constant velocity, so a == 0 was itself
+        # an assertion.  Once accelerated cases exist that assertion is wrong in
+        # general, so it is now reported rather than enforced: the check records
+        # which motion type the case is, and only a constant-velocity case is held
+        # to a == 0.
+        max_acceleration = max(abs(value) for value in accelerations)
+        is_constant_velocity = max_acceleration <= tolerance_n
         checks.append(
             check_result(
-                "prescribed_zero_acceleration",
-                "PASS" if max_error <= tolerance_n else "FAIL",
-                f"max_abs(acceleration)={max_error:.9g} m/s^2; "
-                "the constant-velocity baseline prescribes a = 0",
+                "motion_type",
+                "PASS",
+                (
+                    "constant velocity (a = 0), so the acceleration term vanishes"
+                    if is_constant_velocity
+                    else f"accelerated (max|a| = {max_acceleration:.9g} m/s^2), "
+                    "so m*a must appear in the balance"
+                ),
             )
         )
 
     buoyancy = numeric_values.get("buoyancy")
     weight = numeric_values.get("weight")
     constraint = numeric_values.get("constraint")
+    acceleration = numeric_values.get("acceleration")
     if (
         buoyancy
         and weight
         and constraint
         and len(buoyancy) == len(weight) == len(constraint)
     ):
-        residuals = [c + b - w for c, b, w in zip(constraint, buoyancy, weight)]
+        # The balance is m*a = F_constraint + F_buoyancy - F_weight, so the residual
+        # must carry the inertial term.  Checking c + b - w alone is correct only
+        # while a == 0, which is exactly the assumption this repository used to
+        # make; with an accelerated case the omitted term is m*a, i.e. 2.03 N at
+        # a = 1 m/s^2, which is the same size as the load being studied.
+        mass_kg = mass_kg if mass_kg else MASS_KG
+        if acceleration and len(acceleration) == len(constraint):
+            inertial = [mass_kg * a for a in acceleration]
+        else:
+            inertial = [0.0] * len(constraint)
+        residuals = [
+            c + b - w - i for c, b, w, i in zip(constraint, buoyancy, weight, inertial)
+        ]
         max_residual = max(abs(value) for value in residuals)
         checks.append(
             check_result(
                 "force_balance",
                 "PASS" if max_residual <= tolerance_n else "FAIL",
-                f"max_abs(constraint + buoyancy - weight)={max_residual:.9g} N",
+                f"max_abs(constraint + buoyancy - weight - mass*acceleration)"
+                f"={max_residual:.9g} N",
             )
         )
     else:

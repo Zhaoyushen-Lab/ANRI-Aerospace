@@ -128,14 +128,14 @@
           "detail": "max_error=0 N; expected=0.0 N (excluded from the baseline)"
         },
         {
-          "label": "prescribed_zero_acceleration",
+          "label": "motion_type",
           "status": "PASS",
-          "detail": "max_abs(acceleration)=0 m/s^2; the constant-velocity baseline prescribes a = 0"
+          "detail": "constant velocity (a = 0), so the acceleration term vanishes"
         },
         {
           "label": "force_balance",
           "status": "PASS",
-          "detail": "max_abs(constraint + buoyancy - weight)=3.55271368e-15 N"
+          "detail": "max_abs(constraint + buoyancy - weight - mass*acceleration)=3.55271368e-15 N"
         },
         {
           "label": "buoyancy_unit_sanity",
@@ -261,14 +261,14 @@
           "detail": "max_error=0 N; expected=0.0 N (excluded from the baseline)"
         },
         {
-          "label": "prescribed_zero_acceleration",
+          "label": "motion_type",
           "status": "PASS",
-          "detail": "max_abs(acceleration)=0 m/s^2; the constant-velocity baseline prescribes a = 0"
+          "detail": "constant velocity (a = 0), so the acceleration term vanishes"
         },
         {
           "label": "force_balance",
           "status": "FAIL",
-          "detail": "max_abs(constraint + buoyancy - weight)=0.05 N"
+          "detail": "max_abs(constraint + buoyancy - weight - mass*acceleration)=0.05 N"
         },
         {
           "label": "buoyancy_unit_sanity",
@@ -394,14 +394,14 @@
           "detail": "max_error=0 N; expected=0.0 N (excluded from the baseline)"
         },
         {
-          "label": "prescribed_zero_acceleration",
+          "label": "motion_type",
           "status": "PASS",
-          "detail": "max_abs(acceleration)=0 m/s^2; the constant-velocity baseline prescribes a = 0"
+          "detail": "constant velocity (a = 0), so the acceleration term vanishes"
         },
         {
           "label": "force_balance",
           "status": "PASS",
-          "detail": "max_abs(constraint + buoyancy - weight)=3.55271368e-15 N"
+          "detail": "max_abs(constraint + buoyancy - weight - mass*acceleration)=3.55271368e-15 N"
         },
         {
           "label": "buoyancy_unit_sanity",

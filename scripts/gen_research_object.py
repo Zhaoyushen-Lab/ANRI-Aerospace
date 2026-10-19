@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """Regenerate Research_Objects/RO-CDFV-001-Ref-01B.json and its run manifest.
 
 This is the canonical way to refresh the hash-registered record.  Every SHA-256
@@ -132,6 +132,16 @@ def build_artifact_list() -> list[tuple[str, str]]:
         ("Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p10mps.csv", "result"),
         ("Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p25mps.csv", "result"),
         ("Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p50mps.csv", "result"),
+        # Accelerated cases, added for P004 (added mass). These make the inertial
+        # term observable; the constant-speed cases have a == 0, where m*a vanishes
+        # and the recorded constraint force cannot distinguish "added mass omitted"
+        # from "added mass negligible".
+        ("Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p10mps-a0p10mps2.csv", "result"),
+        ("Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p10mps-a1p00mps2.csv", "result"),
+        ("Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p25mps-a0p10mps2.csv", "result"),
+        ("Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p25mps-a1p00mps2.csv", "result"),
+        ("Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p50mps-a0p10mps2.csv", "result"),
+        ("Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p50mps-a1p00mps2.csv", "result"),
         ("Models/CDFV-001/Ref-01B/results/summary.csv", "result"),
         ("Models/CDFV-001/Ref-01B/results/verification.json", "report"),
         ("Models/CDFV-001/Ref-01B/results/verification_report.md", "report"),

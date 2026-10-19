@@ -410,17 +410,24 @@ def build_cases() -> list[Case]:
         )
     )
 
-    nonzero_acceleration = default_rows()
-    for row in nonzero_acceleration:
+    # --- accelerated motion: balance must carry the inertial term -----------
+    # A non-zero acceleration is no longer an error in itself: the verifier now
+    # accepts accelerated cases and checks that m*a appears in the balance.  The
+    # remaining failure mode is an accelerated file whose constraint force was
+    # computed WITHOUT the inertial term, which is exactly what the old baseline
+    # plus a copied acceleration column would look like.
+    ignored_inertia = default_rows()
+    for row in ignored_inertia:
         row["acceleration_m_s2"] = "1.0"
+        # Deliberately omit mass*acceleration from the constraint force.
         row["constraint_force_N"] = repr(
-            -float(row["buoyancy_N"]) + float(row["weight_N"]) + 1.0
+            -float(row["buoyancy_N"]) + float(row["weight_N"])
         )
     cases.append(
         Case(
-            "acceleration_nonzero",
-            rows=nonzero_acceleration,
-            expected_failures=("prescribed_zero_acceleration",),
+            "accelerated_without_inertial_term",
+            rows=ignored_inertia,
+            expected_failures=("force_balance",),
             expected_status="FAIL",
         )
     )
