@@ -209,7 +209,7 @@
     {
       "path": "Research_Planning/P004_Added_Mass_Screening.md",
       "role": "input",
-      "sha256": "ca72a178fc4eb6310bb9db97a7aa4baa402a1af2ebc97980360ec95fe47dd3e0"
+      "sha256": "10fc83d5b2cc7900d578e82dd53d83187deaeb8f8988948cddd9ca7c38e44975"
     },
     {
       "path": "Experiment_Requests/CLEANROOM-Replication_Task.md",
@@ -334,12 +334,12 @@
     {
       "path": "Research_Planning/Decision_Log.md",
       "role": "review",
-      "sha256": "1659f9ac32554b6400b66df129a2c255d54055c850217b52108e585df9b1176a"
+      "sha256": "901507c23e8d7008fe136219a2959ec3a4f68c6e78824e19f4994497cb558f73"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "a0a60003f6b73b18f4b7e9a413a26c3081706afdc8f92d8c6d7821786a954ca9"
+      "sha256": "f98a3d83c73ebdcc0e1ad7a8e39f2388a7de2bc71c908f294a6c94d0022efcd1"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",

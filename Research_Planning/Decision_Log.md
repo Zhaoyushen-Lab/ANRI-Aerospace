@@ -534,6 +534,94 @@ remote: - Changes must be made through a pull request.
 2026-10-26（一周），或首次出现"默认分支 CI 红"、或清室复现结果返回时，以先到者为准。
 
 ---
+
+# D002-002 — 是否需要在 CDFV-001 过渡模型中包含附加质量
+
+> **这是 P004（`D-ANRI-002` G2 的第二个研究问题）的决策条目。**
+> 与 `D002-001` 同属领域层决策，编号同族。
+
+- **日期**：2026-10-19
+- **状态**：**Needs CDFV acceleration profile**（附条件）
+- **上游**：`Research_Planning/P004_Added_Mass_Screening.md` §5、§6
+- **知识更新**：`KU004-001`（active）
+
+## Evidence
+
+- `Models/CDFV-001/Ref-01B/README.md` L76：`drag is omitted, and added mass is omitted`
+- `Models/CDFV-001/Ref-01B/baseline_model.py` L4–L10、L99、L118–119
+- `Models/CDFV-001/Ref-01B/results/Ref-01B-B-*.csv`：加速度列实测统计
+- `Research_Planning/CDFV-001_Reference_Configuration.md`：D/L/m/ρ/g
+- `Paper_Notes/P002_...md` §4.2：加速度实测区间 0.07–0.15 m/s²
+- `Research_Planning/P004_Added_Mass_Screening.md` §5.2–§5.3
+
+## Observation
+
+Ref-01B 的三个速度工况（4846 / 1940 / 971 行）的 `acceleration_m_s2`
+**各只有一种取值：0.0**。源码自述为 prescribed-motion、constant upward velocity。
+
+附加质量力 ∝ 加速度，故其在 Ref-01B 中**恒为零**。
+
+## 关键推论
+
+**基线"排除附加质量"这一选择，是零加速度的副产品，而不是量级论证的结果。**
+这两件事在过去被视为同一件事，本次筛选把它们区分开了。
+
+## Decision Candidate
+
+**原表述（隐含）**：CDFV-001 过渡模型可以像 Ref-01B 一样省略附加质量。
+
+**修订后**：**是否包含附加质量，取决于过渡过程的加速度区间**，
+而不是取决于"Ref-01B 省略了它"。判据是：
+
+```
+a_break-even = F_threshold / (C_a · ρ_w · scale)
+```
+
+- 若过渡峰值加速度 **≲ 0.15 m/s²**（P002 实测区间）→ 可省略
+  （ΔF ≤ 4.3% 体重，面控制模型 C_a=1.0）
+- 若 **≳ 1–3.5 m/s²** → 不可省略（ΔF 与吸入力同级）
+- 两者之间 → **需要具体计算，不能靠经验判断**
+
+## Status
+
+**Needs CDFV acceleration profile** — 附条件（记录日期 2026-10-19）
+
+**为何不是 Accepted 或 Rejected**：两者都要求已知 CDFV-001 的过渡加速度剖面，
+而该量**不存在**（与 `D002-001` 的 CDFV 几何缺口同类）。此外 `C_a` 与加速体积
+尺度两项均未确定，任一项都足以翻转结论。
+
+## Reason
+
+1. 在唯一有实测支撑的加速度区间内（0.07–0.15 m/s²），ΔF 最多为吸入力的
+   **4.3%**，支持"可忽略"。
+2. 但该区间是**实验约束的产物**（P002 为避开 ≥0.2 m/s² 的平台振动），
+   **不是 CDFV-001 的自然下限**。
+3. 快速出水或抛放可达**亚 g 到 g**，即 P002 区间的 65–140 倍；
+   在那个区间 ΔF 会与吸入力同级甚至更大。
+4. 因此"可忽略"是**区间内成立、区间外不成立**的结论，必须条件化表述。
+
+## New assumptions
+
+- **A-P004-001**：`C_a` 落在 0.1–1.0（**未核实**，需回查标准表）
+- **A-P004-002**：加速流体体积尺度取 `A·D`（面控制）而非 `A·L`（全体积）；
+  两者差 3.59 倍
+
+## Next Action
+
+1. **Stage 2（最便宜）**：给 `simulate_case()` 增加恒定加速度运动学
+   （`row_for_state()` 的力平衡层**已支持** `m·a`，见 L99/L118–119），
+   跑 a = 0.1 与 1.0 m/s² 两个工况，产生可检验的非零加速度基线。
+   **注意**：新增 `results/*.csv` 是哈希注册产物，须连带重新生成 RO 与 manifest。
+2. **核实 `C_a`**：回查附加质量标准表，把 A-P004-001 从判断变为引用。
+3. **取得 CDFV-001 的加速度剖面**（与 `T10` 同一类外部缺口）。
+4. 若 Stage 2 显示 ΔF 在 a=1.0 时确实与吸入力同级，
+   则 `D002-002` 转为 **Accepted**（附加质量必须保留）。
+
+## 复核日期
+
+Stage 2 完成后，或 2026-11-19（1 个月），以先到者为准。
+
+---
 ---
 
 # 修订记录
@@ -548,6 +636,7 @@ remote: - Changes must be made through a pull request.
 | 2026-10-12 | `D002-001` | **Next Action 具体化**：改为可执行的 B1（同几何两尺度、同 Fr_D 测 `F_suction/W`） | Path B 结论要求把"是否需要专用实验"转化为可检验的判据，而非继续讨论 |
 | 2026-10-13 | `D-ANRI-003` | 新建 | 用户提供人力约束：同学可直接投入，业内人士/实验室需单独申请。据此把人力区分为"生产性"与"判断性"，并指出瓶颈在后者（L4） |
 | 2026-10-19 | `D-ANRI-004` | 新建 | `main` 首次具备强制门禁（四条规则）；冷启动暴露产物路径随检出位置变化、以及完整克隆在本机网络下失败两个缺陷 |
+| 2026-10-19 | `D002-002` | 新建 | P004（G2 第二个研究问题）Stage 1 完成：发现 Ref-01B 加速度恒为 0，故"省略附加质量"是匀速的副产品而非量级论证；状态记为 Needs CDFV acceleration profile（附条件） |
 
 > **EEM 闭环记录**：2026-10-12 的 `D002-001` 更新构成 `Knowledge → Design → Simulation →
 > Evaluation → Knowledge Update` 环在本仓库的**第一次闭合尝试**。

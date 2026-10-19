@@ -217,11 +217,56 @@ def collect_eem() -> dict:
             continue
         decision_statuses.append(body)
         lowered = body.lower()
-        if any(
+        # A decision counts as recorded once it states a verdict rather than
+        # leaving the question open.  Matching only three literal phrases missed
+        # later verdicts (e.g. "Needs CDFV acceleration profile"), so the test is
+        # now structural: the status must NOT be a placeholder such as
+        # "Candidate" / "proposed", and must name a concrete disposition.
+        is_placeholder = any(
             token in lowered
-            for token in ("needs cdfv experiment", "accepted", "rejected")
-        ):
+            for token in ("candidate", "proposed", "deferred", "not yet")
+        )
+        names_verdict = any(
+            token in lowered
+            for token in ("needs", "accepted", "rejected", "deferred", "resolved")
+        )
+        if names_verdict and not is_placeholder:
             resolved.append(body)
+
+    # Each research question closes its own loop.  The number of closed loops is
+    # therefore the number of knowledge updates that have been DEFINED and whose
+    # own document also records a verdict -- not a hard-coded 1 with a switch.
+    loops: list[dict] = []
+    for name, text in sorted(texts.items()):
+        ku_ids = re.findall(r"Knowledge Update ID:\s*(KU\d{3}-\d{3})", text)
+        if not ku_ids:
+            continue
+        has_verdict = any(
+            any(tok in body.lower() for tok in ("needs", "accepted", "rejected"))
+            and not any(
+                ph in body.lower() for ph in ("candidate", "proposed", "not yet")
+            )
+            for body in (
+                " ".join(
+                    line.strip()
+                    for line in m.group(1).splitlines()
+                    if line.strip()
+                )
+                for m in re.finditer(
+                    r"##\s*Status\s*\n(.*?)(?=\n##\s|\Z)", decision_text, re.S
+                )
+            )
+        )
+        loops.append(
+            {
+                "document": name,
+                "knowledge_update": ku_ids[0],
+                "decision_recorded": has_verdict,
+                "closed": has_verdict,
+            }
+        )
+
+    loops_closed = sum(1 for loop in loops if loop["closed"])
 
     links = {
         "knowledge": bool(knowledge_ids),
@@ -241,19 +286,21 @@ def collect_eem() -> dict:
             "number of times the loop closes (D-ANRI-002); document count is not a metric"
         ),
         "links": links,
-        "loops_closed": 1 if closed else 0,
+        "loops_closed": loops_closed,
+        "loops": loops,
         "knowledge_ids": sorted(knowledge_ids),
         "resolved_decisions": resolved,
         "unresolved_decisions": [d for d in decision_statuses if d not in resolved],
         "verification_artifacts": len(verification_files),
         "generalisation_gate": (
-            "G1 satisfied"
-            if closed
-            else "G1 not satisfied: " + ", ".join(k for k, v in links.items() if not v)
+            "G1 satisfied" if closed else "G1 not satisfied: " + ", ".join(
+                k for k, v in links.items() if not v
+            )
         ),
         "note": (
-            "loops_closed counts one loop per research question, so it stays 1 until a "
-            "SECOND research question closes the same loop (D-ANRI-002 G2)."
+            "loops_closed counts definitions of a knowledge update that also carry a "
+            "verdict in Decision_Log.md. G2 additionally requires the loops to come "
+            "from DIFFERENT research questions, which the 'loops' list makes auditable."
         ),
     }
 

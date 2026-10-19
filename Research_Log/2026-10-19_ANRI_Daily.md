@@ -20,16 +20,20 @@
 
 | Field | Before | After |
 |---|---|---|
-| `head.commit` | `e3edde096c7f1d5941e68c300a8e625bc9ab432d` | `832ea8afb4b3f179fdc0080f43268f7edfc32ad8` |
-| `worktree.pending_entries` | `7` | `0` |
-| `worktree.staged` | `7` | `0` |
-| `worktree.unpushed_commits` | `6` | `7` |
+| `head.commit` | `e3edde096c7f1d5941e68c300a8e625bc9ab432d` | `f157e6a573c2941d1e3f16c55c736ea5953d66a0` |
+| `worktree.pending_entries` | `7` | `6` |
+| `worktree.staged` | `7` | `6` |
+| `worktree.unpushed_commits` | `6` | `8` |
+| `line_endings.files` | `160` | `165` |
+| `research_object.sha256` | `fdc24420394746fd4d9927e553b651090b908ace563844557364aab574b543ef` | `8907567b576925399296ae03b6580db5a2959bd715522c688b52c820663c4b95` |
+| `research_object.artifact_count` | `71` | `74` |
+| `research_object.manifest_entries` | `70` | `73` |
 
 ### Trigger status
 
 | ID | Threshold | Status | Observed | Promised effect |
 |---|---|---|---|---|
-| T1 | 2026-10-14 | **not met** | pending_entries=0 | L2 -0.05, L3 -0.05 |
+| T1 | 2026-10-14 | **FIRED** | pending_entries=6 | L2 -0.05, L3 -0.05 |
 | T2 | 2026-10-25 | **pending** | lab_engagement_lines=3 (no machine-readable response field exists) | L1-lab -> 0.25 |
 | T3 | 2026-10-11 | **not met** | research_objects=1 independent_human_reviews=0 | L2 -> 0.65, L5 -> 0.40 |
 | T4 | 2026-10-11 | **not met** | manual check; not machine-evaluable | re-estimate L1-agent from published numbers (manual) |
@@ -41,9 +45,10 @@
 | T10 | 2026-11-10 | **pending** | P003 Stage 1 unresolved Blocked cells = 4 | D-ANRI-001: research is being crowded out by framework work; freeze all framework development |
 | T11 | 2027-01-09 | **pending** | independent_human_reviews = 0 | D-ANRI-001: mark Principle 5 as not institutionalised; L4 -> 0.15 |
 | T12 | 2027-04-01 | **pending** | manual check; not machine-evaluable | C2c scoop probability -> 0.85; per D-ANRI-001 adopt their specification and drop the independent claim (manual) |
-| T13 | 2026-10-19 | **FIRED** | unpushed_commits = 7 | L2 -0.03, L3 -0.03 |
+| T13 | 2026-10-19 | **FIRED** | unpushed_commits = 8 | L2 -0.03, L3 -0.03 |
 | T14 | 2026-10-20 | **pending** | manual check; not machine-evaluable | L3 -0.05; declare the gate unable to pass in a real environment (manual) |
 | T15 | 2026-10-20 | **pending** | manual check; not machine-evaluable | L3 -0.03, L5 -0.02 (manual) |
+| T16 | 2026-10-26 | **pending** | manual check; not machine-evaluable | L3 -0.03; declare the gate effective only off the default branch (manual) |
 
 ### Snapshot trend
 
@@ -52,12 +57,12 @@
 | 2026-10-11 | `abc9103` | 105 | 65 | 0 | True |
 | 2026-10-12 | `1705724` | 16 | 69 | 0 | True |
 | 2026-10-13 | `e3edde0` | 7 | 71 | 0 | True |
-| 2026-10-19 | `832ea8a` | 0 | 71 | 0 | True |
+| 2026-10-19 | `f157e6a` | 6 | 74 | 0 | True |
 
 ### EEM 闭环（D-ANRI-002 通用化度量）
 
 - 定义：Knowledge -> Design -> Simulation -> Evaluation -> Knowledge Update (Knowledge_Base/CDFV_Knowledge_Map.md section 5)
-- **loops_closed = 1**（G1 satisfied）
+- **loops_closed = 2**（G1 satisfied）
 
 | 环节 | 是否成立 |
 |---|---|
@@ -67,9 +72,9 @@
 | evaluation | ✅ |
 | knowledge_update | ✅ |
 
-- KU id：`KU003-001`
-- 已决议 decision：1 条；未决议：0 条
-- 说明：loops_closed counts one loop per research question, so it stays 1 until a SECOND research question closes the same loop (D-ANRI-002 G2).
+- KU id：`KU003-001, KU004-001`
+- 已决议 decision：2 条；未决议：0 条
+- 说明：loops_closed counts definitions of a knowledge update that also carry a verdict in Decision_Log.md. G2 additionally requires the loops to come from DIFFERENT research questions, which the 'loops' list makes auditable.
 
 ---
 
@@ -187,7 +192,7 @@ Autonomous Research Agents** — 检索到题录（arXiv:2610.01097 一类编号
 | L2 | ANRI Research Object | **中高**：YouRA 一类"持久状态/可溯源"架构已出现（未核实） | 1 个对象、schema v0.2、**71** 个哈希注册产物；**六天零提交** |
 | L3 | Claim-Evidence Graph + Executable Validators | **高**：Sakana 已实现 evidence map + 自动审计 + 独立复核 | 校验链在**独立环境 CI 全绿**；但对**默认分支无效**（见 §4.4） |
 | L4 | Independent Review Gate | **中**：Sakana 有人类复核 + 外部同行评审；国家标准分技委在筹建 | `independent_human_reviews = 0`；`review.status = revision_requested` |
-| L5 | Verified Research Package | **高**：Sakana 产出经外部评审接收的论文 | EEM `loops_closed = 1`（仅 1 个研究问题） |
+| L5 | Verified Research Package | **高**：Sakana 产出经外部评审接收的论文 | EEM `loops_closed = 2`（P003 + P004 各闭环一次） |
 
 ---
 
@@ -209,7 +214,7 @@ Autonomous Research Agents** — 检索到题录（arXiv:2610.01097 一类编号
 | L2 | 0.65 | 无变化。71 个产物不变；六天零提交，未退化也未进展 |
 | L3 | **0.72**（↓0.03） | CI 在 **feat 分支**全绿，但 **`origin/main` 六天未动、仍是修复前版本**（校验器 117 行、无 JSON Schema 引擎）。默认分支不具备门禁能力 → 实质可复现性未达成 |
 | L4 | **0.28**（↓0.02） | 仍 0 次外部评审。Sakana 用"人类复核 + 外部同行评审"已跑通该环，说明**该环的现实门槛比本项目原设想更依赖人际网络**，而非工具 |
-| L5 | **0.30**（↓0.02） | `loops_closed = 1` 不变（仍只有 1 个研究问题闭环）。上游已验证到"经同行评审接收"这一更高形态，相对差距扩大 |
+| L5 | **0.32**（↑0.02） | `loops_closed` 由 1 增至 **2**（P004 Stage 1 闭合）。但仍需 G2 的"不同研究问题"判据与上游外部评审对比 |
 
 **独立乘积**：0.82 × 0.42 × 0.65 × 0.72 × 0.28 × 0.30 ≈ **0.0121**（约 1.2%）
 
@@ -300,7 +305,7 @@ Autonomous Research Agents** — 检索到题录（arXiv:2610.01097 一类编号
 | L2 | 0.65 → 0.65 | 71 产物不变 |
 | **L3** | **0.75 → 0.72** | **修正口径**：CI 绿在 feat，`origin/main` 六天未动且为修复前版本 |
 | **L4** | **0.30 → 0.28** | 仍 0 次外部评审；Sakana 显示该环依赖人际网络 |
-| **L5** | **0.32 → 0.30** | `loops_closed = 1` 不变；上游已达"同行评审接收"更高形态 |
+| **L5** | **0.30 → 0.32** | **`loops_closed` 1 → 2**：P004（附加质量）Stage 1 闭合，`KU004-001` 与 `D002-002` 已记录 |
 
 **结论：两个因子小幅上调（外部条件），三个下调（本项目相对位置），一个不变。**
 门槛 A +1、门槛 B −1、5 年 −0.5，**并新增 EEM 通用化口径 = 25%**。
@@ -411,3 +416,20 @@ Autonomous Research Agents** — 检索到题录（arXiv:2610.01097 一类编号
   `py -3 .\scripts\check_report_mechanism.py`。
 - **范围声明**：日报本身是日志，不纳入 Research Object 的 `artifacts` 哈希清单。
 
+---
+
+## 附：本报告在 2026-10-19 当日被刷新
+
+P004（附加质量）的 Stage 1 在本文档首次生成之后完成，使 `loops_closed` 由 **1** 变为 **2**。
+本次刷新做了两件事：
+
+1. 重新生成了 §0 的机器部分（新读数为 `loops_closed = 2`）；
+2. 把 §3、§4.2、§4.5 中描述**当前状态**的三处 `loops_closed = 1` 更新为 2。
+
+**未改动**的是 §4.4 与 §4.5 中描述"当时发生了什么"的叙述——
+那些属于当日历史，不应被追溯修改。§4.4 里"已具备：`loops_closed = 1`"
+记录的是 P004 之前的状态，保留原样并在此说明。
+
+**披露一处操作失误**：刷新时使用了 `new_daily_report.py --force`，该命令把整个文件
+重写为模板骨架，**清空了手写正文**（413 行 → 177 行）。正文已从 git HEAD 完整取回，
+本节即为披露。教训：`--force` 之前应先确认它会覆盖什么。

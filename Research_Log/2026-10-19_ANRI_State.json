@@ -2,17 +2,17 @@
   "schema_version": "1",
   "kind": "anri_state_snapshot",
   "as_of_date": "2026-10-19",
-  "generated_utc": "2026-10-19T16:31:21.604958+00:00",
+  "generated_utc": "2026-10-19T16:36:03.469434+00:00",
   "note": "generated_utc is wall-clock and NOT part of the compared payload; compare everything else.",
   "head": {
-    "commit": "5d0733abd4eb6758c074256c8095c0b65d990f1c",
-    "summary": "5d0733a 2026-10-20 P004 Stage 1: screen added mass for the CDFV-001 transition"
+    "commit": "f157e6a573c2941d1e3f16c55c736ea5953d66a0",
+    "summary": "f157e6a 2026-10-20 Count a knowledge update only when it is defined, not when it is named"
   },
   "worktree": {
-    "pending_entries": 2,
-    "staged": 2,
+    "pending_entries": 6,
+    "staged": 6,
     "untracked": 0,
-    "unpushed_commits": 7
+    "unpushed_commits": 8
   },
   "line_endings": {
     "files": 165,
@@ -29,21 +29,37 @@
       "evaluation": true,
       "knowledge_update": true
     },
-    "loops_closed": 1,
+    "loops_closed": 2,
+    "loops": [
+      {
+        "document": "P003_Free_Surface_Loading.md",
+        "knowledge_update": "KU003-001",
+        "decision_recorded": true,
+        "closed": true
+      },
+      {
+        "document": "P004_Added_Mass_Screening.md",
+        "knowledge_update": "KU004-001",
+        "decision_recorded": true,
+        "closed": true
+      }
+    ],
     "knowledge_ids": [
-      "KU003-001"
+      "KU003-001",
+      "KU004-001"
     ],
     "resolved_decisions": [
-      "**Needs CDFV experiment** — 附条件（记录日期 2026-10-12） **为何不是 Accepted 或 Rejected**：两者都要求已知 CDFV-001 的机体有效密度 `ρ_body,eff = m_body / (πD²L/4)`，而该量在本仓库中不存在 （CDFV-001 几何与质量参数缺失，实测依据见 `Research_Planning/P003_Stage1_Sourcing_Checklist.md` §0）。 在缺少该量的情况下记 Accepted 或 Rejected 均属**用推测替代事实**， 违反 `P003_Free_Surface_Loading.md` §6 与 §11 的禁止条款。"
+      "**Needs CDFV experiment** — 附条件（记录日期 2026-10-12） **为何不是 Accepted 或 Rejected**：两者都要求已知 CDFV-001 的机体有效密度 `ρ_body,eff = m_body / (πD²L/4)`，而该量在本仓库中不存在 （CDFV-001 几何与质量参数缺失，实测依据见 `Research_Planning/P003_Stage1_Sourcing_Checklist.md` §0）。 在缺少该量的情况下记 Accepted 或 Rejected 均属**用推测替代事实**， 违反 `P003_Free_Surface_Loading.md` §6 与 §11 的禁止条款。",
+      "**Needs CDFV acceleration profile** — 附条件（记录日期 2026-10-19） **为何不是 Accepted 或 Rejected**：两者都要求已知 CDFV-001 的过渡加速度剖面， 而该量**不存在**（与 `D002-001` 的 CDFV 几何缺口同类）。此外 `C_a` 与加速体积 尺度两项均未确定，任一项都足以翻转结论。"
     ],
     "unresolved_decisions": [],
     "verification_artifacts": 1,
     "generalisation_gate": "G1 satisfied",
-    "note": "loops_closed counts one loop per research question, so it stays 1 until a SECOND research question closes the same loop (D-ANRI-002 G2)."
+    "note": "loops_closed counts definitions of a knowledge update that also carry a verdict in Decision_Log.md. G2 additionally requires the loops to come from DIFFERENT research questions, which the 'loops' list makes auditable."
   },
   "research_object": {
     "path": "Research_Objects/RO-CDFV-001-Ref-01B.json",
-    "sha256": "d8796a694521891b5812568c80c4eb3cc29ca42eb05b86b35e75dda706274c0f",
+    "sha256": "8907567b576925399296ae03b6580db5a2959bd715522c688b52c820663c4b95",
     "id": "RO-CDFV-001-Ref-01B",
     "version": "0.2.0",
     "status": "in_review",
@@ -101,26 +117,6 @@
     "adversarial_a02": {
       "exit": 1,
       "expected": 1,
-      "ok": true
-    },
-    "verifier_negative_suite": {
-      "exit": 0,
-      "expected": 0,
-      "ok": true
-    },
-    "adversarial_suite": {
-      "exit": 0,
-      "expected": 0,
-      "ok": true
-    },
-    "gate_selftest": {
-      "exit": 0,
-      "expected": 0,
-      "ok": true
-    },
-    "object_manifest_drift": {
-      "exit": 0,
-      "expected": 0,
       "ok": true
     }
   },
