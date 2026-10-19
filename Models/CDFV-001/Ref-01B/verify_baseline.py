@@ -213,13 +213,30 @@ def repository_root(script_path: Path) -> Path:
 
 
 def to_posix_relative(path: Path, repo_root: Path) -> str:
-    """Return a repository-relative POSIX path, or the file name as fallback."""
+    """Return a repository-relative POSIX path, or a stable fallback.
+
+    The result is written into verification.json, which is hash-registered, so it
+    must not depend on where the tree happens to be checked out.  Two cases are
+    therefore treated as "cannot express relatively, use a stable fallback":
+
+    * the path is outside the repository root (``relative_to`` raises);
+    * the computed relative path escapes the root with ``..``, which happens when
+      the root could not be located -- for example in an exported tree that has no
+      ``.git`` directory, where ``repository_root`` falls back to the model
+      directory and the results directory then appears to sit above it.
+
+    Returning the bare directory name keeps the recorded artifact byte-identical
+    across machines, which is what the hash registry depends on.
+    """
 
     resolved = path.resolve()
     try:
-        return resolved.relative_to(repo_root.resolve()).as_posix()
+        relative = resolved.relative_to(repo_root.resolve())
     except ValueError:
         return resolved.name
+    if any(part == ".." for part in relative.parts):
+        return resolved.name
+    return relative.as_posix()
 
 
 def verify_data_file(path: Path, tolerance_n: float) -> dict[str, Any]:

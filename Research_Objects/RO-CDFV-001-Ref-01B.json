@@ -209,7 +209,7 @@
     {
       "path": "Models/CDFV-001/Ref-01B/verify_baseline.py",
       "role": "model",
-      "sha256": "328aafedbacc57a6356178df9eb8af3d1d9e81eeed2cde74b5414a416612c8bd"
+      "sha256": "2072e161430be8981c4e5c861f73d8055c6da018ef9e117cf531e2e2b93cd5cb"
     },
     {
       "path": "Models/CDFV-001/Ref-01B/verify_negative_cases.py",
@@ -324,7 +324,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "5b7db0752a1bfc1650bd2445b062f23b845883b2d60e86974b84027b8008a201"
+      "sha256": "72dfb6b28255ebccffb0d5d80240a2bca8aa538183dad653e5daebaeeaa6d41f"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
