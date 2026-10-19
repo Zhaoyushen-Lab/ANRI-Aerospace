@@ -181,7 +181,15 @@ def collect_eem() -> dict:
 
     knowledge_ids: set[str] = set()
     for text in texts.values():
-        knowledge_ids |= set(re.findall(r"\bKU\d{3}-\d{3}\b", text))
+        # A knowledge update counts only once it has been DEFINED, not merely
+        # mentioned.  Planning documents legitimately name future ids (for example
+        # "KU004-001 尚未完成"), and a bare id scan would count those as produced
+        # knowledge, inflating the very metric this function exists to keep honest.
+        # The definition form used in this repository is the line
+        # "Knowledge Update ID: KU003-001".
+        knowledge_ids |= set(
+            re.findall(r"Knowledge Update ID:\s*(KU\d{3}-\d{3})", text)
+        )
 
     models_dir = REPO / "Models"
     bench_dir = REPO / "Benchmarks"

@@ -2,20 +2,20 @@
   "schema_version": "1",
   "kind": "anri_state_snapshot",
   "as_of_date": "2026-10-19",
-  "generated_utc": "2026-10-19T12:59:53.481119+00:00",
+  "generated_utc": "2026-10-19T16:31:21.604958+00:00",
   "note": "generated_utc is wall-clock and NOT part of the compared payload; compare everything else.",
   "head": {
-    "commit": "832ea8afb4b3f179fdc0080f43268f7edfc32ad8",
-    "summary": "832ea8a 2026-10-13 Add a blind-test copy generator for the clean-room replication"
+    "commit": "5d0733abd4eb6758c074256c8095c0b65d990f1c",
+    "summary": "5d0733a 2026-10-20 P004 Stage 1: screen added mass for the CDFV-001 transition"
   },
   "worktree": {
-    "pending_entries": 3,
-    "staged": 1,
-    "untracked": 2,
+    "pending_entries": 2,
+    "staged": 2,
+    "untracked": 0,
     "unpushed_commits": 7
   },
   "line_endings": {
-    "files": 160,
+    "files": 165,
     "index_crlf": 0,
     "worktree_crlf": 0
   },
@@ -43,12 +43,12 @@
   },
   "research_object": {
     "path": "Research_Objects/RO-CDFV-001-Ref-01B.json",
-    "sha256": "fdc24420394746fd4d9927e553b651090b908ace563844557364aab574b543ef",
+    "sha256": "d8796a694521891b5812568c80c4eb3cc29ca42eb05b86b35e75dda706274c0f",
     "id": "RO-CDFV-001-Ref-01B",
     "version": "0.2.0",
     "status": "in_review",
     "schema_version": "0.2",
-    "artifact_count": 71,
+    "artifact_count": 74,
     "claim_count": 1,
     "evidence_count": 3,
     "validator_count": 1,
@@ -64,7 +64,7 @@
       "review",
       "schema"
     ],
-    "manifest_entries": 70
+    "manifest_entries": 73
   },
   "review_gate": {
     "status": "revision_requested",
