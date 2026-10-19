@@ -16,7 +16,7 @@
 然后回答一个问题：**仓库中那份"验证通过"的结论，你是否能自己复现出来？**
 
 仓库地址：`https://github.com/Zhaoyushen-Lab/ANRI-Aerospace`
-使用分支：`feat/research-object-v0.1`
+使用分支：`main`
 
 ---
 
