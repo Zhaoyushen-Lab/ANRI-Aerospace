@@ -218,6 +218,21 @@ TRIGGERS: list[dict[str, Any]] = [
         "effect": "L3 -0.03, L5 -0.02 (manual)",
         "check": "manual",
     },
+    {
+        "id": "T16",
+        "created": "2026-10-19",
+        "description": (
+            "The default branch differs from the branch where CI last passed, so the "
+            "gate is green only off the default branch and the default branch itself "
+            "carries no working gate. Raised on 2026-10-19 after finding that main had "
+            "stayed on the pre-repair commit for six days while CI was green on feat."
+        ),
+        "threshold": "2026-10-26",
+        "effect": (
+            "L3 -0.03; declare the gate effective only off the default branch (manual)"
+        ),
+        "check": "manual",
+    },
 ]
 
 REPAIR_BASE_COMMIT = "abc91031930943c308edea73a97a120cbd6b8bf5"
