@@ -300,6 +300,11 @@
       "sha256": "0314fc838c89cddcb6d3e9921f570027603353693db0a26282340709baee4faf"
     },
     {
+      "path": "Experiment_Requests/P003_B1_Operating_Procedure_ConstantSpeed.md",
+      "role": "input",
+      "sha256": "526962fe5cd26998573a1dafe86e0c28dfa103f107ebf7ea2c4475eb0e5d58f2"
+    },
+    {
       "path": "scripts/validate_research_object.py",
       "role": "model",
       "sha256": "ca58353c995a5773414b4724be6e431bd8e8420c1c5f97d8ab250df3cb419ecc"
@@ -307,7 +312,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "4ab3a05aac0497513502d040c22abcbfa6bf25cdc399b3e07ca6dd289ec55073"
+      "sha256": "1531948f50d65032aff1daaac348cdbeb6a361f0a45ffd96652d82b08420f193"
     },
     {
       "path": "scripts/p004_sensitivity.py",
