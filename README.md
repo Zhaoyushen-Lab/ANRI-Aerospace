@@ -100,10 +100,12 @@ what that implies about trusting this repository.
 - **The engineering result is not settled.** P003 and P004 both terminate at
   `unresolved`, conditionally. Two research questions have completed one loop each
   (`loops_closed = 2`), which exercises the process; it does not answer either question.
-- **Several inputs are literature values from a different vehicle.** CDFV-001's own
-  geometry, mass, speed envelope and acceleration profile do not exist in this
-  repository. Analyses that appear numeric are conditional on those being close to the
-  P002 cylinder.
+- **The benchmark body is P002's cylinder, by design.** `CDFV-001-Ref-01B` is defined at
+  scale ratio 1.0 from P002 Table 1, so diameter, length, mass, inertias and the
+  0.1–0.5 m/s envelope are literature values deliberately reused, not measured here.
+  Analyses that appear numeric inherit that. What genuinely does not exist:
+  **the water-exit acceleration profile**, and the initial immersion depth and fluid
+  temperature, both of which §17.1 marks `Open`.
 - **`main` carries a bypass for the repository admin.** The protection constrains
   collaborators and automation, not the owner. It is auditable, not absolute.
 
