@@ -153,6 +153,7 @@ def build_artifact_list() -> list[tuple[str, str]]:
         ("Benchmarks/ANRI-RV-001/make_adversarial_cases.py", "model"),
         ("Benchmarks/ANRI-RV-001/run_adversarial_cases.py", "model"),
         ("Benchmarks/ANRI-RV-001/make_blind_copy.py", "model"),
+        ("Benchmarks/ANRI-RV-001/coverage_probe.py", "model"),
         ("Benchmarks/ANRI-RV-001/adversarial/adversarial_cases.json", "index"),
         ("Benchmarks/ANRI-RV-001/rubric.yaml", "input"),
         ("Benchmarks/ANRI-RV-001/task.md", "input"),
@@ -165,6 +166,7 @@ def build_artifact_list() -> list[tuple[str, str]]:
         ("Reviews/DeepSeek_Harness_Repair_Report.md", "review"),
         ("Reviews/RO-CDFV-001-Ref-01B_Review_Checklist.md", "review"),
         ("Reviews/ANRI_Failure_Mode_Report_v0.1.md", "report"),
+        ("Reviews/Ref-01B_Verifier_Coverage_Matrix.md", "report"),
     ]
     for case in ADVERSARIAL_CASES:
         base = f"Benchmarks/ANRI-RV-001/adversarial/{case}"

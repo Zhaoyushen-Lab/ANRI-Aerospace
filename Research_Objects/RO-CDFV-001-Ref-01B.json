@@ -319,7 +319,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "dce2255faf3f962dbad50152528e74ac547c961ee205640999f977a30edc7f28"
+      "sha256": "8275461b81148d882d5b750c59e3c11a3497b7c23f7812fde7b869c4872917bd"
     },
     {
       "path": "schema/research_object.schema.json",
@@ -340,6 +340,11 @@
       "path": "Benchmarks/ANRI-RV-001/make_blind_copy.py",
       "role": "model",
       "sha256": "8f2f121064a81e2a0127f4750369bfaa2fdfa7e70deea4973b26fa5658548f41"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/coverage_probe.py",
+      "role": "model",
+      "sha256": "0e1c81de521c0e4e9e44dc4b96783851cc85fa4c458119341bb295b1e085df40"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/adversarial_cases.json",
@@ -379,7 +384,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "3927874801fda57751ab63ec840f12ccdc571cd13d1dc54000872fb5f3258ad8"
+      "sha256": "c8c93da034915c33c9eb43f3355176141dcc254427a5dc07592042564062498b"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
@@ -400,6 +405,11 @@
       "path": "Reviews/ANRI_Failure_Mode_Report_v0.1.md",
       "role": "report",
       "sha256": "c0911778f4a1478cbbeefe5a5f7a09c9a51ffb9f51699d278b559ca4a51bc592"
+    },
+    {
+      "path": "Reviews/Ref-01B_Verifier_Coverage_Matrix.md",
+      "role": "report",
+      "sha256": "fe6f8ff9b59ea6d14558cd64e6f423a30a3bae54279ecdad18a3f8c4ed3a6c3e"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A01_wrong_weight/mutation.json",
