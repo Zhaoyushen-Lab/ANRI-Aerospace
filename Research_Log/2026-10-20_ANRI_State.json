@@ -1,0 +1,124 @@
+{
+  "schema_version": "1",
+  "kind": "anri_state_snapshot",
+  "as_of_date": "2026-10-20",
+  "generated_utc": "2026-10-20T08:07:45.316400+00:00",
+  "note": "generated_utc is wall-clock and NOT part of the compared payload; compare everything else.",
+  "head": {
+    "commit": "e4d46dbe4dbaab12319fcc6f9bd41b3037de5eb2",
+    "summary": "e4d46db 2026-10-20 P004 Stage 2: add accelerated cases so the inertial term is observable"
+  },
+  "worktree": {
+    "pending_entries": 3,
+    "staged": 1,
+    "untracked": 2,
+    "unpushed_commits": 0
+  },
+  "line_endings": {
+    "files": 171,
+    "index_crlf": 0,
+    "worktree_crlf": 0
+  },
+  "eem": {
+    "definition": "Knowledge -> Design -> Simulation -> Evaluation -> Knowledge Update (Knowledge_Base/CDFV_Knowledge_Map.md section 5)",
+    "metric": "number of times the loop closes (D-ANRI-002); document count is not a metric",
+    "links": {
+      "knowledge": true,
+      "design": true,
+      "simulation": true,
+      "evaluation": true,
+      "knowledge_update": true
+    },
+    "loops_closed": 2,
+    "loops": [
+      {
+        "document": "P003_Free_Surface_Loading.md",
+        "knowledge_update": "KU003-001",
+        "decision_recorded": true,
+        "closed": true
+      },
+      {
+        "document": "P004_Added_Mass_Screening.md",
+        "knowledge_update": "KU004-001",
+        "decision_recorded": true,
+        "closed": true
+      }
+    ],
+    "knowledge_ids": [
+      "KU003-001",
+      "KU004-001"
+    ],
+    "resolved_decisions": [
+      "**Needs CDFV experiment** — 附条件（记录日期 2026-10-12） **为何不是 Accepted 或 Rejected**：两者都要求已知 CDFV-001 的机体有效密度 `ρ_body,eff = m_body / (πD²L/4)`，而该量在本仓库中不存在 （CDFV-001 几何与质量参数缺失，实测依据见 `Research_Planning/P003_Stage1_Sourcing_Checklist.md` §0）。 在缺少该量的情况下记 Accepted 或 Rejected 均属**用推测替代事实**， 违反 `P003_Free_Surface_Loading.md` §6 与 §11 的禁止条款。",
+      "**Needs CDFV acceleration profile** — 附条件（记录日期 2026-10-19） **为何不是 Accepted 或 Rejected**：两者都要求已知 CDFV-001 的过渡加速度剖面， 而该量**不存在**（与 `D002-001` 的 CDFV 几何缺口同类）。此外 `C_a` 与加速体积 尺度两项均未确定，任一项都足以翻转结论。"
+    ],
+    "unresolved_decisions": [],
+    "verification_artifacts": 1,
+    "generalisation_gate": "G1 satisfied",
+    "note": "loops_closed counts definitions of a knowledge update that also carry a verdict in Decision_Log.md. G2 additionally requires the loops to come from DIFFERENT research questions, which the 'loops' list makes auditable."
+  },
+  "research_object": {
+    "path": "Research_Objects/RO-CDFV-001-Ref-01B.json",
+    "sha256": "df8052cf4c352f5b0e19a8709b02ac647124f1908275574acb71a049ecd0074d",
+    "id": "RO-CDFV-001-Ref-01B",
+    "version": "0.2.0",
+    "status": "in_review",
+    "schema_version": "0.2",
+    "artifact_count": 80,
+    "claim_count": 1,
+    "evidence_count": 3,
+    "validator_count": 1,
+    "assumption_count": 5,
+    "limitation_count": 3,
+    "artifact_roles": [
+      "index",
+      "input",
+      "manifest",
+      "model",
+      "report",
+      "result",
+      "review",
+      "schema"
+    ],
+    "manifest_entries": 79
+  },
+  "review_gate": {
+    "status": "revision_requested",
+    "decision_ref": "D-ANRI-RV-001-001",
+    "review_records": 1,
+    "independent_human_reviews": 0,
+    "latest_decision": "request_changes",
+    "latest_reviewer": "DeepSeek Harness independent review session (model-generated, read-only)",
+    "report_path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
+    "report_sha256": "c7f6dd73911040290602a440a3fcaa0acacc42d90d0a6d5d599b1523c968fd80"
+  },
+  "upstream_maturity": {
+    "source": "docs/ANRI_Data_Model_v0.1.md",
+    "present": true,
+    "kpi_rows": [],
+    "lab_engagement_lines": 3
+  },
+  "checks": {
+    "ro_validator": {
+      "exit": 0,
+      "expected": 0,
+      "ok": true
+    },
+    "clean_baseline": {
+      "exit": 0,
+      "expected": 0,
+      "ok": true
+    },
+    "adversarial_a01": {
+      "exit": 1,
+      "expected": 1,
+      "ok": true
+    },
+    "adversarial_a02": {
+      "exit": 1,
+      "expected": 1,
+      "ok": true
+    }
+  },
+  "checks_all_ok": true
+}

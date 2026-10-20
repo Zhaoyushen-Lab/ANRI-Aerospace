@@ -233,6 +233,23 @@ TRIGGERS: list[dict[str, Any]] = [
         ),
         "check": "manual",
     },
+    {
+        "id": "T17",
+        "created": "2026-10-20",
+        "description": (
+            "A long-lived branch stays at least five commits ahead of main. Raised "
+            "after correcting the fetch refspec: 'unpushed' had in fact been measuring "
+            "'ahead of origin/main', so fixing the refspec cleared T13 while the real "
+            "problem - the work is pushed but not merged into the default branch - "
+            "remained."
+        ),
+        "threshold": "2026-10-27",
+        "effect": (
+            "L3 -0.03; declare the gate usable but the results stranded off the "
+            "default branch (manual)"
+        ),
+        "check": "manual",
+    },
 ]
 
 REPAIR_BASE_COMMIT = "abc91031930943c308edea73a97a120cbd6b8bf5"
