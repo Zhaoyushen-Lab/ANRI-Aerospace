@@ -229,7 +229,7 @@
     {
       "path": "Experiment_Requests/CLEANROOM-Replication_Task.md",
       "role": "input",
-      "sha256": "9e7e35060a06f14abbc993bfb3ef484838e37f4978d396b71da6163c11fed45c"
+      "sha256": "d1aff85a60c70715513d8727ddf9cffe9415c78c9bdd9c8fa81de4b68a24174e"
     },
     {
       "path": "Models/CDFV-001/Ref-01B/baseline_model.py",
@@ -409,7 +409,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "c2154433166418eb47d7622b2f8ec47d3659a5fa25482a5a2f47ec80d8c01f7e"
+      "sha256": "1f3d6a015fbb0c232ceb55713b1c95eb16f061dadabdf35019f4c32591a7edb6"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
