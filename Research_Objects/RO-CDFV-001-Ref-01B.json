@@ -337,6 +337,11 @@
       "sha256": "0314fc838c89cddcb6d3e9921f570027603353693db0a26282340709baee4faf"
     },
     {
+      "path": "Research_Planning/Paper_Outline_FailureModes.md",
+      "role": "input",
+      "sha256": "52337b878bc16ed7316783d1027d5e955e66a0af2aac9e96e8a4d27e20ee8bd0"
+    },
+    {
       "path": "Experiment_Requests/P003_B1_Operating_Procedure_ConstantSpeed.md",
       "role": "input",
       "sha256": "526962fe5cd26998573a1dafe86e0c28dfa103f107ebf7ea2c4475eb0e5d58f2"
@@ -349,7 +354,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "1531948f50d65032aff1daaac348cdbeb6a361f0a45ffd96652d82b08420f193"
+      "sha256": "efa652415c5bde555589a197b34a13493d8c6cf833cf093b0b3d94fb4843c504"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -414,12 +419,12 @@
     {
       "path": "Research_Planning/Decision_Log.md",
       "role": "review",
-      "sha256": "eb22395529b225c3143f018d2515a28d4c7580c92dc97f858dd95fc5d20b35a6"
+      "sha256": "5ad4a41c1fe11483970a18096c0f09ac89898d0876d3612c5074d1f28dc1c7a3"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "61c39ea197c250ccee6f42604f44048367b2fdf14d0da20eba86f5232728a60d"
+      "sha256": "ac970e07ba5194e3b720a60ee4d3d49f70689abcd4d90de84ed17f0eba3a4ee1"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
