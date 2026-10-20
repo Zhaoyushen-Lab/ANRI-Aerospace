@@ -20,18 +20,21 @@
 
 | Field | Before | After |
 |---|---|---|
-| `head.commit` | `bcf213e6d05712ed6fd2d74eb834d145594bd24f` | `e4d46dbe4dbaab12319fcc6f9bd41b3037de5eb2` |
-| `worktree.pending_entries` | `40` | `1` |
-| `worktree.staged` | `34` | `0` |
-| `worktree.untracked` | `6` | `1` |
+| `head.commit` | `bcf213e6d05712ed6fd2d74eb834d145594bd24f` | `f799259a7092f3642d2ccb61c2a142e322a40132` |
+| `worktree.pending_entries` | `40` | `3` |
+| `worktree.staged` | `34` | `3` |
+| `worktree.untracked` | `6` | `0` |
 | `worktree.unpushed_commits` | `9` | `0` |
-| `line_endings.files` | `165` | `171` |
+| `line_endings.files` | `165` | `180` |
+| `research_object.sha256` | `df8052cf4c352f5b0e19a8709b02ac647124f1908275574acb71a049ecd0074d` | `561d587377168f84894309815a26a6c9e8737e89be7711f9887735a9c2f3fa6a` |
+| `research_object.artifact_count` | `80` | `87` |
+| `research_object.manifest_entries` | `79` | `86` |
 
 ### Trigger status
 
 | ID | Threshold | Status | Observed | Promised effect |
 |---|---|---|---|---|
-| T1 | 2026-10-14 | **FIRED** | pending_entries=1 | L2 -0.05, L3 -0.05 |
+| T1 | 2026-10-14 | **FIRED** | pending_entries=3 | L2 -0.05, L3 -0.05 |
 | T2 | 2026-10-25 | **pending** | lab_engagement_lines=3 (no machine-readable response field exists) | L1-lab -> 0.25 |
 | T3 | 2026-10-11 | **not met** | research_objects=1 independent_human_reviews=0 | L2 -> 0.65, L5 -> 0.40 |
 | T4 | 2026-10-11 | **not met** | manual check; not machine-evaluable | re-estimate L1-agent from published numbers (manual) |
@@ -45,8 +48,9 @@
 | T12 | 2027-04-01 | **pending** | manual check; not machine-evaluable | C2c scoop probability -> 0.85; per D-ANRI-001 adopt their specification and drop the independent claim (manual) |
 | T13 | 2026-10-19 | **not met** | unpushed_commits = 0 | L2 -0.03, L3 -0.03 |
 | T14 | 2026-10-20 | **not met** | manual check; not machine-evaluable | L3 -0.05; declare the gate unable to pass in a real environment (manual) |
-| T15 | 2026-10-20 | **not met** | manual check; not machine-evaluable | L3 -0.03, L5 -0.02 (manual) |
+| T15 | 2026-10-20 | **not met** | manual check; not machine-evaluable | none (retired); see T17 |
 | T16 | 2026-10-26 | **pending** | manual check; not machine-evaluable | L3 -0.03; declare the gate effective only off the default branch (manual) |
+| T17 | 2026-10-27 | **pending** | manual check; not machine-evaluable | L3 -0.03; declare the gate usable but the results stranded off the default branch (manual) |
 
 ### Snapshot trend
 
@@ -56,7 +60,7 @@
 | 2026-10-12 | `1705724` | 16 | 69 | 0 | True |
 | 2026-10-13 | `e3edde0` | 7 | 71 | 0 | True |
 | 2026-10-19 | `bcf213e` | 40 | 80 | 0 | True |
-| 2026-10-20 | `e4d46db` | 1 | 80 | 0 | True |
+| 2026-10-20 | `f799259` | 3 | 87 | 0 | True |
 
 ### EEM 闭环（D-ANRI-002 通用化度量）
 
@@ -157,7 +161,7 @@ OpenAI 推出面向生命科学的实验规划工具；Anthropic 让模型参与
 | 层级 | 图中模块 | 上游成熟度（今日） | 本项目状态（今日，取自 State.json） |
 |---|---|---|---|
 | L1 | 人类 / ClawsGO / Codex / 实验设备 | **显著上升**：谷歌 VERID 在真实湿实验室跑通闭环；Fabarta、中科院材料智能体同日发布 | Ref-01S 仍为预沟通材料，无实验室回复；同学可投入，专家需申请 |
-| L2 | ANRI Research Object | 无新增 | 1 个对象、schema v0.2、**80** 个哈希注册产物 |
+| L2 | ANRI Research Object | 无新增 | 1 个对象、schema v0.2、**87** 个哈希注册产物 |
 | L3 | Claim-Evidence Graph + Executable Validators | 无新增（VERID 的数字孪生与日志属相邻但不同之物） | 校验链在独立环境 CI 绿；**默认分支门禁已建成**（4 条规则） |
 | L4 | Independent Review Gate | 无新增 | `independent_human_reviews = 0`；门禁强制但无外部评审 |
 | L5 | Verified Research Package | 无新增 | EEM **`loops_closed = 2`**（P003 + P004 各闭环一次） |
@@ -179,7 +183,7 @@ OpenAI 推出面向生命科学的实验规划工具；Anthropic 让模型参与
 |---|---:|---|
 | L1-agent | 0.82 | 无变化。VERID 是实验执行层，非通用 agent 能力提升 |
 | L1-lab | **0.38**（↓0.04） | **双向下调**：外部证明该层可被工业级团队实现（说明技术上可行），但也说明本项目在该层的相对位置更靠后——`Ref-01S` 仍无回复，而他人已跑通闭环 |
-| L2 | 0.65 | 无变化。80 个产物，对象未变 |
+| L2 | 0.65 | 80 → 87（新增 7 个注册产物，见附录 A） |
 | L3 | **0.73**（↑0.01） | 门禁建成 + CI 绿；但 `fix/gate-and-brief` 尚未合并入 `main`（领先 9 commit），默认分支内容仍非最新 |
 | L4 | 0.30 | 无变化。仍 0 次外部评审 |
 | L5 | **0.32** | `loops_closed = 2` 未变（P004 Stage 2 是深化，不是新闭环） |
@@ -252,7 +256,7 @@ OpenAI 推出面向生命科学的实验规划工具；Anthropic 让模型参与
 |---|---|---|
 | L1-agent | 0.82 → 0.82 | VERID 属实验执行层，非通用 agent 能力 |
 | **L1-lab** | **0.42 → 0.38** | 谷歌 VERID 在真实湿实验室跑通闭环（§2.4） |
-| L2 | 0.65 → 0.65 | 80 产物；对象结构未变 |
+| L2 | 0.65 → 0.65 | 80 → 87 产物；对象结构未变 |
 | **L3** | **0.72 → 0.73** | 门禁建成 + 全部本地门禁通过（小幅，因 fix 分支未合并） |
 | L4 | 0.30 → 0.30 | 无外部评审 |
 | L5 | 0.32 → 0.32 | `loops_closed = 2` 未变 |
@@ -394,3 +398,64 @@ T17 把这个真正的问题独立出来，并设了 3 天持续门槛，避免�
 - **模板**：`Research_Log/Daily_Template.md`；**机制自检**：
   `py -3 .\scripts\check_report_mechanism.py`。
 - **范围声明**：日报本身是日志，不纳入 Research Object 的 `artifacts` 哈希清单。
+
+---
+
+## 附录 A. 当日下午补充交付（本报告首次生成之后）
+
+本报告 §0–§8 写于上午。之后又完成了四项交付，**`artifacts` 由 80 增至 87**。
+本附录补记，不修改上文，以保留"当时怎么判断的"。
+
+### A.1 四项交付
+
+| # | 交付 | 位置 | 解决什么 |
+|---|---|---|---|
+| 1 | **失效模式报告** | `Reviews/ANRI_Failure_Mode_Report_v0.1.md` | `D-ANRI-001` 承诺但从未交付的产出。17 条按"检测为何失效"分类 |
+| 2 | **冷启动 CI** | `.github/workflows/anri-validation.yml` 的 `cold-start` job | 五层检测全部在有 `.git` 的树里运行；此 job 在导出树上重复验证 |
+| 3 | **覆盖矩阵** | `Reviews/Ref-01B_Verifier_Coverage_Matrix.md` + `Benchmarks/ANRI-RV-001/coverage_probe.py` | 逐列扰动测出 13/26 个扰动对门禁不可见 |
+| 4 | **敏感性分析** | `Research_Planning/P004_Sensitivity_Analysis.md` + `scripts/p004_sensitivity.py` | 检验 P004 的两条结论对输入错误的稳健性 |
+
+### A.2 四项交付各自推翻了一个我的判断
+
+这是本附录值得单独写的原因——**四项里有三项直接更正了我先前的说法**。
+
+| 交付 | 我原先的判断 | 实测结果 |
+|---|---|---|
+| 失效模式报告 | `F7 machine-specific paths` 已修复 | **只在有 `.git` 的工作副本里成立**；导出树失败 |
+| 冷启动 CI | `..` 检查已足够 | **不够**：家目录存在 `.git` 时根定位到用户主目录，路径不含 `..`，检查失效 |
+| 覆盖矩阵 | 生成器 bug 会产出"完全验证通过"的错误物理 | **不会**：`buoyancy_unit_sanity` 在 1e-6 相对容差上钉死浮力量级 |
+| 敏感性分析 | Stage 2 的"102%"需要撤回 | **不需要**：原文已明确写的是"机体惯性"；需要改的是 §12.5 的推理 |
+
+**结论：本项目的四层检测（校验器/负例/对抗/自检）加上我的人工复核，
+在一天内被同一批新工具否证了四次。**
+
+### A.3 敏感性分析的关键结论（对概率评估的影响）
+
+P004 的两条判断稳健性差异极大：
+
+| 判断 | 余量 | 翻转所需输入误差 |
+|---|---:|---|
+| C1：P002 区间（≤0.15 m/s²）内附加质量可忽略 | **55–102 倍** | 输入错 ~55 倍 |
+| C2：~1 g 时与吸入力同级 | **坐在边界上** | **输入错 ~1.7 倍，或直径错 19%** |
+
+**这意味着 `L5` 的 0.32 不应因 P004 的完成而上调**——它完成的是"流程走通"，
+而研究结论本身只有 C1 一条能被坚定主张。
+
+**故 §4.2 的 `L5 = 0.32` 维持不变。本日不作概率调整。**
+
+### A.4 一项对 `T10` 的升级建议
+
+`D002-002` 的解除条件原为"取得 CDFV 加速度剖面"。
+敏感性分析显示**还需要 CDFV-001 的实际直径**：`a_be` 与 `D` 的三次方成反比，
+**直径错 19% 就足以翻转 C2**。
+
+建议把 `T10`（CDFV 四个参数）中的"主体几何"从"影响 material 判定"
+升级为"**决定 P004 结论能否被引用**"。
+
+### A.5 本附录的局限
+
+- 四项交付**均未经外部复核**（`independent_human_reviews = 0`）；
+- §A.2 的"三项推翻了我的判断"是**我的自评**，
+  外部读者可能对"是否算推翻"有不同判断；
+- 冷启动 CI 已在 PR 上验证通过（run `39401365718`），
+  但**尚未随 `main` 合并**，故 `main` 上还没有这道门禁。
