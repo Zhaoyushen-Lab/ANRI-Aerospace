@@ -151,6 +151,7 @@ def build_artifact_list() -> list[tuple[str, str]]:
         ("Research_Planning/Ref-01B_Initial_Immersion_Decision.md", "input"),
         ("Research_Planning/Ref-01B_Fluid_Properties_Decision.md", "input"),
         ("Experiment_Requests/CLEANROOM-Handoff_Record.md", "input"),
+        ("Research_Planning/P003_Stage1_Reframing.md", "input"),
         ("scripts/validate_research_object.py", "model"),
         ("scripts/gen_research_object.py", "model"),
         ("scripts/p004_sensitivity.py", "model"),

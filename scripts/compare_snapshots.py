@@ -143,16 +143,25 @@ TRIGGERS: list[dict[str, Any]] = [
     {
         "id": "T10",
         "created": "2026-10-11",
-        "description": (
-            "P003 Stage 1 still has unresolved 'Blocked' cells in the CDFV-001 "
-            "column, i.e. the research question itself is still blocked."
-        ),
         "threshold": "2026-11-10",
-        "effect": (
-            "D-ANRI-001: research is being crowded out by framework work; freeze "
-            "all framework development"
+        "description": (
+            "[RETIRED 2026-10-20] Premise dissolved by the Stage 1 reframing, not by "
+            "filling the table. The original rule read 'P003 Stage 1 still has "
+            "unresolved Blocked cells, i.e. the research question itself is still "
+            "blocked', and its check counted table rows whose status cell contained "
+            "'blocked'. Those four cells were blocked by the FRAMING - the table asked "
+            "CDFV-001 for absolute mass, length, velocity and attitude - not by a "
+            "missing measurement, and section 7.5.5 already supplied the correct "
+            "dimensionless structure. Stage 1 now states transfer conditions instead "
+            "of demanding values, so the count is zero and would have cleared this "
+            "trigger silently. That would have been the exact self-deception T10 was "
+            "built to catch, so it is retired explicitly and the obligation it "
+            "approximated is carried by T18. Original text: P003 Stage 1 still has "
+            "unresolved 'Blocked' cells in the CDFV-001 column, i.e. the research "
+            "question itself is still blocked."
         ),
-        "check": "p003_stage1",
+        "effect": "none (retired); see T18",
+        "check": "manual",
     },
     {
         "id": "T11",
@@ -254,6 +263,27 @@ TRIGGERS: list[dict[str, Any]] = [
         "effect": (
             "L3 -0.03; declare the gate usable but the results stranded off the "
             "default branch (manual)"
+        ),
+        "check": "manual",
+    },
+    {
+        "id": "T18",
+        "created": "2026-10-20",
+        "description": (
+            "CDFV-001 still has no independent specification: no mass, no geometry, no "
+            "velocity envelope, no attitude envelope of its own. Numbers used so far are "
+            "the P002 cylinder reused as a computational benchmark (CDFV-001-Ref-01B, "
+            "scale 1.0), which was a documented configuration decision - but section 12 "
+            "of the reference configuration states the P002 geometry is not claimed to be "
+            "the final CDFV-001 geometry. Acceptable while the work is analytical. Not "
+            "acceptable once Ref-01S must be manufactured, because a scaled physical "
+            "model needs real dimensions, and not acceptable for verifying any of the "
+            "transfer conditions Stage 1 now states."
+        ),
+        "threshold": "2026-12-31",
+        "effect": (
+            "L4 -0.05; record that the project has produced a verification "
+            "infrastructure for a vehicle that has never been specified (manual)"
         ),
         "check": "manual",
     },

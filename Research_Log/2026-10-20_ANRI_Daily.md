@@ -43,7 +43,7 @@
 | T7 | 2027-04-01 | **pending** | manual check; not machine-evaluable | C2c scoop probability -> 0.70; drop the independent claim (manual) |
 | T8 | 2027-04-01 | **pending** | manual check; not machine-evaluable | treat C1 as pre-empted; stop submitting it as a result (manual) |
 | T9 | 2027-10-01 | **pending** | manual check; not machine-evaluable | freeze C2a as pre-empted in the peer-progress report (manual) |
-| T10 | 2026-11-10 | **pending** | P003 Stage 1 unresolved Blocked cells = 4 | D-ANRI-001: research is being crowded out by framework work; freeze all framework development |
+| T10 | 2026-11-10 | **pending** | manual check; not machine-evaluable | none (retired); see T18 |
 | T11 | 2027-01-09 | **pending** | independent_human_reviews = 0 | D-ANRI-001: mark Principle 5 as not institutionalised; L4 -> 0.15 |
 | T12 | 2027-04-01 | **pending** | manual check; not machine-evaluable | C2c scoop probability -> 0.85; per D-ANRI-001 adopt their specification and drop the independent claim (manual) |
 | T13 | 2026-10-19 | **not met** | unpushed_commits = 0 | L2 -0.03, L3 -0.03 |
@@ -51,6 +51,7 @@
 | T15 | 2026-10-20 | **not met** | manual check; not machine-evaluable | none (retired); see T17 |
 | T16 | 2026-10-26 | **pending** | manual check; not machine-evaluable | L3 -0.03; declare the gate effective only off the default branch (manual) |
 | T17 | 2026-10-27 | **pending** | manual check; not machine-evaluable | L3 -0.03; declare the gate usable but the results stranded off the default branch (manual) |
+| T18 | 2026-12-31 | **pending** | manual check; not machine-evaluable | L4 -0.05; record that the project has produced a verification infrastructure for a vehicle that has never been specified (manual) |
 
 ### Snapshot trend
 
@@ -333,16 +334,29 @@ EEM 通用化上调 5 个百分点。**
 | T7 | 出现把审查状态机/发布门禁绑定哈希冻结产物的公开发表 | 2027-04-01 | 未触发。**VERID 的数字孪生 + 日志回溯属相邻但不同之物**：它保留过程记录，但未见哈希冻结与审查状态门禁 |
 | T8 | 出现同参数的跨域/HAUV 垂直出水静水压基线 | 2027-04-01 | 未触发（人工） |
 | T9 | A59 式对抗验证协议被领域期刊/会议正式采纳 | 2027-10-01 | 未触发（人工） |
-| T10 | P003 Stage 1 仍有未解决 `Blocked` 单元格 | 2026-11-10 | 未触发（读数 **4**，无变化） |
+| T10 | P003 Stage 1 仍有未解决 `Blocked` 单元格 | 2026-11-10 | **⚠️ 当日下午原地退役**：Stage 1 已重构为「无量纲组 + 迁移条件」，计数器由 4 归零。**但这不是「填上了值」，是「换了问法」** —— 义务由新增的 `T18` 承担，见下方说明 |
 | T11 | 仍无独立人工评审 | 2027-01-09 | 未触发（读数 **0**） |
 | T12 | 磐石或同类机构级平台公开其溯源规范且含哈希冻结或审查状态门禁 | 2027-04-01 | 未触发（人工） |
 | **T13** | 本地提交仍未推送 | 2026-10-19 | **✅ 已解除**（`unpushed = 0`）。**但解除原因含口径修正**，见 §4.6 |
 | T14 | 远端 CI 最近一次运行仍为 `failure` | 2026-10-20 | **未触发**（近几次运行均为 success） |
 | T15 | `main` 与 `feat` 的文件数差仍 >50 | 2026-10-20 | **未触发**：`main` 与 `fix/gate-and-brief` 的差异是 9 个 commit，文件数差已不适用。**该触发条件的定义已过时**，应在 `main` 合并后重述 |
 | T16 | 默认分支与"最近一次 CI 全绿所在分支"不一致 | 2026-10-26 | **条件仍接近成立**：CI 绿在 `fix/gate-and-brief`，`main` 尚未含其内容。合并即解除 |
-| **T17**（新增） | `fix/gate-and-brief` 领先 `main` 的 commit 数 ≥5 且持续 3 天以上 | 2026-10-27 | **🔴 条件当前成立**（领先 **9 个**）。效应：L3 −0.03；判定"门禁机制可用，但成果长期停在非默认分支" |
+| **T17**（新增） | `fix/gate-and-brief` 领先 `main` 的 commit 数 ≥5 且持续 3 天以上 | 2026-10-27 | **🔴 条件当前成立**（领先 **25** 个 commit，且今日仍在增加）。合并 PR #2 即解除 |
+| **T18**（新增） | CDFV-001 仍无独立规格（质量、几何、速度包线、姿态包线） | 2026-12-31 | **🔴 条件当前成立**。迄今所有数值都是 P002 圆柱按 scale 1.0 复用（`CDFV-001-Ref-01B`），而配置文档 §12 自己写着 not claimed to be the final CDFV-001 geometry |
 
 ### 新增触发条件说明
+**T10 退役与 T18 的关系（本日最需要说明的一条）。**
+`T10` 的原判据是「数 P003 Stage 1 表里有几个 `Blocked`」。
+Stage 1 重构后该计数归零，**`T10` 会静默解除** ——
+而它本来要防的正是「用机制上的变化掩盖实质未推进」。
+所以 `T10` 被**原地退役**（保留原文与原因），
+它近似的那项义务由 `T18` 显式承担：
+**CDFV-001 从来没有过自己的规格**。
+
+**这是同一类处理方式的第二次**：`T15` 的前提失效时也是原地退役而非删除，
+因为历次日报与决策记录都引用了它。
+**计数器可以归零，义务不能。**
+
 
 **T17 是对今天发现的度量缺陷的直接补丁。**
 原 `T13` 把"未推送"与"未合并"混为一谈，修正 refspec 后 `T13` 自动解除，

@@ -93,20 +93,38 @@ If an input is unavailable, record “Blocked — source required.” Do not sub
 
 # 7. Method
 
-## Stage 1 — Regime and Geometry Comparison
+## Stage 1 — Regime and Transfer-Condition Comparison
 
-Create and fill this table:
+> **2026-10-20 重构**。原表按**绝对量**对比 P002 与 CDFV-001（出水速度、质量、直径、
+> 长度、姿态），因此 4 个单元格 `Blocked`——CDFV-001 的绝对几何与质量还不存在。
+>
+> 但这张表要回答的从来不是"CDFV-001 上的载荷有多大"，而是
+> "**在什么条件下 P002 的量级结论可以迁移到 CDFV-001**"。
+> 后者是**无量纲**问题，不需要 CDFV-001 的绝对数值。§7.5.5 已给出结构：
+>
+> ```
+> F_suction / W  =  (ρ_w / ρ_body,eff) · G(geometry, Fr, immersion state)
+> ```
+>
+> 所以每行的 "CDFV-001" 列现在写的是**迁移条件（必须满足什么）**，
+> 而不是**被要求的数值（是多少）**。
 
-| Quantity | P002 cylinder | CDFV-001 | Source / status |
-|---|---:|---:|---|
-| Water-exit velocity | 0.1–0.5 m/s | Blocked — source required | P002 §4.1 |
-| Mass / weight reference | 2.030 kg | Blocked — CDFV mass record required | P002 Table 1 |
-| Main diameter | 0.090 m | Not directly applicable until geometry mapping | P002 Table 1 |
-| Main length | 0.323 m | Blocked — CDFV geometry record required | P002 Table 1 |
-| Attitude condition | 5°–25°, at 0.1 m/s | Blocked — transition attitude required | P002 §4.3 |
-| Free-surface load data | Figs. 11–12 | Not yet measured or simulated | P002 §4.1.2 |
+| Dimensionless group | Definition | P002 value | Transfer condition for CDFV-001 | Status |
+|---|---|---|---|---|
+| Froude number | `Fr_D = v / √(g·D)` | 0.106 @0.1 m/s; 0.266 @0.25 m/s; 0.532 @0.5 m/s; saturation at `≈0.27` | CDFV-001 must operate at `Fr_D ≳ 0.27` for the load to be material | Derived from P002 §4.1 |
+| Effective density ratio | `ρ_w / ρ_body,eff`, with `ρ_body,eff = m / (πD²L/4)` | `ρ_body,eff = 988 kg/m³`; ratio = **1.012** | ratio within ±5% of 1.012, else `F_suction/W` rescales **linearly** with the ratio | Derived (Ref-01B `summary.csv`) |
+| Slenderness | `L / D` | **3.589** | assume equal; otherwise a geometry correction is required (§7.5.5 implication 3) | Derived from P002 Table 1 |
+| Immersion state at exit | `h_sub / L` | `0 → 1` over `1.5 L` of travel | the crossing sequence must match: start fully submerged, end fully emerged | `Ref-01B_Initial_Immersion_Decision.md` |
+| Cavity-deficit ratio | `ΔV_cav / V_displaced` | **9.86e-2** (9.9%) | equality is the **untested hypothesis**, not a condition to impose | Hypothesis H4, §7.5.3 |
 
-Completion condition: every CDFV cell is sourced or explicitly blocked.
+Completion condition: **every cell carries either a repository-derived value or an explicit
+transfer condition.** This table no longer asks CDFV-001 for data it cannot supply, which is
+why the four former `Blocked` cells resolve — **they were blocked by the framing, not by a
+missing measurement.**
+
+**What this reframing does NOT do**: it does not establish that CDFV-001 satisfies any of
+these conditions. It states what would have to be true. CDFV-001's actual specification
+remains owed, and is tracked separately (trigger `T18`).
 
 ## Stage 2 — Baseline Definition
 
@@ -228,7 +246,11 @@ F_suction / W  =  (ρ_w / ρ_body,eff) · G(geometry, Fr, immersion state)
 - **immaterial 的条件**：CDFV-001 的机体有效密度远低于 988 kg/m³
   （同等浮力由更大体积提供，使该比值按 ρ_w/ρ_body 缩小），或工作在空腔尚未贯通的区间。
 - **当前判定**：**无法在两者间选择**，因为 CDFV-001 的有效密度、几何与 Froude 区间
-  **全部未知**（Stage 1 四个 Blocked 单元格）。
+  **全部未知**。
+  **2026-10-20 补充**：Stage 1 已重构为无量纲迁移条件（见 §7 的 Stage 1），
+  故"未知"现在以**条件形式**列出，而不再是 4 个 `Blocked` 单元格。
+  三态结论**不变**——仍是 `unresolved`——但理由的形式变了：
+  从前是"缺 CDFV 数据所以无法判断"，现在是"**迁移条件已列出，尚未验证任何一条**"。
 - 关键限定（必须随结论传递）：P002 报告的"吸入力"是**从合力 Z 中提取并拟合的残差**
   （`Paper_Notes` §5、§14 明确要求区分"测量的合力 Z"与"孤立的吸入分量"）。
   本结论因此是**关于合力中自由液面贡献部分的推断**，不是对独立分量的测量结论。
@@ -278,7 +300,8 @@ Implication for D002-001:
 
 P003 is complete only when:
 
-- CDFV-001 velocity and geometry inputs are sourced or explicitly blocked;
+- CDFV-001 velocity and geometry inputs are sourced, or stated as an explicit
+  **transfer condition** in the dimensionless Stage 1 table;
 - the current baseline model is documented;
 - the candidate free-surface term has frame, units, stage, and validity limits;
 - at least one comparison is reproducible from recorded inputs;
@@ -344,7 +367,9 @@ P003 is not complete if it only says “P002 suggests this is important.”
 2. 迁移的困难**不在曲线读取，而在无量纲条件**（Fr、有效密度比、几何），
    故 Stage 4 选项 2（数字化比对）被排除为无效路径。
 3. **为何不直接记为 Accepted/Rejected**：两者都要求已知 CDFV-001 的机体有效密度，
-   而该量不存在（Stage 1 四个 Blocked 单元格）。在缺少该量的情况下记 Accepted 或
+   而该量只能以**迁移条件**形式陈述，尚未被验证任何一条（2026-10-20 起
+   Stage 1 为无量纲条件表，不再是 `Blocked` 单元格）。在条件未被验证时
+   记 Accepted 或
    Rejected 都属于**用推测替代事实**，违反本文件 §6 与 §11 的禁止条款。
 
 ## New assumptions
@@ -451,7 +476,20 @@ Stage 4 已选择**选项 1（解析筛选）**，并由此导出选项 3 的必
 
 ## 16.2 Still open
 
-Stage 1 对比表的 CDFV-001 列**仍为 4 个 `Blocked — source required`**，
+**2026-10-20 起，Stage 1 不再是 `Blocked` 单元格表。** 它已重构为
+**无量纲组 + 迁移条件**（见 §7 的 Stage 1）：每一行给出
+「CDFV-001 必须满足什么」，而不是「CDFV-001 的值是多少」。
+
+**仍然开放的（性质变了，不是消失了）**：
+
+1. **没有任何一条迁移条件被验证过** —— Fr、有效密度比、`L/D`、浸没序列
+   这四条全是「CDFV-001 若满足则可迁移」的**条件**，不是已知事实；
+2. **CDFV-001 仍无独立规格** —— 原表要求它，新表不要求它，
+   但 `Ref-01S` 的制造与触发条件 `T18` 仍然要求它；
+3. **`ΔV_cav/V` 的等式仍是假说**（H4），未经实验检验。
+
+**关键限定**：重构解除了「研究问题被缺数据卡住」这一状态，
+**但没有推进任何物理结论**。三态结论仍为 `unresolved`。
 因为 CDFV-001 的几何、质量与速度包线在本仓库中不存在
 （实测依据：`Research_Planning/P003_Stage1_Sourcing_Checklist.md` §0）。
 

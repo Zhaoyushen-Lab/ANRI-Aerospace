@@ -179,12 +179,12 @@
     {
       "path": "Research_Planning/P003_Free_Surface_Loading.md",
       "role": "input",
-      "sha256": "f4387de0d27da6c9d61450d8775175209679764256bd31831ea949429391faba"
+      "sha256": "9aec4734852259c54bf61b85477d2dc87d63224b3c98fb23aa75eca2a8212fb4"
     },
     {
       "path": "Research_Planning/P003_Stage1_Sourcing_Checklist.md",
       "role": "input",
-      "sha256": "72be826a9e39dd597306237035daca7f51662c5a5aeb719a802571aee01e9fd2"
+      "sha256": "eda141607ace7599cc7ea2e7d3de1b176183eb10fd2b3595cbc5c54d95379145"
     },
     {
       "path": "Research_Planning/P003_B1_Measurement_Spec.md",
@@ -332,6 +332,11 @@
       "sha256": "77181d4c0e3236764d605f6898732c8420f4bc55eb4e46d10bde26bd0c95ee63"
     },
     {
+      "path": "Research_Planning/P003_Stage1_Reframing.md",
+      "role": "input",
+      "sha256": "0314fc838c89cddcb6d3e9921f570027603353693db0a26282340709baee4faf"
+    },
+    {
       "path": "scripts/validate_research_object.py",
       "role": "model",
       "sha256": "ca58353c995a5773414b4724be6e431bd8e8420c1c5f97d8ab250df3cb419ecc"
@@ -339,7 +344,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "f6dcca85cc4bcdcadd3a348909ba8912de6659ef4419fcef822352832550cf6b"
+      "sha256": "4ab3a05aac0497513502d040c22abcbfa6bf25cdc399b3e07ca6dd289ec55073"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -404,12 +409,12 @@
     {
       "path": "Research_Planning/Decision_Log.md",
       "role": "review",
-      "sha256": "bb364bde91c70e3c9301133416614261a4d3a4fd144dbb369845a7ddddfa97b5"
+      "sha256": "22160ea689ccfbc6cc411d47294a917109cbf7d809890d1e7a700ebad03d3329"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "377b6eeddbd3b1a9d045e8b4e1447be69a0a29dcdbb07a6dbd6e450b871a7519"
+      "sha256": "dc144120e1ed8e15b190dd0bac661575e43f41ffc80de9ff4bcc3a52e63a2186"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
