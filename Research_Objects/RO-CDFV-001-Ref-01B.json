@@ -374,7 +374,7 @@
     {
       "path": "docs/ANRI_vs_Existing_Standards.md",
       "role": "input",
-      "sha256": "e554cc856da4b9d3e42b28ef82817c45d6a3650c2a0162dc0bec5710fd32a865"
+      "sha256": "5c441cffdfb645796758adc88dfcf008fa9572f6cbebd8d9da03cee1ed23055c"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -439,7 +439,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "4fee7705475b5a70dddb17d4099941a5152dec801f2705894eee54cfe54d3a63"
+      "sha256": "a6038f9399e040e5e645f45dccf64ae7c93662edcf8e8a51c4b0cf32f66e9538"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",

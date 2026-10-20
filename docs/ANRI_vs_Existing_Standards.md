@@ -179,14 +179,43 @@ A 类（检查式子里写进假设）、C 类（度量在测别的东西）讨�
 
 **威胁**：如果 ANRI 的核心贡献表述为"我们量化了门禁的盲区"，**这篇已经做了，而且规模大三个数量级。**
 
-### 5.4 Kohrt, Melinscak, McElreath, Schönbrodt（Zenodo 10.5281/zenodo.14007038，v2 2024-10-29）
+### 5.4 Kohrt, Melinscak, McElreath, Schönbrodt（**全文已读**，39 页）
 
-- 来源：DFG META-REP (SPP 2317)，LMU München / Wien / MPI-EVA
-- 主题：**复现的结果、错误及其认知功能的正式定义**
-- 关键词含 **"honest errors"**、**"reproduction success"**、**"formal model"**
+正式发表版：*A Conceptual Framework for Computational Reproductions: Formal Definitions and
+Epistemic Functions*，Journal of Trial & Error，doi:10.36850/9ec0-4fab。
+DFG META-REP (SPP 2317)，LMU München / Wien / MPI-EVA。
 
-**威胁**：它给了"错误"的正式定义。ANRI 的失效分类若与之冲突会被质疑。
-**必须先读全文再写 related work** —— 本条**仍未读全文**，只读了元数据。
+**它的核心定义**：
+
+> 复现（reproduction）= "redoing activities"，用**同一批已收集数据**（或仿真源码），
+> 目标是让计算尽可能保持相似；通过**比较结果的一致性**来发挥作用。
+
+**它区分了四个"故障情形"（fault cases）**：
+
+1. 描述不自洽（incoherent descriptions）
+2. 使用了不同的已收集数据（或仿真源码）
+3. 使用了不同的数据分析源码
+4. 结果的报告有误（incorrect reporting of results）
+
+**它的结果分类**：`Non-identical` / `Consistent` / `Consistent (but ...)` / `Inconsistent`，
+并按"重做活动 × 比较项 × 结果"组织成表（`=` 表示该阶段相同，`○` 表示不同）。
+
+#### 与 ANRI 的关系：**对象不同，不冲突**
+
+| | Kohrt et al. | ANRI |
+|---|---|---|
+| 分类的**对象** | **被复现的工作**的故障情形 | **检查器自身**的失效 |
+| 回答的问题 | "复现时发生了什么、原工作哪里错了" | "为什么自动检查没能发现错误" |
+| 四个/七个类别 | 描述不自洽、数据不同、分析码不同、报告有误 | 检查式含假设、修复不跨环境、度量测错东西… |
+
+**逐类核对结论**：Kohrt 的 4 类**没有覆盖** ANRI 的 7 类中任何一类。
+最接近的是"结果报告有误"（fault case 4）与 ANRI 的 C 类（度量在测别的东西），
+但前者说的是**作者**报错，后者说的是**工具**量错。**主体不同。**
+
+> **这是本轮核实中最好的消息**：ANRI 的失效分类学与这个已被正式发表的框架**不冲突**，
+> 因为两者分类的是不同主体的失效。
+
+**但必须引用它**，并且必须用它的一致/不一致术语，否则审稿人会认为术语不自洽。
 
 ### 5.5 已核查但判定**不构成威胁**
 
