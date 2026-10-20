@@ -282,7 +282,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "8b2657e54c796e94f8b6ad5e15e3ce0417f70dcbff0d696b315492efa31a4082"
+      "sha256": "dce2255faf3f962dbad50152528e74ac547c961ee205640999f977a30edc7f28"
     },
     {
       "path": "schema/research_object.schema.json",
@@ -353,6 +353,11 @@
       "path": "Reviews/RO-CDFV-001-Ref-01B_Review_Checklist.md",
       "role": "review",
       "sha256": "303a05e4107a44b259619f0da9a417db3301127a72c1f7b9ec8c1c8ec5d53c04"
+    },
+    {
+      "path": "Reviews/ANRI_Failure_Mode_Report_v0.1.md",
+      "role": "report",
+      "sha256": "352c894df03b27e14ace1d87468fa4fbc7e63854a8c2a7db5afc8005ad570577"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A01_wrong_weight/mutation.json",

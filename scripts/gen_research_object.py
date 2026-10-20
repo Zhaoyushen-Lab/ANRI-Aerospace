@@ -164,6 +164,7 @@ def build_artifact_list() -> list[tuple[str, str]]:
         (REVIEW_REPORT, "review"),
         ("Reviews/DeepSeek_Harness_Repair_Report.md", "review"),
         ("Reviews/RO-CDFV-001-Ref-01B_Review_Checklist.md", "review"),
+        ("Reviews/ANRI_Failure_Mode_Report_v0.1.md", "report"),
     ]
     for case in ADVERSARIAL_CASES:
         base = f"Benchmarks/ANRI-RV-001/adversarial/{case}"
