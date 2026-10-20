@@ -172,12 +172,17 @@
     {
       "path": "Research_Planning/P004_Added_Mass_Screening.md",
       "role": "input",
-      "sha256": "8e29b022cdc99ad7579e92cadeef654e8f37315b3fd2cf1770c57230e033e57f"
+      "sha256": "8b4cd2dbedcc36014efae9fa4347b752cb1cd5c126372c656cb4369c9df3d3c3"
     },
     {
       "path": "Research_Planning/P004_Added_Mass_Coefficient.md",
       "role": "input",
       "sha256": "6993b19674528f9d4f85a8ee4e400d99437a5067cd00a9aff980222d4df7eee8"
+    },
+    {
+      "path": "Research_Planning/P004_Sensitivity_Analysis.md",
+      "role": "input",
+      "sha256": "ca5fd32b28d01f1c86153fc3c7dfd9c6f9ccfe60baf2ebd862b1b3d682da50f8"
     },
     {
       "path": "Research_Planning/P004_Slender_Body_Applicability.md",
@@ -282,7 +287,12 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "8275461b81148d882d5b750c59e3c11a3497b7c23f7812fde7b869c4872917bd"
+      "sha256": "077bdc9620fbca51caa2b1477daeebe4cf3c5a8c9d4b1c48453a17ab1d4addc0"
+    },
+    {
+      "path": "scripts/p004_sensitivity.py",
+      "role": "model",
+      "sha256": "36965a420195ed70f21ab8591e261ba617883482ac91c71022b97a37c84dbedc"
     },
     {
       "path": "schema/research_object.schema.json",
