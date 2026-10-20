@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Regenerate Research_Objects/RO-CDFV-001-Ref-01B.json and its run manifest.
 
 This is the canonical way to refresh the hash-registered record.  Every SHA-256
@@ -97,15 +97,15 @@ def build_artifact_list() -> list[tuple[str, str]]:
 
     Deliberately excluded, with reasons:
 
-    * ``scripts/validate_gate_selftest.py`` 鈥?it mutates and validates a copy of
+    * ``scripts/validate_gate_selftest.py`` 閳?it mutates and validates a copy of
       this record. Hashing the test would make every edit to the test invalidate
       the record it tests, which is circular churn rather than evidence.
     * ``Reviews/DeepSeek_Harness_Repair_Prompt.md`` and the two review-prompt
-      files 鈥?author-facing instructions, not research evidence. The review
+      files 閳?author-facing instructions, not research evidence. The review
       *verdict* and the checklist are registered; the prompts are not.
-    * ``.github/workflows/anri-validation.yml`` 鈥?the gate definition. It is
+    * ``.github/workflows/anri-validation.yml`` 閳?the gate definition. It is
       covered by branch protection and review, not by a self-referential digest.
-    * ``scripts/collect_state.py`` and ``Research_Log/*`` 鈥?measurement tooling
+    * ``scripts/collect_state.py`` and ``Research_Log/*`` 閳?measurement tooling
       and the research log. They observe and narrate the record; registering them
       would move the object's hash on every log entry, and the log is commentary
       rather than evidence. The research evidence itself (model, results,
@@ -123,6 +123,7 @@ def build_artifact_list() -> list[tuple[str, str]]:
         ("Research_Planning/P004_Candidate_Comparison.md", "input"),
         ("Research_Planning/P002_Data_Availability_Check.md", "input"),
         ("Research_Planning/P004_Added_Mass_Screening.md", "input"),
+        ("Research_Planning/P004_Added_Mass_Coefficient.md", "input"),
         ("Experiment_Requests/CLEANROOM-Replication_Task.md", "input"),
         ("Models/CDFV-001/Ref-01B/baseline_model.py", "model"),
         ("Models/CDFV-001/Ref-01B/verify_baseline.py", "model"),

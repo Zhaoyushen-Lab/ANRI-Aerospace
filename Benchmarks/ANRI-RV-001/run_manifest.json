@@ -172,7 +172,12 @@
     {
       "path": "Research_Planning/P004_Added_Mass_Screening.md",
       "role": "input",
-      "sha256": "a8de0d45e81695dfb159f9712bf2ed9c71c19bb384073aeecdab1fae2b45cd1a"
+      "sha256": "8e29b022cdc99ad7579e92cadeef654e8f37315b3fd2cf1770c57230e033e57f"
+    },
+    {
+      "path": "Research_Planning/P004_Added_Mass_Coefficient.md",
+      "role": "input",
+      "sha256": "749307ee9d881f4777d8cd9283c412e8e419e61c156231f8863532aacc2e2528"
     },
     {
       "path": "Experiment_Requests/CLEANROOM-Replication_Task.md",
@@ -272,7 +277,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "13bf9f13dd59fd2f6bbe37855815e93b63a233d42087600503789a98f3b16bac"
+      "sha256": "e51075afd475e296fef1a0c0964b9108b617cf0c56989e745b21a7feadcba0db"
     },
     {
       "path": "schema/research_object.schema.json",
@@ -327,7 +332,7 @@
     {
       "path": "Research_Planning/Decision_Log.md",
       "role": "review",
-      "sha256": "901507c23e8d7008fe136219a2959ec3a4f68c6e78824e19f4994497cb558f73"
+      "sha256": "c85df3c31942a9fbe645f862cb29ec31032d9911ee32bdc760849e93ef05b798"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
