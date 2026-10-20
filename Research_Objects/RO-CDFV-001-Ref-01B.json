@@ -354,7 +354,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "56af87deaeec4dad2d053daa87b3f77e3117bfd352b08fe47feec3bedeb8134a"
+      "sha256": "f88bf816b14484a8ef9d93c7892145783e7499b2c80ba7d36edbcdb3ab37859e"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -370,6 +370,11 @@
       "path": "docs/ANRI_Sustainability.md",
       "role": "input",
       "sha256": "df8bc9ab44ec1063aca71e3a3655c6e18bb8e4ac4e87bdb0640f843be852d25e"
+    },
+    {
+      "path": "docs/ANRI_vs_Existing_Standards.md",
+      "role": "input",
+      "sha256": "4c0834740b7157ef8b0f852f011269fd6f97d2e653c02828a53dd3a7b18215a9"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -434,7 +439,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "28a3d3aa81b63e51d933c15c14437f99064b0bbe898744f2e8fcbd9f3e2dd3cc"
+      "sha256": "ff98f352f177f8dd7db2def8931c61f0f525a4f29f1d8e2fd2ac89c1d274543a"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",

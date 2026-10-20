@@ -159,6 +159,7 @@ def build_artifact_list() -> list[tuple[str, str]]:
         ("scripts/p004_sensitivity.py", "model"),
         ("schema/research_object.schema.json", "schema"),
         ("docs/ANRI_Sustainability.md", "input"),
+        ("docs/ANRI_vs_Existing_Standards.md", "input"),
         ("CONTRIBUTING.md", "input"),
         ("Benchmarks/ANRI-RV-001/make_adversarial_cases.py", "model"),
         ("Benchmarks/ANRI-RV-001/run_adversarial_cases.py", "model"),
