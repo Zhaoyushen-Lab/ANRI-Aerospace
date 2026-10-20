@@ -292,7 +292,7 @@
     {
       "path": "Experiment_Requests/CLEANROOM-Handoff_Record.md",
       "role": "input",
-      "sha256": "f90ca795578628942bef72c12015debb9824933caf2f121f195700cfbb2b0421"
+      "sha256": "77181d4c0e3236764d605f6898732c8420f4bc55eb4e46d10bde26bd0c95ee63"
     },
     {
       "path": "scripts/validate_research_object.py",
