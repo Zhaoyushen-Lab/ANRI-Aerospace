@@ -93,7 +93,7 @@ represent a CDFV-specific experimental validation.
 
 | Parameter | Status | Reason |
 |---|---|---|
-| Initial immersion depth | Open | P002 conditions vary between experiments |
+| Initial immersion depth | Resolved for Ref-01B | P002 varies, so a convention is used: fully submerged at `z_center = -0.75 L`. Arbitrary within `z_start <= -L/2` for the baseline, since the free-surface term is excluded; not arbitrary once P003 adds it. See `Research_Planning/Ref-01B_Initial_Immersion_Decision.md` |
 | Digital filter | Not reported in P002 | Cannot be reconstructed reliably |
 | Complete force/moment transformation | Review required | Coordinate convention must be confirmed |
 | Propulsion thrust | Not modeled | Motion is treated as prescribed |
@@ -418,7 +418,7 @@ The study should produce:
 | Iy | 0.145 kg·m² | P002 Table 1 | Literature reference |
 | Water-exit velocity | 0.1–0.5 m/s | P002 Section 4.1 | Literature reference |
 | Initial attitude | 0° | Initial research simplification | Proposed |
-| Initial immersion | Not selected | Must not be inferred from rod length | Open |
+| Initial immersion | **Fully submerged**, `z_center = -0.75 L = -0.242250 m` (`h_sub = L`, `immersion_fraction = 1.0`, buoyancy = full 20.151069 N) | Explicit assumption, not a measurement; P002 reports no depth and the rod-length inference is forbidden. See `Research_Planning/Ref-01B_Initial_Immersion_Decision.md` | **Assumed** |
 | Fluid properties | Fresh water; temperature not yet specified | Experiment definition | Open |
 
 ### 17.2 Scaled Experimental Candidate

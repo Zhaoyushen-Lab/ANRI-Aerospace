@@ -167,8 +167,15 @@ def simulate_case(
     if dt_s <= 0.0:
         raise ValueError("dt_s must be positive")
 
-    # The default interval starts and ends half a radius beyond the fully
-    # submerged/fully emerged positions, while remaining relative to L.
+    # The default interval starts and ends a quarter of a body LENGTH beyond the
+    # fully submerged (-L/2) and fully emerged (+L/2) centres, i.e. 0.25*L =
+    # 0.080750 m, which is 1.79 radii - not "half a radius", as an earlier comment
+    # claimed. See Research_Planning/Ref-01B_Initial_Immersion_Decision.md.
+    #
+    # Within the baseline the exact clearance does not matter: the free-surface term
+    # is excluded (L-EXCLUDED-PHYSICS), so any z_start <= -L/2 gives an identical
+    # first row of full buoyancy and the only difference is how long that state is
+    # held. It stops being arbitrary once P003 adds the free-surface term.
     if z_start_m is None:
         z_start_m = -0.75 * cfg.length_m
     if z_end_m is None:
