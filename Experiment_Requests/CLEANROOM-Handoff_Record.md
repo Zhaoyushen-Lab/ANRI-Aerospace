@@ -1,0 +1,160 @@
+# 清室复现交付记录（2026-10-20）
+
+> **本文档记录一次交付，以及交付形式上的一个**有争议的决定**。**
+>
+> - 交付对象：独立执行者（非项目成员）
+> - 触发原因：对方**无法访问 GitHub**，原任务书要求 clone 不可行
+> - 决定：**交付无 `.git` 的文件树，而不是克隆**
+
+---
+
+## 1. 交付内容
+
+| 文件 | 大小 | 用途 |
+|---|---:|---|
+| `ANRI-Aerospace.zip` | 4.34 MB | **主任务**：完整树，回答任务书第 1–2 节 |
+| `ANRI-Aerospace_faulted.zip` | 4.34 MB | **盲测**：同一棵树，一个数字被改坏，回答第 3 节 |
+| `CLEANROOM-Replication_Task_HANDOUT.md` | — | 任务书（执行者版） |
+| `CHECKSUMS.txt` | — | 两个包的 SHA-256 |
+| `给舍友的说明.txt` | — | **只讲物流**的转交说明 |
+
+**对应仓库状态**：`9df508c`（2026-10-20），`artifacts = 89`。
+
+---
+
+## 2. 关键决定：不给 `.git`
+
+### 2.1 原任务书要求 clone
+
+`Experiment_Requests/CLEANROOM-Replication_Task.md` §1 写的是：
+
+> "克隆下面这个仓库…… 仓库地址：`https://github.com/...` 使用分支：`main`"
+
+### 2.2 克隆会毁掉任务前提
+
+本仓库的 commit message **异常详细**。例如：
+
+- `Add a cold-start CI job, and stop guessing the repository root`
+  正文解释了 `F7` 只修了一半、`..` 检查不够、以及根定位的两种失败方式；
+- `Measure which columns the verifier actually constrains`
+  正文写明了覆盖矩阵的结论与我自己被推翻的断言；
+- `Deliver the failure-mode report D-ANRI-001 promised`
+  正文列出了七个失效类别。
+
+**一个能读 `git log` 的执行者，会直接读到答案。** 而任务书 §4 明确禁止
+"先读验证脚本的实现"——理由正是要保持判断的独立性。
+
+> **结论：带历史的交付与任务的目的是自相矛盾的。**
+> 不是物流妥协，是**方法上的必要条件**。
+
+### 2.3 代价（必须承认）
+
+| 失去的 | 影响 |
+|---|---|
+| `git log` / 分支结构 | 执行者无法看到演进过程；但任务书并不要求 |
+| `git diff` 定位改动 | 盲测时不能靠 diff 找故障，只能靠物理关系——**这反而更接近真实审计** |
+| 分支语义（`main` vs 分支） | 执行者拿到的是**单一状态**，不存在"该用哪个分支"的歧义 |
+
+**第 4 条是意外收益**：当时 `main` 落后 22 个 commit，
+若真让他 clone 再"使用 main"，他会复现一个**已知更差**的旧版本。
+纯文件树消除了这个陷阱。
+
+---
+
+## 3. 第二个决定：不含 `Paper_Library`
+
+`Paper_Library/` 是 32.9 MB 的参考文献 PDF，占仓库工作区 30.9%。
+
+**剔除理由**：
+
+1. **不参与任何验证步骤**——`Research_Objects/RO-CDFV-001-Ref-01B.json` 的
+   89 个注册产物中，PDF 数量为 **0**；
+2. 任务书全文**未提及** `Paper_Library`；
+3. 剔除后 4.34 MB vs 若含 PDF 则 > 35 MB，传输成本差 8 倍。
+
+**已在任务书正文中显式声明**，避免执行者以为缺文件。
+
+---
+
+## 4. 交付前验证（已做）
+
+**交付物必须自己先能跑**——否则执行者会把"包坏了"误记为"仓库不可复现"。
+
+### 4.1 完整包：五项门禁在解压树中全部通过
+
+```
+1 object validator  exit=0
+2 verify_baseline   exit=0
+3 negative cases    exit=0
+4 adversarial       exit=0
+5 mechanism         exit=0
+```
+
+**解压树无 `.git`**，且 `results_directory = Models/CDFV-001/Ref-01B/results`
+——**路径正确**。
+
+这一点端到端验证了 `1d9fcbe` 的 `repository_root` 修复：
+该修复的动机正是"无 `.git` 时根定位失效"，而现在交付物本身就是那种形态。
+
+### 4.2 盲测包：故障确实存在且确实可检出
+
+用仓库自带的 `make_blind_copy.py --fault F1` 生成，实测差异：
+
+```
+Ref-01B-B-0p25mps.csv  row 970  buoyancy_N
+  10.059937883812937 -> 10.562934778003585   （+5%）
+```
+
+校验器结果：
+
+```
+verify_baseline exit=1
+  Ref-01B-B-0p25mps.csv  force_balance: FAIL
+  max_abs(constraint + buoyancy - weight - mass*acceleration) = 0.502996894 N
+```
+
+**故障在数据里，且能被检出。** 若不验证这一点，
+盲测可能在"故障根本不存在"的情况下静默地什么都没测到。
+
+### 4.3 答案键未进入任何一个包
+
+实测两个 zip 内匹配 `ANSWER|answer_key|REPLICATION_LOG` 的条目数：**0**。
+答案键仍在 `Blind_Copies/ANSWER_KEY-F1.txt`（副本之外）。
+
+---
+
+## 5. 一个过程中的失误（记录而非隐藏）
+
+首次打包时 `make_blind_copy.py --dest X` 生成了 `X/blind-f1/`，
+而我打包的是 `X`，导致 zip 顶层只有一个 `blind-f1/` 目录
+——执行者解压后会**多一层目录**，且 `Paper_Library` 的剔除也没生效
+（我删的是 `X/Paper_Library`，实际在 `X/blind-f1/Paper_Library`）。
+
+**发现方式**：对比两个包的大小（4.3 MB vs 35.3 MB），4 个文件的差异不可能有 31 MB。
+
+**修正后**：两个包都是 179 文件 / 4.34 MB / 顶层为 `ANRI-Aerospace/`。
+
+---
+
+## 6. 本记录没有做的事
+
+1. **没有把这两个包纳入哈希注册**——它们是交付物快照，会随每次交付重建，
+   冻结其哈希无意义。`CHECKSUMS.txt` 里的值是**本次**的。
+2. **没有修改 `Experiment_Requests/CLEANROOM-Replication_Task.md`**。
+   那份是**规范协议**（clone 是它描述的意图）；
+   本次的偏离记录在本文档与执行者版任务书中。**两者并存，差异显式。**
+3. **没有解决执行者的 GitHub 访问问题**。本文档只是绕过它。
+
+---
+
+## 7. 方法论声明
+
+- **事实部分**：文件数、体积、SHA-256、门禁退出码、故障单元格差异，
+  均为实测。
+- **判断部分**：§2.2 "克隆毁掉任务前提"、§2.3 的取舍、§3 的剔除理由，
+  **均为判断**。其中 §2.2 是本次最可能被反对的一条——
+  若认为 commit message 不构成泄题，则纯文件树就是不必要的限制。
+- **一个无法回避的限制**：执行者仍可能从
+  `Reviews/ANRI_Failure_Mode_Report_v0.1.md` 读到大量失效分析——
+  **那份文档在交付树里**。它不直接给出任务书第 3 节的答案（故障是哪一个数字），
+  但会大幅降低发现难度。**本次未剔除，这是一个已知的泄漏面。**

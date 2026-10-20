@@ -327,6 +327,11 @@
       "sha256": "b9173860a7eb288ddb04d1b23f5fef98f109daf011f245520886ca846817c106"
     },
     {
+      "path": "Experiment_Requests/CLEANROOM-Handoff_Record.md",
+      "role": "input",
+      "sha256": "f90ca795578628942bef72c12015debb9824933caf2f121f195700cfbb2b0421"
+    },
+    {
       "path": "scripts/validate_research_object.py",
       "role": "model",
       "sha256": "ca58353c995a5773414b4724be6e431bd8e8420c1c5f97d8ab250df3cb419ecc"
@@ -334,7 +339,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "fd918db4ffbf48f94c094dd3d5ed46a5e406a31d80d80c0ca34f2a4ee65c26d3"
+      "sha256": "f6dcca85cc4bcdcadd3a348909ba8912de6659ef4419fcef822352832550cf6b"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -404,7 +409,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "95112476a2c8228776da4e1d955f5f0dbd4a8c4b3a41359b343c946073bd174e"
+      "sha256": "c2154433166418eb47d7622b2f8ec47d3659a5fa25482a5a2f47ec80d8c01f7e"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
