@@ -419,7 +419,7 @@ The study should produce:
 | Water-exit velocity | 0.1–0.5 m/s | P002 Section 4.1 | Literature reference |
 | Initial attitude | 0° | Initial research simplification | Proposed |
 | Initial immersion | **Fully submerged**, `z_center = -0.75 L = -0.242250 m` (`h_sub = L`, `immersion_fraction = 1.0`, buoyancy = full 20.151069 N) | Explicit assumption, not a measurement; P002 reports no depth and the rod-length inference is forbidden. See `Research_Planning/Ref-01B_Initial_Immersion_Decision.md` | **Assumed** |
-| Fluid properties | Fresh water; temperature not yet specified | Experiment definition | Open |
+| Fluid properties | Fresh water, **rho = 1000 kg/m^3** fixed; temperature is not an independent parameter (it enters only through rho, and drag/viscosity is excluded) | Explicit assumption. Note rho = 1000 corresponds to about 4 C, so a 20 C tank would sit 0.177% lower in full buoyancy. See `Research_Planning/Ref-01B_Fluid_Properties_Decision.md` | **Assumed** |
 
 ### 17.2 Scaled Experimental Candidate
 

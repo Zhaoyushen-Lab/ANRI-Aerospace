@@ -137,7 +137,7 @@
     {
       "path": "Research_Planning/CDFV-001_Reference_Configuration.md",
       "role": "input",
-      "sha256": "8528990f74db871be309a44de4cd760481ae23b555f32f6e0e702174547697c4"
+      "sha256": "d0045dbbbf84aca2469365b45f70d5bcfb5c22a0299948569ea4137c8c5d227d"
     },
     {
       "path": "Research_Planning/P003_Free_Surface_Loading.md",
@@ -285,6 +285,11 @@
       "sha256": "edb0dfd3a44bdc6d2bcf1e58b94339193df9d353d53b5ca263dee3afc13558bf"
     },
     {
+      "path": "Research_Planning/Ref-01B_Fluid_Properties_Decision.md",
+      "role": "input",
+      "sha256": "b9173860a7eb288ddb04d1b23f5fef98f109daf011f245520886ca846817c106"
+    },
+    {
       "path": "scripts/validate_research_object.py",
       "role": "model",
       "sha256": "ca58353c995a5773414b4724be6e431bd8e8420c1c5f97d8ab250df3cb419ecc"
@@ -292,7 +297,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "5606f97114cdd7e072333f925efa59c196b8ab4c9c1f4cead86de29a53b8359b"
+      "sha256": "fd918db4ffbf48f94c094dd3d5ed46a5e406a31d80d80c0ca34f2a4ee65c26d3"
     },
     {
       "path": "scripts/p004_sensitivity.py",
