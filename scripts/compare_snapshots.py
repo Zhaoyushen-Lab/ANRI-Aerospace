@@ -287,6 +287,26 @@ TRIGGERS: list[dict[str, Any]] = [
         ),
         "check": "manual",
     },
+    {
+        "id": "T19",
+        "created": "2026-10-20",
+        "description": (
+            "Both research questions are still unresolved and no new experiment or "
+            "simulation has been started to resolve either. Raised by D-ANRI-007, which "
+            "gave up the framework-priority claim after four earlier works were verified "
+            "to have taken it, and moved the centre of gravity to domain results. This "
+            "trigger exists because that decision is easy to write and easy to drift away "
+            "from: writing more infrastructure always feels like progress and never "
+            "produces a result. If it fires, the honest reading is that releasing "
+            "framework priority was recorded but not acted on."
+        ),
+        "threshold": "2026-11-20",
+        "effect": (
+            "L5 -0.05; record that the pivot from protocol to domain result was "
+            "written and not executed (manual)"
+        ),
+        "check": "manual",
+    },
 ]
 
 REPAIR_BASE_COMMIT = "abc91031930943c308edea73a97a120cbd6b8bf5"

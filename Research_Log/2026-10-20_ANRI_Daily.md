@@ -52,6 +52,7 @@
 | T16 | 2026-10-26 | **pending** | manual check; not machine-evaluable | L3 -0.03; declare the gate effective only off the default branch (manual) |
 | T17 | 2026-10-27 | **pending** | manual check; not machine-evaluable | L3 -0.03; declare the gate usable but the results stranded off the default branch (manual) |
 | T18 | 2026-12-31 | **pending** | manual check; not machine-evaluable | L4 -0.05; record that the project has produced a verification infrastructure for a vehicle that has never been specified (manual) |
+| T19 | 2026-11-20 | **pending** | manual check; not machine-evaluable | L5 -0.05; record that the pivot from protocol to domain result was written and not executed (manual) |
 
 ### Snapshot trend
 
@@ -343,6 +344,7 @@ EEM 通用化上调 5 个百分点。**
 | T16 | 默认分支与「最近一次 CI 全绿所在分支」不一致 | 2026-10-26 | **✅ 已解除**（2026-10-20 合并后，`main` = `a09fda0`，CI 在 `main` 上 `push` 事件 success）。**不退役**：这是可复发条件 |
 | **T17**（新增） | 长期分支领先 `main` 的 commit 数 ≥5 且持续 3 天以上 | 2026-10-27 | **✅ 已解除**（合并后 `origin/main..HEAD = 0`）。**不退役**：这是可复发条件，下次开长分支时会再次适用 |
 | **T18**（新增） | CDFV-001 仍无独立规格（质量、几何、速度包线、姿态包线） | 2026-12-31 | **🔴 条件当前成立**。迄今所有数值都是 P002 圆柱按 scale 1.0 复用（`CDFV-001-Ref-01B`），而配置文档 §12 自己写着 not claimed to be the final CDFV-001 geometry |
+| **T19**（新增） | P003 与 P004 仍均 `unresolved`，且未启动任何新实验或仿真 | 2026-11-20 | **🔴 条件当前成立**（两个问题均 `unresolved`；B1 尚未开始）。**这是 `D-ANRI-007` 的防回退判据**：写下「放下框架优先权」很容易，真正做到不容易 |
 
 ### 新增触发条件说明
 **T10 退役与 T18 的关系（本日最需要说明的一条）。**
