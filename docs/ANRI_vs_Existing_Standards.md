@@ -113,38 +113,107 @@ D. Watts（独立研究者），**2026-10-08 发布**，Informational，2027-04-
 
 ---
 
-## 4. 论文的新颖性还能站在哪里（我的判断）
+## 4. 论文的新颖性还能站在哪里（2026-10-20 联网核实后修订）
 
-| 候选贡献 | 是否可能新颖 | 依据 |
+> **§5 的三篇论文全文摘要已读。结论：新颖性比我原先估计的更窄，但有一处站得住。**
+
+|候选贡献|状态|依据|
 |---|---|---|
-| **① 基于实现的失效分类法（7 类 26 条）** | **可能新颖** | 未检索到同类"对验证工具自身的失效分类"；`[待核实]` |
-| **② 覆盖矩阵：量化门禁看不见什么（13/26）** | **可能新颖** | Watts §6 说了"通过只说明通过了所声明的测试"，但**没有量化**；`[待核实]` |
-| **③ "修复只在测试环境成立"（F7 类）** | **可能新颖** | 未检索到；`[待核实]` |
-| ④ 区分完整性与正确性 | ❌ **已被覆盖** | Watts 2026-10-08 |
-| ⑤ 内容寻址 + 追加历史 | ❌ 已被覆盖 | Watts、RO-Crate、PROV |
-| ⑥ 复现记录需含容差 | ❌ 已被覆盖 | Watts §6 |
+|① "通过测试"不等于"正确"这一**观察**|❌ **已被三处独立报告**|见 §5.2、§5.3、§5.4|
+|② **量化**门禁看不见什么（13/26 覆盖矩阵）|⚠️ **形式相近者已存在**|ReproScore 在 423 个仓库上量化了 readiness–outcome 差距（§5.3）|
+|③ "修复只在测试环境成立"（F7 类）|**可能仍新颖**|三篇均未涉及**跨环境可移植性**这一具体机制|
+|④ 区分完整性与正确性|❌ 已被覆盖|Watts 2026-10-08（§3）|
+|⑤ 内容寻址 + 追加历史|❌ 已被覆盖|Watts、RO-Crate、PROV|
+|⑥ 复现记录需含容差|❌ 已被覆盖|Watts §6|
 
-**若 ①②③ 都站得住，论文仍然成立**，但标题和引言必须重写：
-从"我们发现了一个区别"改为"**我们测量了一个已被提出的原则在实践中失效的方式**"。
+**核心判断**：ANRI 的**观察**（测试通过≠正确）已不是新鲜事。
+**真正可能还空着的，是"跨环境失效"这一类**——但要立住它，样本只有 2 条（F7、G-1），**太薄**。
 
 ---
 
-## 5. 其他已发现的相邻工作（`[待核实]`，仅有标题与片段）
+## 5. 已核实的相邻工作（逐篇读过摘要）
 
-| 工作 | 为什么相关 |
+### 5.1 Watts, IETF draft-00（2026-10-08）
+
+见 §3。**概念框架已被覆盖。**
+
+### 5.2 Bai et al., *When Passing Tests Hides Vulnerabilities*（arXiv:2609.10548，2026-06-25）
+
+**这是方法上最接近 ANRI 的一篇。**
+
+摘要核实要点：
+
+- 研究对象：LLM 代码修复代理的**静默失效**（通过了语法与功能验证，但仍保留或引入安全漏洞）
+- 规模：**1,030 条有效执行轨迹**，7 个代理框架，2 个安全数据集
+- 编码方法：**三轮定性编码 + 人工核验**，确认 **170 条静默失效**
+- 分类：**3 个主类 + 10 个细粒度编码**（Omission 48.2% / Introduction 30.6% / Inadequacy 21.2%）
+- 关键结论(iii)：**"Current test-passing evaluation and LLM-based reviewer roles were
+  insufficient to expose or intercept these failures"**
+
+| 与 ANRI 的对比 | ANRI | Bai et al. |
+|---|---|---|
+| 分析单元 | **检查器自身的盲区** | **被检查者的失效** |
+| 样本 | 26 条缺陷，1 个项目 | 170 条，1,030 轨迹 |
+| 编码程序 | **无** | **三轮定性编码 + 人工核验** |
+| 评分者间信度 | **无** | 有（编码迭代）|
+
+**威胁**：它已经说了"通过测试不等于正确"，**而且方法远比 ANRI 严谨**。
+
+**机会**：它的分析单元是**代理的缺陷**，不是**检查器的盲区**。ANRI 的 7 类里
+A 类（检查式子里写进假设）、C 类（度量在测别的东西）讨论的是**检查器自己**，
+这一层它没有做。
+
+### 5.3 Samuel et al., *ReproScore*（arXiv:2605.13275，2026-05-13）
+
+摘要核实要点：
+
+- 命名了一个现象：**"the readiness–outcome conflation"**——把"仓库里有什么"当作"能不能跑"的代理
+- 两层框架：readiness (RRS) 与 outcome (ROS)
+- **RRS 含 26 个子指标，5 个类别**
+- 在 **423 个 GitHub 仓库**上评估，跨 5 种失效模式
+- 关键结论：**"RRS exhibits near-zero binary success correlation, empirically quantifying
+  the readiness–outcome gap at repository scale"**
+
+**这是 ANRI 覆盖矩阵的"大规模版本"**：两者都在量化"检查项通过"与"实际正确"的差距。
+差别只在对象（研究软件仓库 vs 单个研究对象的产物门禁）与规模（423 vs 1）。
+
+**威胁**：如果 ANRI 的核心贡献表述为"我们量化了门禁的盲区"，**这篇已经做了，而且规模大三个数量级。**
+
+### 5.4 Kohrt, Melinscak, McElreath, Schönbrodt（Zenodo 10.5281/zenodo.14007038，v2 2024-10-29）
+
+- 来源：DFG META-REP (SPP 2317)，LMU München / Wien / MPI-EVA
+- 主题：**复现的结果、错误及其认知功能的正式定义**
+- 关键词含 **"honest errors"**、**"reproduction success"**、**"formal model"**
+
+**威胁**：它给了"错误"的正式定义。ANRI 的失效分类若与之冲突会被质疑。
+**必须先读全文再写 related work** —— 本条**仍未读全文**，只读了元数据。
+
+### 5.5 已核查但判定**不构成威胁**
+
+| 工作 | 为什么不是威胁 |
 |---|---|
-| *The logic of computational reproductions: Formal definitions of outcomes, errors, and their epistemic function* | **形式化定义了复现的"结果"与"错误"**——与失效分类法直接相邻，**必须读全文** |
-| *A conceptual framework for computational reproductions* | 同上 |
-| **ReproScore**: Separating Readiness from Outcome in Research Software Reproducibility Assessment | 区分"就绪度"与"结果"——与 ANRI 的 review 状态机相邻 |
-| **MIRROR**: Local Evidence Bundles for Reproducible Research Software Review | 本地证据包——与 ANRI 的产物打包相邻 |
-| **Modelstamp**（论文片段提到"rejected the tested artifact modifications and authentication violations covered by its stated guarantee"） | 有安全保证的产物验证系统——**威胁模型比 ANRI 完整** |
-| arXiv 2607.27556（片段："most systems implement multiple Function and Evidence dimensions, yet the majority remain at V3"） | 像是一份**成熟度调查**，可能已有系统对比表 |
-| arXiv 2603.06394（片段："Table 3 summarizes 20 representative systems"） | **20 个系统的对比表**——必须逐一比对 |
-
-**这批全部需要读全文。仅凭标题与片段不足以判断重叠度。**
+| Strickland et al.（arXiv:2603.06394，2026-03-06）*Talk Freely, Execute Strictly* | 研究对象是 **LLM 编排的 schema 门控**（execution determinism vs conversational flexibility），评审 20 个系统。**与验证器失效无关** |
+| CODECHECK（codecheck.org.uk） | 人工代码检查工作流，是**流程倡议**，非失效分析 |
+| arXiv:1609.00331 | "验证器本身也需要被信任"——**这是同一问题的早期表述，应引用** |
 
 ---
 
+## 5.6 由这批文献得出的一个不舒服的结论
+
+**ANRI 的方法学严谨度低于它所在领域的现有水准。**
+
+| 维度 | 该领域 | ANRI |
+|---|---|---|
+| 样本 | 170 / 1,030 / 423 | **26 / 1** |
+| 编码程序 | 三轮定性编码 + 人工核验 | **无** |
+| 评分者间信度 | 有 | **无** |
+| 复现性 | 数据集公开 | 产物哈希冻结（**这一项 ANRI 更强**）|
+
+**因此：ANRI 不能靠"方法更严谨"取胜，只能靠"对象不同"取胜。**
+若对象差异（检查器自身的盲区、跨环境失效）不足以支撑一篇论文，
+**那么诚实的结论是：这个题目已经被更好的团队做过了。**
+
+**该判断必须在动笔前接受或否证，不能绕过。**
 ## 6. 空槽：必须由你填的部分
 
 > **以下每一项都必须读原文后填写。不得凭标题推断。**
