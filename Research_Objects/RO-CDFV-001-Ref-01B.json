@@ -214,7 +214,12 @@
     {
       "path": "Research_Planning/P004_Added_Mass_Coefficient.md",
       "role": "input",
-      "sha256": "749307ee9d881f4777d8cd9283c412e8e419e61c156231f8863532aacc2e2528"
+      "sha256": "6993b19674528f9d4f85a8ee4e400d99437a5067cd00a9aff980222d4df7eee8"
+    },
+    {
+      "path": "Research_Planning/P004_Slender_Body_Applicability.md",
+      "role": "input",
+      "sha256": "c051840d8bf3a8f544d735bc27253b5f26f4bc8400ddbbf22aa3d5c2d0449ceb"
     },
     {
       "path": "Experiment_Requests/CLEANROOM-Replication_Task.md",
@@ -314,7 +319,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "e51075afd475e296fef1a0c0964b9108b617cf0c56989e745b21a7feadcba0db"
+      "sha256": "8b2657e54c796e94f8b6ad5e15e3ce0417f70dcbff0d696b315492efa31a4082"
     },
     {
       "path": "schema/research_object.schema.json",
@@ -374,7 +379,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "945ea99fd1dd0ae91df7556e9739754258ca07c0b0aedb769782fd66405ad253"
+      "sha256": "8e82ad0ec20e142df635eea2a5fb8bf136feceabef6b81441e7f512854c6c1f2"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
