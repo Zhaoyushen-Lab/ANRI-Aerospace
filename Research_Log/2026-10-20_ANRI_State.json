@@ -2,20 +2,20 @@
   "schema_version": "1",
   "kind": "anri_state_snapshot",
   "as_of_date": "2026-10-20",
-  "generated_utc": "2026-10-20T08:07:45.316400+00:00",
+  "generated_utc": "2026-10-20T08:53:45.358225+00:00",
   "note": "generated_utc is wall-clock and NOT part of the compared payload; compare everything else.",
   "head": {
-    "commit": "e4d46dbe4dbaab12319fcc6f9bd41b3037de5eb2",
-    "summary": "e4d46db 2026-10-20 P004 Stage 2: add accelerated cases so the inertial term is observable"
+    "commit": "9ea9103954adcf5dada69619ee7159f6696bd5ce",
+    "summary": "9ea9103 2026-10-20 Add the 2026-10-20 daily report"
   },
   "worktree": {
-    "pending_entries": 3,
+    "pending_entries": 1,
     "staged": 1,
-    "untracked": 2,
+    "untracked": 0,
     "unpushed_commits": 0
   },
   "line_endings": {
-    "files": 171,
+    "files": 173,
     "index_crlf": 0,
     "worktree_crlf": 0
   },

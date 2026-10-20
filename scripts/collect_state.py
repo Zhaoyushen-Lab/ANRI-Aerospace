@@ -457,6 +457,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--no-suite", action="store_true")
     parser.add_argument("--date", default=None, help="Override the as_of date.")
     parser.add_argument(
+        "--force",
+        action="store_true",
+        help=(
+            "Overwrite an existing snapshot whose as_of date is not today. Refused by "
+            "default: a snapshot is a historical fact, and re-running the collector "
+            "for a past date writes TODAY's state under that past date, silently "
+            "destroying cross-day comparability."
+        ),
+    )
+    parser.add_argument(
         "--scratch",
         type=Path,
         default=Path(sys.prefix).parent / "anri-state-selftest",
@@ -464,6 +474,34 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     as_of = args.date or date.today().isoformat()
+
+    if args.out is not None:
+        out_path = args.out if args.out.is_absolute() else REPO / args.out
+        if out_path.is_file() and not args.force:
+            try:
+                existing = json.loads(out_path.read_text(encoding="utf-8"))
+                existing_as_of = str(existing.get("as_of_date", ""))
+            except Exception:
+                existing_as_of = ""
+            if existing_as_of and existing_as_of != date.today().isoformat():
+                print(
+                    f"REFUSED: {out_path.name} already records {existing_as_of}, which "
+                    "is not today.",
+                    file=sys.stderr,
+                )
+                print(
+                    "A snapshot is a historical fact. Writing today's state under a "
+                    "past date would silently change a previously recorded day, so the "
+                    "delta between days would no longer mean what it says.",
+                    file=sys.stderr,
+                )
+                print(
+                    "Pass --force only if you intended to rewrite history, and say so "
+                    "in the report.",
+                    file=sys.stderr,
+                )
+                return 2
+
     data = snapshot(run_suite=not args.no_suite, scratch=args.scratch, as_of=as_of)
     text = json.dumps(data, indent=2, ensure_ascii=False) + "\n"
 

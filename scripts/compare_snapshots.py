@@ -210,12 +210,19 @@ TRIGGERS: list[dict[str, Any]] = [
     {
         "id": "T15",
         "created": "2026-10-13",
-        "description": (
-            "main and feat still differ by more than 50 files, i.e. the real research "
-            "content has stayed off the default branch."
-        ),
         "threshold": "2026-10-20",
-        "effect": "L3 -0.03, L5 -0.02 (manual)",
+        "description": (
+            "[RETIRED 2026-10-20] Superseded by T17. This rule compared the FILE COUNTS "
+            "of main and feat; after PR #1 both stand at 162 files, so the measure can "
+            "no longer see work that has moved to another branch. Kept in the list "
+            "rather than deleted because the 2026-10-13, 10-19 and 10-20 reports "
+            "reference it, and removing the id would make those references point at "
+            "nothing. T17 replaces it with a commit-distance test that depends on "
+            "neither branch names nor file counts. Original text: main and feat still "
+            "differ by more than 50 files, i.e. the real research content has stayed "
+            "off the default branch."
+        ),
+        "effect": "none (retired); see T17",
         "check": "manual",
     },
     {
