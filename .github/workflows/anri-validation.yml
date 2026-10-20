@@ -90,3 +90,65 @@ jobs:
             exit 1
           fi
           echo "frozen artifacts are byte-identical after regeneration"
+
+  cold-start:
+    # Every step in the `validate` job runs inside a checkout, and every checkout
+    # has a .git directory. That is a real blind spot: `verify_baseline.py` locates
+    # the repository root by searching upward for .git, so a tree WITHOUT .git
+    # takes a different code path. In 2026-10-19 that path wrote
+    # 'AppData/Local/Temp/<dir>/...' into a hash-registered artifact and the drift
+    # check failed — but only outside a working copy, which no job here exercised.
+    #
+    # See Reviews/ANRI_Failure_Mode_Report_v0.1.md class B.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Export the tree without VCS metadata
+        run: |
+          mkdir -p "${RUNNER_TEMP}/exported"
+          git archive --format=tar HEAD | tar -x -C "${RUNNER_TEMP}/exported"
+          if [ -e "${RUNNER_TEMP}/exported/.git" ]; then
+            echo "::error::the exported tree contains .git, so this job tests nothing"
+            exit 1
+          fi
+          echo "exported files: $(find "${RUNNER_TEMP}/exported" -type f | wc -l)"
+
+      - name: Validate the Research Object in the exported tree
+        working-directory: ${{ runner.temp }}/exported
+        run: |
+          python scripts/validate_research_object.py \
+            Research_Objects/RO-CDFV-001-Ref-01B.json \
+            --repo-root .
+
+      - name: Drift check in the exported tree
+        working-directory: ${{ runner.temp }}/exported
+        run: |
+          # Same provenance replay as the `validate` job, but now with no .git
+          # available to the root-location logic.
+          python scripts/gen_research_object.py \
+            --git-commit "$(python -c 'import json;print(json.load(open("Research_Objects/RO-CDFV-001-Ref-01B.json"))["provenance"]["git_commit"])')" \
+            --created-utc "$(python -c 'import json;print(json.load(open("Research_Objects/RO-CDFV-001-Ref-01B.json"))["provenance"]["created_utc"])')" \
+            --review-date "$(python -c 'import json;print(json.load(open("Research_Objects/RO-CDFV-001-Ref-01B.json"))["review"]["reviews"][0]["date"])')" \
+            --check-only
+
+      - name: Regenerate the frozen artifacts in the exported tree and compare
+        run: |
+          # This is the direct test for the 2026-10-19 defect: the verifier must
+          # produce byte-identical output whether or not .git is present.
+          python "${RUNNER_TEMP}/exported/Models/CDFV-001/Ref-01B/verify_baseline.py"
+          for name in verification.json verification_report.md; do
+            committed="Models/CDFV-001/Ref-01B/results/${name}"
+            exported="${RUNNER_TEMP}/exported/Models/CDFV-001/Ref-01B/results/${name}"
+            if ! cmp -s "${exported}" "${committed}"; then
+              echo "::error::${name} differs when regenerated outside a git checkout"
+              echo "is a checkout-dependent path being written into a hashed artifact?"
+              diff -u "${committed}" "${exported}" | head -40 || true
+              exit 1
+            fi
+          done
+          echo "artifacts are byte-identical with and without .git"

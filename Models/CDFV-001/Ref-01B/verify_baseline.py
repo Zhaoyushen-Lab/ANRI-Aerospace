@@ -203,13 +203,35 @@ def load_rows(path: Path) -> tuple[list[str], list[dict[str, str]]]:
 
 
 def repository_root(script_path: Path) -> Path:
-    """Return the repository root, or the model directory when not in a repo."""
+    """Return the repository root, derived from this file's own location.
 
-    current = script_path.resolve().parent
-    for candidate in (current, *current.parents):
-        if (candidate / ".git").exists():
+    This file lives at ``<root>/Models/CDFV-001/Ref-01B/verify_baseline.py``, so the
+    root is three parents up.  Deriving is used instead of searching because
+    searching upward for ``.git`` cannot tell "the root of this project" apart from
+    "any ancestor that happens to be a repository", and the answer is written into a
+    hash-registered artifact.
+
+    Two ways that search failed, both observed:
+
+    * an exported tree (``git archive``, a downloaded zip) has no ``.git``, so the
+      search fell through to the model directory and the results path appeared to
+      sit above it;
+    * a tree unpacked under a directory that itself contains ``.git`` -- a home
+      directory with an accidental ``git init`` was enough on 2026-10-20 -- made
+      that directory the "root" and produced
+      ``AppData/Local/Temp/<dir>/Models/CDFV-001/Ref-01B/results``.
+
+    The derived candidate is accepted only when it looks like this project, so a
+    relocated script degrades to the model directory (and ``to_posix_relative`` then
+    falls back to the bare directory name) rather than silently claiming a root.
+    """
+
+    resolved = script_path.resolve()
+    if len(resolved.parents) > 3:
+        candidate = resolved.parents[3]
+        if (candidate / "Models" / "CDFV-001" / "Ref-01B").is_dir():
             return candidate
-    return current
+    return resolved.parent
 
 
 def to_posix_relative(path: Path, repo_root: Path) -> str:
