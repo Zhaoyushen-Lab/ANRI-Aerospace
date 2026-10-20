@@ -113,6 +113,9 @@ what that implies about trusting this repository.
 
 | If you want to | Read |
 |---|---|
+| **Contribute, especially if you have never done research** | `CONTRIBUTING.md` |
+| **Understand how this project can survive without selling out** | `docs/ANRI_Sustainability.md` |
+| **See what a maintainer is not allowed to do** | `docs/ANRI_Governance.md` §6–8 |
 | Understand what fails and why | `Reviews/ANRI_Failure_Mode_Report_v0.1.md` |
 | See which errors the gate cannot see | `Reviews/Ref-01B_Verifier_Coverage_Matrix.md` |
 | See the engineering content | `Research_Planning/P003_Free_Surface_Loading.md`, `P004_Added_Mass_Screening.md` |
@@ -131,12 +134,22 @@ py -3 .\Benchmarks\ANRI-RV-001\run_adversarial_cases.py
 py -3 .\scripts\check_report_mechanism.py
 ```
 
-All five exit 0 on the branch under review (`fix/gate-and-brief`) as of 2026-10-20,
-and on `main` for the subset `main` contains. `main` is behind that branch: see the
-pull request for the current difference. The `cold-start` CI job additionally
+All five exit 0 on `main` as of 2026-10-20. The `cold-start` CI job additionally
 repeats the first three inside a `git archive` export with no `.git`, because a tree
 without VCS metadata takes a different code path in the verifier and once wrote a
 checkout-dependent path into a hashed artifact.
+
+### What this project will not do
+
+Three commitments are binding, not aspirational, and are written down so that a later
+shortage of money cannot quietly reverse them:
+
+- verification stays free and open, permanently
+- no AI is ever run on a user's behalf, and no user's inference is paid for
+- the MIT licence is irrevocable
+
+The reasoning, and the amendment procedure that makes these hard to undo, is in
+`docs/ANRI_Sustainability.md` and `docs/ANRI_Governance.md`.
 
 ## Roadmap
 
