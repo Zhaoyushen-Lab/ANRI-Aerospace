@@ -349,7 +349,7 @@
     {
       "path": "Research_Planning/P003_HEU_Prior_Thesis_Finding.md",
       "role": "input",
-      "sha256": "b80a3aec6941347cca592eb2db2b774ba5d7ee8db9190076cef7efd7bb43961b"
+      "sha256": "bb907527d4621be5241ec1d6061a61468553d03f57a07cd093de59a0b1ea7090"
     },
     {
       "path": "Research_Planning/Paper_Outline_FailureModes.md",
@@ -489,7 +489,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "50fc6266e9cf00307591e65f054af016f282b3dd016bd86a104a95fb080c5339"
+      "sha256": "d0211137f068828a66362abb3fbf393081f8d92b88b5f1f004fe4ea644444dbf"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
