@@ -354,7 +354,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "f88bf816b14484a8ef9d93c7892145783e7499b2c80ba7d36edbcdb3ab37859e"
+      "sha256": "02fa37dfb968955ee73cf092e99df7981f48c492a46b152a2b986e79a6f51c5e"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -402,6 +402,36 @@
       "sha256": "0e1c81de521c0e4e9e44dc4b96783851cc85fa4c458119341bb295b1e085df40"
     },
     {
+      "path": "Benchmarks/EXT-001_ThirdParty_Claim_Fidelity/PROTOCOL.md",
+      "role": "input",
+      "sha256": "19d64fb8638ee9510638759ebc74deabdc1b06ca511cf3b11031aecebe735013"
+    },
+    {
+      "path": "Benchmarks/EXT-001_ThirdParty_Claim_Fidelity/RESULTS.md",
+      "role": "report",
+      "sha256": "d0b5593cd06374fdf6bb6b562e6cd6169c4c38d9da2e566f07cb3f88880e8613"
+    },
+    {
+      "path": "Benchmarks/EXT-001_ThirdParty_Claim_Fidelity/make_corpus.py",
+      "role": "model",
+      "sha256": "ae8437e389564c4f5b1a6e712b5f8e2e731294cffd7796a305a4cc05119950cb"
+    },
+    {
+      "path": "Benchmarks/EXT-001_ThirdParty_Claim_Fidelity/corpus/A_gross_diameter_as_radius.docx",
+      "role": "input",
+      "sha256": "c984825b44e56bba1f20de3a308f9195c8813cfe96688299ca69224a378acccf"
+    },
+    {
+      "path": "Benchmarks/EXT-001_ThirdParty_Claim_Fidelity/corpus/B_subtle_wrong_g.docx",
+      "role": "input",
+      "sha256": "791ada458d33a44a73ca6418bc2222fc2ca9f6f1e0269310a61a9de11d24949a"
+    },
+    {
+      "path": "Benchmarks/EXT-001_ThirdParty_Claim_Fidelity/corpus/C_control_correct.docx",
+      "role": "input",
+      "sha256": "05c2232d4862e8c6a9e7706139d73645a3c0a634a6fb30015d8b1769a9e5094e"
+    },
+    {
       "path": "Benchmarks/ANRI-RV-001/adversarial/adversarial_cases.json",
       "role": "index",
       "sha256": "c821b54c0642208518e151cd709fa8cac4550f88ebc5f65cf8c1d5806b0de527"
@@ -439,7 +469,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "44e91ad1fa519ea3c48f62a21401930726df59a9ae8bfdb3ce304d8736a9b669"
+      "sha256": "374b4cdfcbbb689dd82ed5341f1d0de62b0afe4d36cfa0bce7d37d7be4903f77"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
