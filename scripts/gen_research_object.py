@@ -167,6 +167,7 @@ def build_artifact_list() -> list[tuple[str, str]]:
         ("Benchmarks/ANRI-RV-001/coverage_probe.py", "model"),
         ("Benchmarks/EXT-001_ThirdParty_Claim_Fidelity/PROTOCOL.md", "input"),
         ("Benchmarks/EXT-001_ThirdParty_Claim_Fidelity/RESULTS.md", "report"),
+        ("Benchmarks/EXT-001_ThirdParty_Claim_Fidelity/RESULTS.xlsx", "report"),
         ("Benchmarks/EXT-001_ThirdParty_Claim_Fidelity/make_corpus.py", "model"),
         ("Benchmarks/EXT-001_ThirdParty_Claim_Fidelity/corpus/A_gross_diameter_as_radius.docx", "input"),
         ("Benchmarks/EXT-001_ThirdParty_Claim_Fidelity/corpus/B_subtle_wrong_g.docx", "input"),

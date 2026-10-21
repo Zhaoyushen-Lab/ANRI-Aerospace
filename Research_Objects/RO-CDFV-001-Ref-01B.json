@@ -354,7 +354,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "02fa37dfb968955ee73cf092e99df7981f48c492a46b152a2b986e79a6f51c5e"
+      "sha256": "ebf921686bb5088363e81aa9c1d2e9476eb41efd6d1ce9b67396668f03ab8f58"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -410,6 +410,11 @@
       "path": "Benchmarks/EXT-001_ThirdParty_Claim_Fidelity/RESULTS.md",
       "role": "report",
       "sha256": "d0b5593cd06374fdf6bb6b562e6cd6169c4c38d9da2e566f07cb3f88880e8613"
+    },
+    {
+      "path": "Benchmarks/EXT-001_ThirdParty_Claim_Fidelity/RESULTS.xlsx",
+      "role": "report",
+      "sha256": "483c7b76a37694e16377f9767518334f03a2a51bb0fdfe02ce389a2aaa834880"
     },
     {
       "path": "Benchmarks/EXT-001_ThirdParty_Claim_Fidelity/make_corpus.py",
@@ -469,7 +474,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "374b4cdfcbbb689dd82ed5341f1d0de62b0afe4d36cfa0bce7d37d7be4903f77"
+      "sha256": "82491c84ece1f686b9254a9bde670465b7a88834d00884e698f2eb4042b05558"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
