@@ -9,7 +9,7 @@
   "repository": {
     "name": "ANRI-Aerospace",
     "remote": "https://github.com/Zhaoyushen-Lab/ANRI-Aerospace.git",
-    "branch": "feat/research-object-v0.1",
+    "branch": "main",
     "git_commit": "fb685ff526d3b116e8ea074207ce569234f8acef"
   },
   "environment": {
@@ -342,7 +342,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "801b92fc5ffd44fc422b67ccdd24b116ebab00867e0ef72b6f2c1dd3a7871812"
+      "sha256": "2075c0cf0346133a36aaa09b08994afb6484c9e41850f1fc0e9bc9ccd7785538"
     },
     {
       "path": "scripts/p004_sensitivity.py",

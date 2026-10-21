@@ -379,7 +379,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "801b92fc5ffd44fc422b67ccdd24b116ebab00867e0ef72b6f2c1dd3a7871812"
+      "sha256": "2075c0cf0346133a36aaa09b08994afb6484c9e41850f1fc0e9bc9ccd7785538"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -499,7 +499,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "cd3cdb843505c91118e3868421a2e6a79484169193bbcf3b77f6971f9c072fae"
+      "sha256": "bba9e6230aa8a0b5f9361876f3434519d714e033e53a1b5538e46b058318d710"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
@@ -803,6 +803,6 @@
     "git_commit": "fb685ff526d3b116e8ea074207ce569234f8acef",
     "created_utc": "2026-10-11T06:32:35Z",
     "author": "ANRI-Aerospace",
-    "branch": "feat/research-object-v0.1"
+    "branch": "main"
   }
 }

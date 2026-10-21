@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """Regenerate Research_Objects/RO-CDFV-001-Ref-01B.json and its run manifest.
 
 This is the canonical way to refresh the hash-registered record.  Every SHA-256
@@ -213,6 +213,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--git-commit", required=True)
     parser.add_argument("--created-utc", required=True)
     parser.add_argument("--review-date", required=True)
+    parser.add_argument(
+        "--git-branch",
+        default="main",
+        help=(
+            "Branch recorded in provenance. Defaults to main. This is an argument rather than a "
+            "hardcoded string because the previous hardcoded value named a feature branch that was "
+            "later deleted, leaving provenance pointing at a branch that no longer existed."
+        ),
+    )
     parser.add_argument(
         "--check-only",
         action="store_true",
@@ -524,7 +533,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "git_commit": args.git_commit,
             "created_utc": args.created_utc,
             "author": "ANRI-Aerospace",
-            "branch": "feat/research-object-v0.1",
+            "branch": args.git_branch,
         },
     }
 
@@ -550,7 +559,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "repository": {
             "name": "ANRI-Aerospace",
             "remote": "https://github.com/Zhaoyushen-Lab/ANRI-Aerospace.git",
-            "branch": "feat/research-object-v0.1",
+            "branch": args.git_branch,
             "git_commit": args.git_commit,
         },
         "environment": {
