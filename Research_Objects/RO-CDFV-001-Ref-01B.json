@@ -179,7 +179,7 @@
     {
       "path": "Research_Planning/P003_Free_Surface_Loading.md",
       "role": "input",
-      "sha256": "f13dc1defd0177346aa34e00e3ffc297042643bd5ba8e0d1d95005a7853b758c"
+      "sha256": "8ea1cdd93d345e9c2711dcc661452e8f6e665dbbb3fefb6ec625b257f3ca1f9b"
     },
     {
       "path": "Research_Planning/P003_Stage1_Sourcing_Checklist.md",
@@ -504,7 +504,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "fa0754fd23f2e995499e02990eba3058e339d8a67ea89440dacc3238de94f915"
+      "sha256": "156b4846f78d50cbfdf9b0338807e5d9373d75c944d9d9ef19d0b196311fdfa3"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
