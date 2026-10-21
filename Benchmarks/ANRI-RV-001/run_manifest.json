@@ -325,6 +325,11 @@
       "sha256": "b49db3dd48f810af8ca47b862868a876fb75c142ee2578ddcface06f569ccf19"
     },
     {
+      "path": "Research_Planning/P003_1990_FlatCylinder_Exit_Paper.md",
+      "role": "input",
+      "sha256": "af0782e2be40941002a0f671f67e359c9425b1297d66ecab06b8d1a42b3590fe"
+    },
+    {
       "path": "Research_Planning/Paper_Outline_FailureModes.md",
       "role": "input",
       "sha256": "52337b878bc16ed7316783d1027d5e955e66a0af2aac9e96e8a4d27e20ee8bd0"
@@ -342,7 +347,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "2075c0cf0346133a36aaa09b08994afb6484c9e41850f1fc0e9bc9ccd7785538"
+      "sha256": "72fbf0275fb9188de8d5861dc630978a81a0f8b91c6f36da1aa8b44a7d1f2b88"
     },
     {
       "path": "scripts/p004_sensitivity.py",
