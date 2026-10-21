@@ -154,6 +154,7 @@ def build_artifact_list() -> list[tuple[str, str]]:
         ("Research_Planning/P003_Stage1_Reframing.md", "input"),
         ("Paper_Library/P003_Water_Exit_Cylinder_Cavity_2022.pdf", "input"),
         ("Research_Planning/P003_Literature_First_Pass.md", "input"),
+        ("Research_Planning/P003_HEU_Prior_Thesis_Finding.md", "input"),
         ("Research_Planning/Paper_Outline_FailureModes.md", "input"),
         ("Experiment_Requests/P003_B1_Operating_Procedure_ConstantSpeed.md", "input"),
         ("scripts/validate_research_object.py", "model"),

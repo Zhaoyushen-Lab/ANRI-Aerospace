@@ -347,6 +347,11 @@
       "sha256": "e58917fdd13b9511c502bdb9044ac0e13f8351cb661024df166fd67adecf5619"
     },
     {
+      "path": "Research_Planning/P003_HEU_Prior_Thesis_Finding.md",
+      "role": "input",
+      "sha256": "b80a3aec6941347cca592eb2db2b774ba5d7ee8db9190076cef7efd7bb43961b"
+    },
+    {
       "path": "Research_Planning/Paper_Outline_FailureModes.md",
       "role": "input",
       "sha256": "52337b878bc16ed7316783d1027d5e955e66a0af2aac9e96e8a4d27e20ee8bd0"
@@ -364,7 +369,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "804438a1c4b609c5d33adef5ba7c986df7cdfa2fbbd61d99e59f78b1801e056e"
+      "sha256": "b5c779c953a2a8a0c3e8fc18b3dca5502524be8ca0b60311c503bfac581773f5"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -484,7 +489,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "8a41b0c8a04f60d23fb13afb25bb597ff1ba86054ad0b4fe82b1b04a50ac5af5"
+      "sha256": "50fc6266e9cf00307591e65f054af016f282b3dd016bd86a104a95fb080c5339"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
