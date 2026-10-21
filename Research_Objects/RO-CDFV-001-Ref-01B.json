@@ -337,6 +337,16 @@
       "sha256": "0314fc838c89cddcb6d3e9921f570027603353693db0a26282340709baee4faf"
     },
     {
+      "path": "Paper_Library/P003_Water_Exit_Cylinder_Cavity_2022.pdf",
+      "role": "input",
+      "sha256": "03696193b9dcba7077b1a85ae3466c88dfd02b3b7add85cf23b5541e2d2f6e95"
+    },
+    {
+      "path": "Research_Planning/P003_Literature_First_Pass.md",
+      "role": "input",
+      "sha256": "e58917fdd13b9511c502bdb9044ac0e13f8351cb661024df166fd67adecf5619"
+    },
+    {
       "path": "Research_Planning/Paper_Outline_FailureModes.md",
       "role": "input",
       "sha256": "52337b878bc16ed7316783d1027d5e955e66a0af2aac9e96e8a4d27e20ee8bd0"
@@ -354,7 +364,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "ebf921686bb5088363e81aa9c1d2e9476eb41efd6d1ce9b67396668f03ab8f58"
+      "sha256": "804438a1c4b609c5d33adef5ba7c986df7cdfa2fbbd61d99e59f78b1801e056e"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -474,7 +484,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "04361ceb5757a661a5c460f81c64f51a37c26be7794e36fbfc79d4cc03eace8f"
+      "sha256": "8a41b0c8a04f60d23fb13afb25bb597ff1ba86054ad0b4fe82b1b04a50ac5af5"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
