@@ -179,7 +179,7 @@
     {
       "path": "Research_Planning/P003_Free_Surface_Loading.md",
       "role": "input",
-      "sha256": "9aec4734852259c54bf61b85477d2dc87d63224b3c98fb23aa75eca2a8212fb4"
+      "sha256": "406d1a63ac0ff7d0307fd92de57aaec1a03e67cb84040de677b159dbd622286b"
     },
     {
       "path": "Research_Planning/P003_Stage1_Sourcing_Checklist.md",
@@ -194,7 +194,7 @@
     {
       "path": "Research_Planning/P003_B1_Preregistration.md",
       "role": "input",
-      "sha256": "60149d12190c9d8350e504c429f816dabad76e16b51ced1379e4f57a0a8f72f5"
+      "sha256": "bbef54a071330766c13682617b5b7c306e6f4616872db1c94e877b1a1c746557"
     },
     {
       "path": "Research_Planning/P004_Candidate_Comparison.md",
@@ -204,12 +204,12 @@
     {
       "path": "Research_Planning/P002_Data_Availability_Check.md",
       "role": "input",
-      "sha256": "a3837155caa1a7eaadff7124b30e70825932badf72e2f4b8a6d97e8a3bf28597"
+      "sha256": "c59bbbbc65de762253c9b74b9e27e46391ef519da0086d514e191836455475e2"
     },
     {
       "path": "Research_Planning/P004_Added_Mass_Screening.md",
       "role": "input",
-      "sha256": "8b4cd2dbedcc36014efae9fa4347b752cb1cd5c126372c656cb4369c9df3d3c3"
+      "sha256": "dfeb9d3ea12e33cb3b94ce59a4f211a244e35a6e35bba66fe65a4c937e3f86c0"
     },
     {
       "path": "Research_Planning/P004_Added_Mass_Coefficient.md",
@@ -469,12 +469,12 @@
     {
       "path": "Research_Planning/Decision_Log.md",
       "role": "review",
-      "sha256": "08fcb7ca50024c010e25d994688ddb34589f10bdc823d89a0ffac23514e2e0e7"
+      "sha256": "9fb6d5efae18b9013b6e6f53245886bec1177b42162958b17ec407f9cade5f10"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "538aff2366feafbd7fb54bf6ef2a0a467263f1033868c877094eeb7ea88a7086"
+      "sha256": "04361ceb5757a661a5c460f81c64f51a37c26be7794e36fbfc79d4cc03eace8f"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",

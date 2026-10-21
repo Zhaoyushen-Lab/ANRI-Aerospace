@@ -592,3 +592,17 @@ Build an AI-native research workflow that can:
 3. Assist physics-based reasoning
 
 4. Support iterative design exploration
+
+## 早期摘要（2026-10 从 `Paper_001_HAUV_Review.md` 合并）
+
+Core problem: cross-domain mobility between air and water, because existing UAV
+and AUV systems are limited to a single environment.
+
+Challenges: multi-physics coupling (aerodynamics + hydrodynamics); transition
+dynamics (water entry, water exit); control uncertainty (nonlinear, time-varying,
+disturbance).
+
+Vehicle categories covered: bio-inspired, fixed-wing, multi-rotor, multimodal.
+
+**Why this paper matters to the project**: it defines the first engineering
+knowledge domain, "cross-domain vehicle architecture and transition problems".

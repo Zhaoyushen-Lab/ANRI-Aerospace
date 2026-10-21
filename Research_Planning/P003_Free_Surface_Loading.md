@@ -181,7 +181,7 @@ CDFV-001 构成不可忽略的载荷**"。后者是量纲问题，可以用符�
 
 | 量 | 值 | 来源 |
 |---|---|---|
-| P002 模型质量 m | 2.030 kg | `Paper_Notes/P002_...md` Table 1（p.5） |
+| P002 模型质量 m | 2.030 kg | `Paper_Notes/P002_Free_Surface_Hydrodynamics_HAUV_2022.md` Table 1（p.5） |
 | 直径 D | 0.090 m | 同上 |
 | 长度 L | 0.323 m | 同上 |
 | 重量 W | m·g = 19.9075 N（g=9.80665 m/s²） | 本文件计算 |
@@ -346,8 +346,8 @@ P003 is not complete if it only says “P002 suggests this is important.”
 ## Evidence reviewed
 
 - E002-001（P002 §4.1.2, Figs. 11–12）：吸入力随速度增长、0.25 m/s 以上饱和、最大 ≈10% 车重
-- `Paper_Notes/P002_...md` Table 1（p.5）与 §4.2/§4.3 的工况条件
-- `Paper_Notes/P002_...md` §5、§14：合力 Z 与孤立分量的区分要求
+- `Paper_Notes/P002_Free_Surface_Hydrodynamics_HAUV_2022.md` Table 1（p.5）与 §4.2/§4.3 的工况条件
+- `Paper_Notes/P002_Free_Surface_Hydrodynamics_HAUV_2022.md` §5、§14：合力 Z 与孤立分量的区分要求
 - `Models/CDFV-001/Ref-01B/results/summary.csv`：满浸没浮力 20.1510694 N
 - 本文件 §7.5.3 的量级检验（四种候选机制的数值判除）
 

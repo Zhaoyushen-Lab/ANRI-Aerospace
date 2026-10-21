@@ -1,5 +1,13 @@
 # ANRI Architecture v0.1
 
+> **状态（2026-10-20 标注）：早期设计笔记，未被任何流程、决策或触发条件引用。**
+> 本文件描述的是当时的设想，**不构成生效中的规范**；
+> 实际生效的约束见 `docs/ANRI_Governance.md`、`docs/ANRI_Sustainability.md`
+> 与 `Research_Planning/Decision_Log.md`。
+
+---
+
+
 ## Overview
 
 ANRI (AI-Native Research Infrastructure)

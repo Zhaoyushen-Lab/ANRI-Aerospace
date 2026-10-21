@@ -78,7 +78,7 @@
 
 ### 2.3 P002 实际测过的加速度区间
 
-`Paper_Notes/P002_...md` §4.2：**0.07–0.15 m/s²**，且 ≥0.2 m/s² 时数据退化。
+`Paper_Notes/P002_Free_Surface_Hydrodynamics_HAUV_2022.md` §4.2：**0.07–0.15 m/s²**，且 ≥0.2 m/s² 时数据退化。
 
 **这是本项目唯一有实测支撑的加速度区间。它非常低。**
 
@@ -284,7 +284,7 @@ Design（`D002-002`）与 Knowledge Update（`KU004-001`）尚未完成。
 
 - **事实部分**：几何、质量、密度、重力均引自 `CDFV-001_Reference_Configuration.md`
   与 `Models/CDFV-001/Ref-01B/baseline_model.py`；加速度分布由 CSV 实测统计
-  （三个工况全部恒为 0.0）；P002 的加速度区间引自 `Paper_Notes/P002_...md` §4.2；
+  （三个工况全部恒为 0.0）；P002 的加速度区间引自 `Paper_Notes/P002_Free_Surface_Hydrodynamics_HAUV_2022.md` §4.2；
   `added mass is omitted` 引自 README L76；净静水压 0.2436 N 引自 `summary.csv`。
 - **判断部分**：`C_a` 的区间 0.1–1.0、加速体积尺度的两种模型、§5.4 的
   "真实过渡可能达到亚 g"、以及 §6 的三态归类，**全部是判断**。

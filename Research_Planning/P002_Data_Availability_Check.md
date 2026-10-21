@@ -20,7 +20,7 @@ $env:PYTHONPATH = "$env:TEMP\pdflibs"
 # 提取全文并对关键词做上下文定位
 ```
 
-- 页数：**15**（与 `Paper_Notes/P002_...md` 的记录一致）
+- 页数：**15**（与 `Paper_Notes/P002_Free_Surface_Hydrodynamics_HAUV_2022.md` 的记录一致）
 - 全文：**48,736 字符**
 - 图像：见 §4
 

@@ -551,7 +551,7 @@ remote: - Changes must be made through a pull request.
 - `Models/CDFV-001/Ref-01B/baseline_model.py` L4–L10、L99、L118–119
 - `Models/CDFV-001/Ref-01B/results/Ref-01B-B-*.csv`：加速度列实测统计
 - `Research_Planning/CDFV-001_Reference_Configuration.md`：D/L/m/ρ/g
-- `Paper_Notes/P002_...md` §4.2：加速度实测区间 0.07–0.15 m/s²
+- `Paper_Notes/P002_Free_Surface_Hydrodynamics_HAUV_2022.md` §4.2：加速度实测区间 0.07–0.15 m/s²
 - `Research_Planning/P004_Added_Mass_Screening.md` §5.2–§5.3
 
 ## Observation
