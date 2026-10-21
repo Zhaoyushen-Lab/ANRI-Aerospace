@@ -315,6 +315,11 @@
       "sha256": "bb907527d4621be5241ec1d6061a61468553d03f57a07cd093de59a0b1ea7090"
     },
     {
+      "path": "Research_Planning/Chen2012_Thesis_Reading_Report.md",
+      "role": "input",
+      "sha256": "9d3385b8775d5b8059b1af2c031ebf023ab33a3557cbff2f04b9c870a5ac80f9"
+    },
+    {
       "path": "Research_Planning/Paper_Outline_FailureModes.md",
       "role": "input",
       "sha256": "52337b878bc16ed7316783d1027d5e955e66a0af2aac9e96e8a4d27e20ee8bd0"
@@ -332,7 +337,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "b5c779c953a2a8a0c3e8fc18b3dca5502524be8ca0b60311c503bfac581773f5"
+      "sha256": "f4a4b288d582cf0ffe0bdb48dce64c323226b9f4309f9e32081fce1927f4d7fe"
     },
     {
       "path": "scripts/p004_sensitivity.py",
