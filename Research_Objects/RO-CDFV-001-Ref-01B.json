@@ -367,6 +367,11 @@
       "sha256": "af0782e2be40941002a0f671f67e359c9425b1297d66ecab06b8d1a42b3590fe"
     },
     {
+      "path": "Research_Planning/P003_Bench_Experiment_Design.md",
+      "role": "input",
+      "sha256": "d77cc974977f996222031b2aac5b3d721663433cdc7fcac83762031bd8099d4c"
+    },
+    {
       "path": "Research_Planning/Paper_Outline_FailureModes.md",
       "role": "input",
       "sha256": "52337b878bc16ed7316783d1027d5e955e66a0af2aac9e96e8a4d27e20ee8bd0"
@@ -384,7 +389,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "72fbf0275fb9188de8d5861dc630978a81a0f8b91c6f36da1aa8b44a7d1f2b88"
+      "sha256": "93244574589a52b84ed6e24906d2df10bde34bdaf3bb3a04a4a18ab0b7f4e6d6"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -499,12 +504,12 @@
     {
       "path": "Research_Planning/Decision_Log.md",
       "role": "review",
-      "sha256": "9fb6d5efae18b9013b6e6f53245886bec1177b42162958b17ec407f9cade5f10"
+      "sha256": "baa5eb14406d5e0a617772f4f26de3e24805fb40dda01465aa11949d57d1a385"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "47796c1e820a62f004887d707dc1dfde8b6f0a74268600a59c36332ffb9b5c85"
+      "sha256": "4abf594ecf7412d0c05d9fd6c1fd6ce5a01ea1dc0deadbe73aab694807573d05"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
