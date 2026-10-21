@@ -159,6 +159,7 @@ def build_artifact_list() -> list[tuple[str, str]]:
         ("Research_Planning/Chen2012_Section412_And_Conclusion.md", "input"),
         ("Research_Planning/P003_1990_FlatCylinder_Exit_Paper.md", "input"),
         ("Research_Planning/P003_Bench_Experiment_Design.md", "input"),
+        ("Research_Planning/P003_P0_Speed_Pilot.md", "input"),
         ("Research_Planning/Paper_Outline_FailureModes.md", "input"),
         ("Experiment_Requests/P003_B1_Operating_Procedure_ConstantSpeed.md", "input"),
         ("scripts/validate_research_object.py", "model"),

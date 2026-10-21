@@ -335,6 +335,11 @@
       "sha256": "d77cc974977f996222031b2aac5b3d721663433cdc7fcac83762031bd8099d4c"
     },
     {
+      "path": "Research_Planning/P003_P0_Speed_Pilot.md",
+      "role": "input",
+      "sha256": "c14ff5e6fccbdabc8b82dc74305971cab4acd234ef711da08fbdab384dda9b12"
+    },
+    {
       "path": "Research_Planning/Paper_Outline_FailureModes.md",
       "role": "input",
       "sha256": "52337b878bc16ed7316783d1027d5e955e66a0af2aac9e96e8a4d27e20ee8bd0"
@@ -352,7 +357,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "93244574589a52b84ed6e24906d2df10bde34bdaf3bb3a04a4a18ab0b7f4e6d6"
+      "sha256": "a3914ebfae8ead2abf7fa3fdb3e1951c39916011179ab8c831ab5b8a85a13e9d"
     },
     {
       "path": "scripts/p004_sensitivity.py",
