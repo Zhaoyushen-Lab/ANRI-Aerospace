@@ -89,16 +89,69 @@
 | S4 | 海面对光学成像探测影响的研究（中文） | 《光学学报》系（知网 `JGHW202110009`） | 中文线；**水面**而非水下 |
 | S5 | **Fluid lensing and applications to remote sensing of aquatic environments** | Stanford 学位论文（J. J. Alonso） | 光-水面相互作用，偏遥感 |
 
-**据我记忆、待核实的奠基性文献**（**未在本次检索中确认，须自己查证后再入库**）：
+**据我记忆、待核实的奠基性文献** —— **已于 2026-10-20 核实，见 §3A。**
 
-| # | 文献 | 说明 |
+---
+
+## 3A. 奠基文献核实结果（2026-10-20）
+
+**核实方法与依据**：查 Science DOI 页、ADS 记录、以及一篇带完整引用的综述
+（Karsa, Fletcher, Spedalieri, Pirandola, *Quantum Illumination and Quantum Radar:
+A Brief Overview*, arXiv:2310.06049）。
+
+### 3A.1 ★ 先记这一篇：它是整个领域最好的入口
+
+> **Karsa A., Fletcher A., Spedalieri G., Pirandola S.**
+> ***Quantum Illumination and Quantum Radar: A Brief Overview***.
+> **arXiv:2310.06049**（综述）
+
+**为什么先读它**：它把 QI 的历史、协议、经典基准、实验进展、以及**所有批评**
+都梳理了一遍，并给出了本文所引全部奠基文献的规范引用。
+
+**读它一篇，等于拿到一份带注释的文献地图。**
+
+### 3A.2 三条奠基文献的核实状态
+
+| # | 文献 | 状态 |
 |---|---|---|
-| F1 | **Lloyd, *Enhanced Sensitivity of Photodetection via Quantum Illumination*, Science 321, 1463 (2008)** | QI 的提出 |
-| F2 | **Tan et al., PRL 101, 253601 (2008)** | 同期独立提出 |
-| F3 | **Shapiro 关于 QI 与经典基准的系列工作**（含 "The quantum illumination story"） | **经典方案能否追平的争论**——见 §5 陷阱二 |
+| **F1** | **Lloyd S., *Enhanced Sensitivity of Photodetection via Quantum Illumination*** | **标题与期刊已确认**（Science, DOI `10.1126/science.1160627`；同卷有报道文章 Science **321**(5895): 1433a）。**卷 321 已确认；页码 1463 未直接确认** |
+| **F2** | **Tan S.-H., Erkmen B. I., Giovannetti V., Guha S., Lloyd S., Maccone L., Pirandola S., Shapiro J. H., *Quantum Illumination with Gaussian States*** | **已确认**：**Phys. Rev. Lett. 101, 253601 (2008)**（ADS bibcode `2008PhRvL.101y3601T`） |
+| **F3** | **Shapiro J. H., *The Quantum Illumination Story*** | **已确认**：**IEEE Aerospace and Electronic Systems Magazine, 2020**（ADS bibcode `2020IAESM..35d...8S`，卷 35，期 4） |
 
-> **F1–F3 我没有核实。它们的作者、卷期、年份可能有误。**
-> **在引文核实之前，不得写进任何文档的参考文献表。**
+### 3A.3 ⚠️ 我漏了一条更关键的
+
+**F3 只是 2020 年的综述性回顾。真正建立"经典基准"的是更早的一篇：**
+
+| # | 文献 | 作用 |
+|---|---|---|
+| **F4** | **Shapiro J. H., 2009**（综述中记为 `shapiro2009quantum`） | **建立了相干态经典基准**，并证明：在**低背景噪声**区制下，经典相干态的表现**追平** Lloyd 的 QI，**当时找不到量子优势** |
+
+**⚠️ F4 的准确出处我尚未确认**（作者、卷期、是否是 PRA 或其他刊）。
+**在确认之前不得引用。**
+
+**为什么 F4 重要**：**它是"量子优势是相对于什么"这个问题的原始答案。**
+**不读 F4，会以为 QI 一提出就赢了——实际上它先输过一阵。**
+
+### 3A.4 ★ 必须记录的技术前提（这条改变了"6 dB"的分量）
+
+**综述明确给出**：Gaussian QI 的 **4 倍（= 6 dB）优势**是在以下**四个条件同时成立**时：
+
+| 条件 | 含义 |
+|---|---|
+| `N_S ≪ 1` | **信号极弱**（每模光子数远小于 1） |
+| `M = T·W ≫ 1` | **时间带宽积极大** |
+| `κ ≪ 1` | **目标反射率极低** |
+| **`N_B ≫ 1`** | **背景热噪声极强** |
+
+**原文表述（据综述）**：QI 的错误指数是 `exp(−M κ N_S / N_B)`，
+相干态基准是 `exp(−M κ N_S / 4 N_B)`，**比值为 4**，
+且**"此 6 dB 优势被证明是理论上最大的"**。
+
+> **关键含义：6 dB 优势只存在于"强噪声、弱信号、低反射率、大时间带宽积"这个区制。**
+> **在低噪声区制下，经典相干态追平 QI（Shapiro 2009）。**
+
+**这对水下应用意味着什么**：**必须查清水下光学的 `N_B`（背景噪声）落在哪个区制。**
+**如果水下背景噪声不够强，6 dB 优势不出现——这是判断任何"水下 QI"论文价值的第一道筛子。**
 
 ---
 

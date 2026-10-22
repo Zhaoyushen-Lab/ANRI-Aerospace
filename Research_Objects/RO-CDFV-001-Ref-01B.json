@@ -379,7 +379,7 @@
     {
       "path": "Research_Planning/QOPT-001_Literature_Notes.md",
       "role": "input",
-      "sha256": "2e490035c33236c05ae94ad3293787fad82faae142e894e94ded4bd729678502"
+      "sha256": "a9fc3ff907a1e6cdf19e4b1ccb67c1ca0b9caea1d70d520cc3e38289ce6d0f01"
     },
     {
       "path": "Research_Planning/Paper_Outline_FailureModes.md",
@@ -519,7 +519,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "26a6219b70e334ac80def2d6e5b10d0373dc0669cc0bd6aa4ffbeb14c38399bc"
+      "sha256": "91d56978a20277fa5d29d76c03792ad942ead6f6dcc2ee32ec867bf0a92514ad"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
