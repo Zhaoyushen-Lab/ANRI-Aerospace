@@ -387,6 +387,11 @@
       "sha256": "d1b1f27dee1252b597c3d0899f901a1782c50ee4d4a8411e7b5a0bea687f4efd"
     },
     {
+      "path": "Research_Planning/QOPT-001_Background_Noise_Estimate.md",
+      "role": "input",
+      "sha256": "25ee71dadeadb26a4708faf2f14ee614358b8055bfbe78087988857b1b92e5b6"
+    },
+    {
       "path": "Research_Planning/Paper_Outline_FailureModes.md",
       "role": "input",
       "sha256": "52337b878bc16ed7316783d1027d5e955e66a0af2aac9e96e8a4d27e20ee8bd0"
@@ -404,7 +409,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "89a1f5ca7c6b66b35b382ea1d2bdc097fca156b0db0a28387f7f342354fa5b77"
+      "sha256": "d254340c05e408b1d85e97848b62522a04b6a38f23f8768b07a8a98354b8322c"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -524,7 +529,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "13b3268f5091db9f499c90b3e810d08d859e5424daef31a16f6a0fb286ba0ca2"
+      "sha256": "c8377869180b986292b2ed871f1fbf845c1350b027c4d0c1a019fad3470c6f76"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
