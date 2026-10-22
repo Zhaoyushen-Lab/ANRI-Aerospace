@@ -95,18 +95,108 @@
 
 ## 3A. 奠基文献核实结果（2026-10-20）
 
-**核实方法与依据**：查 Science DOI 页、ADS 记录、以及一篇带完整引用的综述
-（Karsa, Fletcher, Spedalieri, Pirandola, *Quantum Illumination and Quantum Radar:
-A Brief Overview*, arXiv:2310.06049）。
+**核实方法与依据**：查 Science DOI 页、ADS 记录、并下载该综述全文（14 页）
+核对其参考文献表。**PDF 已存 `Paper_Library/QOPT_QI_QuantumRadar_Overview_2023.pdf`。**
 
 ### 3A.1 ★ 先记这一篇：它是整个领域最好的入口
 
 > **Karsa A., Fletcher A., Spedalieri G., Pirandola S.**
 > ***Quantum Illumination and Quantum Radar: A Brief Overview***.
-> **arXiv:2310.06049**（综述）
+> **arXiv:2310.06049**（综述，14 页，已精读）
 
 **为什么先读它**：它把 QI 的历史、协议、经典基准、实验进展、以及**所有批评**
-都梳理了一遍，并给出了本文所引全部奠基文献的规范引用。
+都梳理了一遍，并给出了全部奠基文献的规范引用。
+
+### 3A.1b ★★ 已核实到底的引文（可直接引用）
+
+**以下引自该综述的参考文献表，页码与 DOI 均已核对：**
+
+| # | 完整引用 |
+|---|---|
+| **F1** | **S. Lloyd, "Enhanced sensitivity of photodetection via quantum illumination," *Science* 321, 1463 (2008). doi:10.1126/science.1160627** |
+| **F2** | **S.-H. Tan, B. I. Erkmen, V. Giovannetti, S. Guha, S. Lloyd, L. Maccone, S. Pirandola, J. H. Shapiro, "Quantum illumination with Gaussian states," *Phys. Rev. Lett.* 101, 253601 (2008).** |
+| **F4** | **J. H. Shapiro and S. Lloyd, "Quantum illumination versus coherent-state target detection," *New J. Phys.* 11, 063045 (2009). doi:10.1088/1367-2630/11/6/063045** |
+| **F3** | **J. H. Shapiro, "The quantum illumination story," *IEEE Aerosp. Electron. Syst. Mag.* 35(4), 8–20 (2020). doi:10.1109/MAES.2019.2957870** |
+| **F5** | Sacchi M. F., "Entanglement can enhance the distinguishability of entanglement-breaking channels," *Phys. Rev. A* 72, 014305 (2005). — **QI 的前身** |
+| **F6** | Audenaert et al., "Discriminating states: the quantum Chernoff bound," *Phys. Rev. Lett.* 98, 160501 (2007). — **QCB 工具** |
+
+> **✅ 上一版标"未确认"的两条现已全部确认：Lloyd 页码确为 1463；F4 确为 Shapiro & Lloyd, NJP 11, 063045 (2009)。**
+
+---
+
+## 3B. 综述精读：四道硬约束与一个关键结论
+
+> **本节的每个数字都摘自综述正文，不是推断。**
+
+### 3B.1 ★ 结论段原文（最重要，直接决定方向判断）
+
+> "Despite many advances in QI, **the possibility of a quantum radar still seems to be far in the future.**"
+>
+> "Type-3 designs, based on entanglement distribution (like QI), appear to be **too fragile to loss**
+> to be implemented in a practical microwave scenario."
+>
+> "it is **extremely unlikely** to foresee any near-term development of a **long-range** quantum radar."
+>
+> "currently there is **low chance of potential military use** of QI-based technology."
+>
+> **但**："applications of QI appear to be **feasible for short-range detection of fixed or
+> slowly-moving objects.**"
+>
+> 举例：**"quantum-enhanced scanning of metallic objects in a surveillance scenario"**；
+> 以及低光子数的**生物医学**场景。
+
+**即：长程不行，短程可以。**
+
+### 3B.2 四道硬约束（每一条都能否掉一个方案）
+
+| # | 约束 | 具体数字 |
+|---|---|---|
+| **①** | **Idler 存储效率** | `η_I ≥ 1/4` 才有任何量子优势；**`η_I ≥ 1/2` 才能胜过成对 LOCC 测量**。存储手段：光纤延时线，或量子存储器（**"still a technology very much in its infancy"**） |
+| **②** | **接收机只能拿到一半** | 最优联合测量实验上极难。实用接收机（OPA、相位共轭）只实现 **3 dB**，而理论上是 6 dB |
+| **③** | **光源** | 需要**高时间带宽积的最大纠缠模对**。微波段靠约瑟夫森参量放大器，但"这些信号极微弱，放大到室温会严重破坏量子特性" |
+| **④** | **测距** | QI 只解决"有/无"，**测距是另一个问题**，综述单列讨论 |
+
+### 3B.3 我此前给的"四个区制条件"已被证实
+
+**综述给出 Gaussian QI 的对比式（Eq. 15 与 Eq. 17）**：
+
+```
+QI：      P_err ≤ ½ exp(−M κ N_S / N_B)
+相干态：   P_err ≤ ½ exp(−M κ N_S / 4 N_B)
+                              ↑ 比值 4 = 6 dB，且"被证明是理论上最大的"
+```
+
+**成立条件（综述明确列出）**：`N_S ≪ 1`、`M ≫ 1`、`κ ≪ 1`、**`N_B ≫ 1`**。
+
+> **✅ 我上一版写的四个条件，与综述一致。**
+
+### 3B.4 对水下应用的含义（判断）
+
+**综述虽然主要谈微波量子雷达，但它的结论对水下的启发很直接：**
+
+| 综述的话 | 水下对应 |
+|---|---|
+| "short-range detection of **fixed or slowly-moving** objects" | **水雷、静止目标、缓慢的 UUV** |
+| "quantum-enhanced **scanning** of metallic objects" | 金属目标扫描（水雷就是金属壳体） |
+| 长程不可行 | **不适用于反潜** |
+
+> **所以：水下 QI 的可行定位是"短程、静止或慢速、金属目标"。**
+> **这恰好覆盖水雷与港口防御，不覆盖潜艇搜索。**
+>
+> **这与我在会话中给出的"窄场景补充手段"判断一致，且有综述原文支持。**
+
+### 3B.5 一个必须记的批评线索
+
+**综述明确指出**：早期在**低背景噪声**区制下，经典相干态**追平** QI（引 F4）。
+**6 dB 优势只在 `N_B ≫ 1`（强背景噪声）时出现。**
+
+> **但水下光学是低背景噪声环境**（没有太阳直射、没有室温热噪声主导）。
+>
+> **⚠️ 这是本方向最大的技术疑问：水下到底落在 `N_B ≫ 1` 还是 `N_B ≪ 1`？**
+> **如果在后者，6 dB 优势不出现，整个水下 QI 方案的价值要重新论证。**
+>
+> **这一条必须在读任何"水下 QI"论文时第一个查。**
+
 
 **读它一篇，等于拿到一份带注释的文献地图。**
 

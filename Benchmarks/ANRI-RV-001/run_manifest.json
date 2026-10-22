@@ -305,6 +305,11 @@
       "sha256": "03696193b9dcba7077b1a85ae3466c88dfd02b3b7add85cf23b5541e2d2f6e95"
     },
     {
+      "path": "Paper_Library/QOPT_QI_QuantumRadar_Overview_2023.pdf",
+      "role": "input",
+      "sha256": "eb4af4c13e815c0bef2b623cc3997ec415cdb02b64223ce5608dcad266253dff"
+    },
+    {
       "path": "Research_Planning/P003_Literature_First_Pass.md",
       "role": "input",
       "sha256": "e58917fdd13b9511c502bdb9044ac0e13f8351cb661024df166fd67adecf5619"
@@ -342,7 +347,7 @@
     {
       "path": "Research_Planning/QOPT-001_Literature_Notes.md",
       "role": "input",
-      "sha256": "a9fc3ff907a1e6cdf19e4b1ccb67c1ca0b9caea1d70d520cc3e38289ce6d0f01"
+      "sha256": "d1b1f27dee1252b597c3d0899f901a1782c50ee4d4a8411e7b5a0bea687f4efd"
     },
     {
       "path": "Research_Planning/Paper_Outline_FailureModes.md",
@@ -362,7 +367,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "4e240f68fa53f27afc786967f0c6c9cc161e16b2546ec9ec43c0123b51ce3aa4"
+      "sha256": "89a1f5ca7c6b66b35b382ea1d2bdc097fca156b0db0a28387f7f342354fa5b77"
     },
     {
       "path": "scripts/p004_sensitivity.py",

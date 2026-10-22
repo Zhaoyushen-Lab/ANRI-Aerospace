@@ -153,6 +153,7 @@ def build_artifact_list() -> list[tuple[str, str]]:
         ("Experiment_Requests/CLEANROOM-Handoff_Record.md", "input"),
         ("Research_Planning/P003_Stage1_Reframing.md", "input"),
         ("Paper_Library/P003_Water_Exit_Cylinder_Cavity_2022.pdf", "input"),
+        ("Paper_Library/QOPT_QI_QuantumRadar_Overview_2023.pdf", "input"),
         ("Research_Planning/P003_Literature_First_Pass.md", "input"),
         ("Research_Planning/P003_HEU_Prior_Thesis_Finding.md", "input"),
         ("Research_Planning/Chen2012_Thesis_Reading_Report.md", "input"),
