@@ -355,6 +355,16 @@
       "sha256": "25ee71dadeadb26a4708faf2f14ee614358b8055bfbe78087988857b1b92e5b6"
     },
     {
+      "path": "Paper_Library/QOPT_Submarine_Detection_Status_2026.pdf",
+      "role": "input",
+      "sha256": "c80083f904c9bae38a30e16496902882c989920879a684a53213074e56fb7695"
+    },
+    {
+      "path": "Research_Planning/QOPT-001_Field_Status_2026.md",
+      "role": "input",
+      "sha256": "fdeee3a63ead078231ca9ceb664f8a089b25fecd34e375e1c4de9623b58ccc26"
+    },
+    {
       "path": "Research_Planning/Paper_Outline_FailureModes.md",
       "role": "input",
       "sha256": "52337b878bc16ed7316783d1027d5e955e66a0af2aac9e96e8a4d27e20ee8bd0"
@@ -372,7 +382,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "d254340c05e408b1d85e97848b62522a04b6a38f23f8768b07a8a98354b8322c"
+      "sha256": "f9410ee4403884c873cf58d488202c5d5001d4328c428e36839199eb3d3dabec"
     },
     {
       "path": "scripts/p004_sensitivity.py",
