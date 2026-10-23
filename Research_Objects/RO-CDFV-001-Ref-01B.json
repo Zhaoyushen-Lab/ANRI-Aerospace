@@ -402,6 +402,11 @@
       "sha256": "fdeee3a63ead078231ca9ceb664f8a089b25fecd34e375e1c4de9623b58ccc26"
     },
     {
+      "path": "Research_Planning/ANRI_Positioning_G1_First.md",
+      "role": "input",
+      "sha256": "2144ca51c0576b8dacba683650054243ceeaa040264f330eff4f07675a307282"
+    },
+    {
       "path": "Research_Planning/Paper_Outline_FailureModes.md",
       "role": "input",
       "sha256": "52337b878bc16ed7316783d1027d5e955e66a0af2aac9e96e8a4d27e20ee8bd0"
@@ -419,7 +424,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "f9410ee4403884c873cf58d488202c5d5001d4328c428e36839199eb3d3dabec"
+      "sha256": "5e767b10f341e1cf75acc525022196fd3b2dfc99f88497518a33bc84da2d7636"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -539,7 +544,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "c09f4e3b99595166d086f698f177579a23ec92b4e319ce0c4a411587f55757dc"
+      "sha256": "5f914855df17d8c709dc799dbf60230ec5f24120735a100053db8365e4cf5dc5"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
