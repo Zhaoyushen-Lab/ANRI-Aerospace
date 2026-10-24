@@ -370,6 +370,16 @@
       "sha256": "3549f110f1078e2927298c806b3874b143420d97a7da2a549fbedf90cdadec0e"
     },
     {
+      "path": "Models/QOPT-001/baseline_propagation.py",
+      "role": "model",
+      "sha256": "532ee9c7066a4d636ca365e5fde4ab996250caffa641eaac80282db05a6b6a43"
+    },
+    {
+      "path": "Models/QOPT-001/README.md",
+      "role": "report",
+      "sha256": "1f9193c839512dd872c415f2ed6438f6b6a15ea815fa9d6433f5feff3d4578a1"
+    },
+    {
       "path": "Research_Planning/Paper_Outline_FailureModes.md",
       "role": "input",
       "sha256": "52337b878bc16ed7316783d1027d5e955e66a0af2aac9e96e8a4d27e20ee8bd0"
@@ -387,7 +397,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "5e767b10f341e1cf75acc525022196fd3b2dfc99f88497518a33bc84da2d7636"
+      "sha256": "ec38b25e062877f4e43421d0d338749f839bc74825fdadd3f001d847586a7af1"
     },
     {
       "path": "scripts/p004_sensitivity.py",

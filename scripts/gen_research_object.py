@@ -166,6 +166,8 @@ def build_artifact_list() -> list[tuple[str, str]]:
         ("Paper_Library/QOPT_Submarine_Detection_Status_2026.pdf", "input"),
         ("Research_Planning/QOPT-001_Field_Status_2026.md", "input"),
         ("Research_Planning/ANRI_Positioning_G1_First.md", "input"),
+        ("Models/QOPT-001/baseline_propagation.py", "model"),
+        ("Models/QOPT-001/README.md", "report"),
         ("Research_Planning/Paper_Outline_FailureModes.md", "input"),
         ("Experiment_Requests/P003_B1_Operating_Procedure_ConstantSpeed.md", "input"),
         ("scripts/validate_research_object.py", "model"),
