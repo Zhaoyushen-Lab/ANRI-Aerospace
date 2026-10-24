@@ -210,6 +210,16 @@
       "sha256": "05842d56342f5c54733f8149f3c8a3fcec2add729d3d25cc96e2088f7148018a"
     },
     {
+      "path": "scripts/scan_identifiers.py",
+      "role": "model",
+      "sha256": "a19d91749fe4f93c0bc3e68689ae6ed41d579ace465c899c3a0508d1b7d51bf9"
+    },
+    {
+      "path": "scripts/install_git_hooks.py",
+      "role": "model",
+      "sha256": "4fc5ac862b3b985a7bd7744ad996743de1d73c3f22e3ff277915a788b8f9bb9d"
+    },
+    {
       "path": "Models/CDFV-001/Ref-01B/README.md",
       "role": "report",
       "sha256": "766ae4b492ae5813918199bc1b8dfb52e9001cff23636b1f94fb89ee92b6da2d"
@@ -407,7 +417,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "8e59fd7898b4ff6ba5cd4c7218700bcf53b844def84c7887965e8c6eebc6c112"
+      "sha256": "99d7ee9028f713b640e71585ccf7674e8131fe3a9c14d59999eb958ad20be368"
     },
     {
       "path": "scripts/p004_sensitivity.py",

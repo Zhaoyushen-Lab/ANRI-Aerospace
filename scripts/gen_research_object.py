@@ -130,6 +130,8 @@ def build_artifact_list() -> list[tuple[str, str]]:
         ("Models/CDFV-001/Ref-01B/baseline_model.py", "model"),
         ("Models/CDFV-001/Ref-01B/verify_baseline.py", "model"),
         ("Models/CDFV-001/Ref-01B/verify_negative_cases.py", "model"),
+        ("scripts/scan_identifiers.py", "model"),
+        ("scripts/install_git_hooks.py", "model"),
         ("Models/CDFV-001/Ref-01B/README.md", "report"),
         ("Models/CDFV-001/Ref-01B/results/README.md", "report"),
         ("Models/CDFV-001/Ref-01B/results/Ref-01B-B-0p10mps.csv", "result"),

@@ -230,3 +230,10 @@ __marimo__/
 # they must never enter history: committing one would place a known-wrong result
 # file beside the frozen ones and could later be mistaken for real data.
 Blind_Copies/
+
+# Identifier term list for scripts/scan_identifiers.py
+# This file holds the identifying terms that must not appear in the public
+# repository (unit names, personal names, project codes).  It exists only on the
+# local machine.  Committing it would publish exactly what it is meant to catch,
+# which is why the scanner refuses to run when this ignore rule is missing.
+.private-terms.txt
