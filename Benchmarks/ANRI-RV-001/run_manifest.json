@@ -377,7 +377,7 @@
     {
       "path": "Research_Planning/ANRI_Positioning_G1_First.md",
       "role": "input",
-      "sha256": "3549f110f1078e2927298c806b3874b143420d97a7da2a549fbedf90cdadec0e"
+      "sha256": "da3a63d57ddb477ab00657cce2552fead69e4ec2d4e5b896f48604e863942219"
     },
     {
       "path": "Models/QOPT-001/baseline_propagation.py",
@@ -532,7 +532,7 @@
     {
       "path": "Research_Planning/Decision_Log.md",
       "role": "review",
-      "sha256": "c0de807c7538a9243bd74723b83aea0b9e17b25af72082a46820924a39e1aed6"
+      "sha256": "57547da432b8458061dab53ca0bfbf20b3bea08aaf4abe326b1911c1e4830dae"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
