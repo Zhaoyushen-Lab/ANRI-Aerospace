@@ -417,6 +417,16 @@
       "sha256": "1f9193c839512dd872c415f2ed6438f6b6a15ea815fa9d6433f5feff3d4578a1"
     },
     {
+      "path": "Models/QOPT-001/phase_screen.py",
+      "role": "model",
+      "sha256": "1a3a6b4b6ba860badfa494a1b4392b3dc7825d195e7f06da2fcae69327848cd9"
+    },
+    {
+      "path": "Models/QOPT-001/PHASE_SCREEN_STATUS.md",
+      "role": "report",
+      "sha256": "dcae9e950133537d72e571e615ae132a8a962db7a5d607f4033ed8be3768f814"
+    },
+    {
       "path": "Research_Planning/Paper_Outline_FailureModes.md",
       "role": "input",
       "sha256": "52337b878bc16ed7316783d1027d5e955e66a0af2aac9e96e8a4d27e20ee8bd0"
@@ -434,7 +444,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "ec38b25e062877f4e43421d0d338749f839bc74825fdadd3f001d847586a7af1"
+      "sha256": "8e59fd7898b4ff6ba5cd4c7218700bcf53b844def84c7887965e8c6eebc6c112"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -554,7 +564,7 @@
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "6509d983879e6b0dea6c5692524b7e3dc177665f4037bcb690842fc1c463f54c"
+      "sha256": "dd77e1627da1468e855d7e7c328e92267ee57bed601047847a45bc19e39a1af4"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
