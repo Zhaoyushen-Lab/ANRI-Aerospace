@@ -127,6 +127,8 @@ def build_artifact_list() -> list[tuple[str, str]]:
         ("Research_Planning/P004_Sensitivity_Analysis.md", "input"),
         ("Research_Planning/P004_Slender_Body_Applicability.md", "input"),
         ("Experiment_Requests/CLEANROOM-Replication_Task.md", "input"),
+        ("Experiment_Requests/CLEANROOM_START_HERE.md", "input"),
+        ("Experiment_Requests/REPLICATION_LOG_TEMPLATE.md", "input"),
         ("Models/CDFV-001/Ref-01B/baseline_model.py", "model"),
         ("Models/CDFV-001/Ref-01B/verify_baseline.py", "model"),
         ("Models/CDFV-001/Ref-01B/verify_negative_cases.py", "model"),
