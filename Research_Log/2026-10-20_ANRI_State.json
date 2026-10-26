@@ -2,11 +2,11 @@
   "schema_version": "1",
   "kind": "anri_state_snapshot",
   "as_of_date": "2026-10-20",
-  "generated_utc": "2026-10-24T03:11:28.825321+00:00",
+  "generated_utc": "2026-10-26T12:48:33.776988+00:00",
   "note": "generated_utc is wall-clock and NOT part of the compared payload; compare everything else.",
   "head": {
-    "commit": "e0987a0b71e30b051f81724798de1f9aa83c2f85",
-    "summary": "e0987a0 2026-10-24 Build the phase screen, and record that it only partly passes"
+    "commit": "18021bff2a4ff12d2a62fe83fc0e09e7423ff89b",
+    "summary": "18021bf 2026-10-25 Seal the water-exit problem rather than freeze it, and say which of the two happened"
   },
   "worktree": {
     "pending_entries": 0,
@@ -15,7 +15,7 @@
     "unpushed_commits": 0
   },
   "line_endings": {
-    "files": 213,
+    "files": 215,
     "index_crlf": 0,
     "worktree_crlf": 0
   },
@@ -59,12 +59,12 @@
   },
   "research_object": {
     "path": "Research_Objects/RO-CDFV-001-Ref-01B.json",
-    "sha256": "1ba244d9908fce5b4d6b48c1dbe8c76906497fddfa283ea437073ebce0ab3caa",
+    "sha256": "493f59a8712a4ddb1604e9ea249c4cd8780b119f3626e5c0e40c8c55430dd8cf",
     "id": "RO-CDFV-001-Ref-01B",
     "version": "0.2.0",
     "status": "in_review",
     "schema_version": "0.2",
-    "artifact_count": 121,
+    "artifact_count": 123,
     "claim_count": 1,
     "evidence_count": 3,
     "validator_count": 1,
@@ -80,7 +80,7 @@
       "review",
       "schema"
     ],
-    "manifest_entries": 120
+    "manifest_entries": 122
   },
   "review_gate": {
     "status": "revision_requested",
