@@ -1,0 +1,124 @@
+{
+  "schema_version": "1",
+  "kind": "anri_state_snapshot",
+  "as_of_date": "2026-10-28",
+  "generated_utc": "2026-10-28T14:02:55.970282+00:00",
+  "note": "generated_utc is wall-clock and NOT part of the compared payload; compare everything else.",
+  "head": {
+    "commit": "ce300dcf82a6cba93545a0b4f5b116cc5ea2b9d5",
+    "summary": "ce300dc 2026-10-26 Make the clean-room replication reachable without GitHub"
+  },
+  "worktree": {
+    "pending_entries": 0,
+    "staged": 0,
+    "untracked": 0,
+    "unpushed_commits": 0
+  },
+  "line_endings": {
+    "files": 217,
+    "index_crlf": 0,
+    "worktree_crlf": 0
+  },
+  "eem": {
+    "definition": "Knowledge -> Design -> Simulation -> Evaluation -> Knowledge Update (Knowledge_Base/CDFV_Knowledge_Map.md section 5)",
+    "metric": "number of times the loop closes (D-ANRI-002); document count is not a metric",
+    "links": {
+      "knowledge": true,
+      "design": true,
+      "simulation": true,
+      "evaluation": true,
+      "knowledge_update": true
+    },
+    "loops_closed": 2,
+    "loops": [
+      {
+        "document": "P003_Free_Surface_Loading.md",
+        "knowledge_update": "KU003-001",
+        "decision_recorded": true,
+        "closed": true
+      },
+      {
+        "document": "P004_Added_Mass_Screening.md",
+        "knowledge_update": "KU004-001",
+        "decision_recorded": true,
+        "closed": true
+      }
+    ],
+    "knowledge_ids": [
+      "KU003-001",
+      "KU004-001"
+    ],
+    "resolved_decisions": [
+      "**Needs CDFV experiment** — 附条件（记录日期 2026-10-12） **为何不是 Accepted 或 Rejected**：两者都要求已知 CDFV-001 的机体有效密度 `ρ_body,eff = m_body / (πD²L/4)`，而该量在本仓库中不存在 （CDFV-001 几何与质量参数缺失，实测依据见 `Research_Planning/P003_Stage1_Sourcing_Checklist.md` §0）。 在缺少该量的情况下记 Accepted 或 Rejected 均属**用推测替代事实**， 违反 `P003_Free_Surface_Loading.md` §6 与 §11 的禁止条款。",
+      "**Needs CDFV acceleration profile** — 附条件（记录日期 2026-10-19） **为何不是 Accepted 或 Rejected**：两者都要求已知 CDFV-001 的过渡加速度剖面， 而该量**不存在**（与 `D002-001` 的 CDFV 几何缺口同类）。 ### 内部工作完成状态（2026-10-20 更新） **本决策项内部可做的工作已全部完成。** 清单： | 步骤 | 状态 | 产出 | |---|---|---| | Stage 1 量纲筛选 | ✅ 完成 | `P004_Added_Mass_Screening.md` §5 | | `C_a` 的物理依据 | ✅ 完成（推导，非引用） | `P004_Added_Mass_Coefficient.md` | | 加速体积尺度裁决 | ✅ 完成 | `A-P004-002` 已定为端面尺度 | | 细长体适用性检验 | ✅ 完成 | `P004_Slender_Body_Applicability.md` | | Stage 2 非零加速度基线 | ✅ 完成 | 6 个新工况，9 工况全 PASS | | 三态结论 | ✅ `unresolved`（含条件） | 见 `P004_Added_Mass_Screening.md` §6 | | 知识更新 | ✅ `KU004-001`（active） | `P004_Added_Mass_Screening.md` §10 | **当前判据（两法夹逼后的最终值）**： ``` m_a  = 0.130 – 0.243 kg     （椭球下界 … 圆盘上界，比值 1.87） a_be = 8.19 – 15.28 m/s²    （0.84 – 1.56 g） ``` **剩余的唯一外部未知量是 CDFV-001 的过渡加速度剖面。** 在此之前继续投入内部工作**不会有新结论**，只会重复已有推导。 ### 仍需外部输入的三个子问题 1. **CDFV-001 加速度剖面**（决定性）：决定 material / immaterial 的最终归属； 2. **真实平端圆柱的 `m_a` 数值解或文献表**：本日检索工具全部失效， 现有值是两渐近的夹逼而非该几何的解； 3. **锐边分离的定量影响**：若分离使 `m_a` 超过圆盘值， 则 `0.243 kg` 是下限而非上界，`a_be` 会低于 0.84 g。 **这三项都不是本项目内部能解决的，且第 1 项与 `T10` 属同一类外部缺口。**"
+    ],
+    "unresolved_decisions": [],
+    "verification_artifacts": 1,
+    "generalisation_gate": "G1 satisfied",
+    "note": "loops_closed counts definitions of a knowledge update that also carry a verdict in Decision_Log.md. G2 additionally requires the loops to come from DIFFERENT research questions, which the 'loops' list makes auditable."
+  },
+  "research_object": {
+    "path": "Research_Objects/RO-CDFV-001-Ref-01B.json",
+    "sha256": "e1dae64f217311b60307b0310028673b10ff567404efe42ea421965338b6108a",
+    "id": "RO-CDFV-001-Ref-01B",
+    "version": "0.2.0",
+    "status": "in_review",
+    "schema_version": "0.2",
+    "artifact_count": 125,
+    "claim_count": 1,
+    "evidence_count": 3,
+    "validator_count": 1,
+    "assumption_count": 5,
+    "limitation_count": 3,
+    "artifact_roles": [
+      "index",
+      "input",
+      "manifest",
+      "model",
+      "report",
+      "result",
+      "review",
+      "schema"
+    ],
+    "manifest_entries": 124
+  },
+  "review_gate": {
+    "status": "revision_requested",
+    "decision_ref": "D-ANRI-RV-001-001",
+    "review_records": 1,
+    "independent_human_reviews": 0,
+    "latest_decision": "request_changes",
+    "latest_reviewer": "DeepSeek Harness independent review session (model-generated, read-only)",
+    "report_path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
+    "report_sha256": "c7f6dd73911040290602a440a3fcaa0acacc42d90d0a6d5d599b1523c968fd80"
+  },
+  "upstream_maturity": {
+    "source": "docs/ANRI_Data_Model_v0.1.md",
+    "present": true,
+    "kpi_rows": [],
+    "lab_engagement_lines": 3
+  },
+  "checks": {
+    "ro_validator": {
+      "exit": 0,
+      "expected": 0,
+      "ok": true
+    },
+    "clean_baseline": {
+      "exit": 0,
+      "expected": 0,
+      "ok": true
+    },
+    "adversarial_a01": {
+      "exit": 1,
+      "expected": 1,
+      "ok": true
+    },
+    "adversarial_a02": {
+      "exit": 1,
+      "expected": 1,
+      "ok": true
+    }
+  },
+  "checks_all_ok": true
+}
