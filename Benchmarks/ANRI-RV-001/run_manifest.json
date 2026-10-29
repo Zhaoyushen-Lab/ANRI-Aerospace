@@ -427,7 +427,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "26bed1dc528f246f0e274108fe41fb0ff22b8b9fc2370daa40cd1c2e2b52e9e7"
+      "sha256": "c9a4123e782994bdec89f1f860541bd584a18fde04b05b566131635cc200a45e"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -568,6 +568,11 @@
       "path": "Reviews/Ref-01B_Verifier_Coverage_Matrix.md",
       "role": "report",
       "sha256": "fe6f8ff9b59ea6d14558cd64e6f423a30a3bae54279ecdad18a3f8c4ed3a6c3e"
+    },
+    {
+      "path": "Benchmarks/ANRI-RV-001/CASE_STRENGTH_AUDIT.md",
+      "role": "report",
+      "sha256": "7497ba30f43b05398db30e10fd6ed7678ea044cc238ba19abc25e2bab3e5bf94"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A01_wrong_weight/mutation.json",
