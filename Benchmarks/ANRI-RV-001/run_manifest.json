@@ -427,7 +427,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "c9a4123e782994bdec89f1f860541bd584a18fde04b05b566131635cc200a45e"
+      "sha256": "a4c5d4c55aae0d1e24346ddcee7968ed4287d427f97ced0fd138cc01aa703a5a"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -542,7 +542,7 @@
     {
       "path": "Research_Planning/Decision_Log.md",
       "role": "review",
-      "sha256": "729d0cf76a93421120578fcfae0784369a9c000b7361001b0aa05012bea51598"
+      "sha256": "4ba5c0c34be053b4aa056cf87f1d1322109648984c8546a0772a564f8bd78c6a"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",

@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "status": "in_review",
   "title": "CDFV-001 Ref-01B computational hydrostatic benchmark",
-  "purpose": "Establish an internally reproducible vertical water-exit baseline before adding free-surface loading or experimental data.",
+  "purpose": "Provide an executable verification protocol - claims, evidence, deterministic validators, negative and adversarial cases - demonstrated end to end on a computational hydrostatic benchmark, such that the protocol can be applied to other research questions.",
   "scope": {
     "configuration_id": "CDFV-001-Ref-01B",
     "research_question": "Is the prescribed-motion hydrostatic baseline internally computationally consistent under the stated assumptions?",
@@ -464,7 +464,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "c9a4123e782994bdec89f1f860541bd584a18fde04b05b566131635cc200a45e"
+      "sha256": "a4c5d4c55aae0d1e24346ddcee7968ed4287d427f97ced0fd138cc01aa703a5a"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -579,12 +579,12 @@
     {
       "path": "Research_Planning/Decision_Log.md",
       "role": "review",
-      "sha256": "729d0cf76a93421120578fcfae0784369a9c000b7361001b0aa05012bea51598"
+      "sha256": "4ba5c0c34be053b4aa056cf87f1d1322109648984c8546a0772a564f8bd78c6a"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "f3c776489b80ed86ff94a81c7bf7181da05552ca36842fd012c6d743e6c61ef4"
+      "sha256": "37b4eae6cf23e80e47a27285541b9b3ba8c521171bb01a3c26fc68ca60563738"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
@@ -843,6 +843,11 @@
     }
   ],
   "limitations": [
+    {
+      "id": "L-NO-DOMAIN-REVIEW",
+      "text": "The water-exit physics in this object has no reviewer with domain expertise.  The author no longer works on water exit (D-ANRI-016 seals it) and the supervisor works on a different problem, so protocol review is possible but physics review is not.  Any future count of independent reviews must distinguish the two (D-ANRI-018).",
+      "status": "open"
+    },
     {
       "id": "L-NO-EXPERIMENT",
       "text": "No laboratory or field measurement is included.",

@@ -304,9 +304,18 @@ def main(argv: Sequence[str] | None = None) -> int:
         "version": "0.2.0",
         "status": "in_review",
         "title": "CDFV-001 Ref-01B computational hydrostatic benchmark",
+        # 2026-10-29 / D-ANRI-018: the object is re-scoped as a protocol plus a
+        # worked example.  The old wording framed it as a step on the way to a
+        # water-exit research programme; that programme is now sealed
+        # (D-ANRI-016) and has no domain owner, so the framing outlived it.
+        # The title and scope.research_question already described internal
+        # computational consistency rather than water-exit physics, so this is
+        # making `purpose` agree with them, not inventing a new claim.
         "purpose": (
-            "Establish an internally reproducible vertical water-exit baseline "
-            "before adding free-surface loading or experimental data."
+            "Provide an executable verification protocol - claims, evidence, "
+            "deterministic validators, negative and adversarial cases - "
+            "demonstrated end to end on a computational hydrostatic benchmark, "
+            "such that the protocol can be applied to other research questions."
         ),
         "scope": {
             "configuration_id": "CDFV-001-Ref-01B",
@@ -479,6 +488,18 @@ def main(argv: Sequence[str] | None = None) -> int:
             },
         ],
         "limitations": [
+            {
+                "id": "L-NO-DOMAIN-REVIEW",
+                "text": (
+                    "The water-exit physics in this object has no reviewer with "
+                    "domain expertise.  The author no longer works on water exit "
+                    "(D-ANRI-016 seals it) and the supervisor works on a different "
+                    "problem, so protocol review is possible but physics review is "
+                    "not.  Any future count of independent reviews must distinguish "
+                    "the two (D-ANRI-018)."
+                ),
+                "status": "open",
+            },
             {
                 "id": "L-NO-EXPERIMENT",
                 "text": "No laboratory or field measurement is included.",
