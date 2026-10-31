@@ -427,7 +427,7 @@
     {
       "path": "scripts/gen_research_object.py",
       "role": "model",
-      "sha256": "a4c5d4c55aae0d1e24346ddcee7968ed4287d427f97ced0fd138cc01aa703a5a"
+      "sha256": "cc41d885b4e37b687ecb409d344f65232ef789c82afc64302af85b1220542526"
     },
     {
       "path": "scripts/p004_sensitivity.py",
@@ -542,7 +542,7 @@
     {
       "path": "Research_Planning/Decision_Log.md",
       "role": "review",
-      "sha256": "5e3f8de5706890cc098271bea933d12a44f882625706a58e3937ee5ddf76cadc"
+      "sha256": "838d9922773195cfb589cf4a738c16a511edb64f77dcf4956aff50c429df8a1c"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
@@ -573,6 +573,11 @@
       "path": "Benchmarks/ANRI-RV-001/CASE_STRENGTH_AUDIT.md",
       "role": "report",
       "sha256": "7497ba30f43b05398db30e10fd6ed7678ea044cc238ba19abc25e2bab3e5bf94"
+    },
+    {
+      "path": "Research_Planning/QOPT-001_Physics_Chain_v1.md",
+      "role": "report",
+      "sha256": "db344f9b92cbfb55b37dd0ff42b73c09a642093ff332c771bfb8c96d02456a48"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/adversarial/A01_wrong_weight/mutation.json",
