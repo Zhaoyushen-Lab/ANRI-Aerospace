@@ -228,7 +228,7 @@
 - `Research_Planning/QOPT-001_Physics_Chain_v1.md`（sha256 前 16 位 `db344f9b92cbfb55`）
 - `Research_Planning/Decision_Log.md`（21 条，3434 行）
 - `git log`（11-01 至 11-04）
-- `C:\Users\xiangming\Documents\psd\`（仓库外，未注册）
+- `Documents/psd/`（仓库外，未注册；含 `plot_psd.py` 与两张 png）
 
 ---
 
