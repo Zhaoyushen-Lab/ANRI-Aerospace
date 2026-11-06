@@ -579,12 +579,12 @@
     {
       "path": "Research_Planning/Decision_Log.md",
       "role": "review",
-      "sha256": "528a031ae210708800738fa3661027054f87723fc803b960ed71326774624a3e"
+      "sha256": "cf079924d4e243f2b7f55c11f7c92f3ab97a657044269e0765be64278c521524"
     },
     {
       "path": "Benchmarks/ANRI-RV-001/run_manifest.json",
       "role": "manifest",
-      "sha256": "be4b76d508b45e2f6927b45f568c8002b2597cf487dab6ae6775cce74b2e99ad"
+      "sha256": "bb4ceab0714e088d58813b0538017a4749103d78e4e28ca763649015b992bed0"
     },
     {
       "path": "Reviews/RO-CDFV-001-Ref-01B_Independent_Review_Report.md",
